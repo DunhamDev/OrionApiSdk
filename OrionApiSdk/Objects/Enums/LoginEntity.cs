@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrionApiLibrary.Objects.Enums
+namespace OrionApiSdk.Objects.Enums
 {
     public enum LoginEntity
     {

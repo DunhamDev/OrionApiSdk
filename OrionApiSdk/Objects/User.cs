@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
-using OrionApiLibrary.Objects.Enums;
+using OrionApiSdk.Objects.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrionApiLibrary.Objects
+namespace OrionApiSdk.Objects
 {
 
     public class User

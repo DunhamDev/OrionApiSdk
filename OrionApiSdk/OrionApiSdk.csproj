@@ -7,8 +7,8 @@
     <ProjectGuid>{E13134DC-EED8-4EC6-8F37-F618BA841663}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OrionApiLibrary</RootNamespace>
-    <AssemblyName>OrionApiLibrary</AssemblyName>
+    <RootNamespace>OrionApiSdk</RootNamespace>
+    <AssemblyName>OrionApiSdk</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
