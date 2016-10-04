@@ -16,7 +16,11 @@ namespace OrionApiSdk.ApiEndpoints
 
         }
 
-        internal async Task<AuthToken> Token(string username, string password)
+        internal AuthToken Token(string username, string password)
+        {
+            return TokenAsync(username, password).Result;
+        }
+        internal async Task<AuthToken> TokenAsync(string username, string password)
         {
             UpdateCredentials(username, password);
             JObject tokenJson = await GetJsonAsync("Token");
