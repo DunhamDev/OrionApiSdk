@@ -49,6 +49,7 @@
     <Compile Include="ApiEndpoints\Security.cs" />
     <Compile Include="ApiEndpoints\Authorization.cs" />
     <Compile Include="Objects\AuthToken.cs" />
+    <Compile Include="Objects\Enums\LoginEntity.cs" />
     <Compile Include="Objects\UserCredentials.cs" />
     <Compile Include="OrionApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
