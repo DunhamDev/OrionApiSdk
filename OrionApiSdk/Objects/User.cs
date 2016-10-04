@@ -36,7 +36,7 @@ namespace OrionApiSdk.Objects
         public string AlClientName { get; set; }
 
         [JsonProperty("alClientGuid")]
-        public string AlClientGuid { get; set; }
+        public Guid AlClientGuid { get; set; }
 
         [JsonProperty("instanceName")]
         public string InstanceName { get; set; }
