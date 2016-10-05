@@ -12,7 +12,7 @@ namespace OrionApiSdk.ApiEndpoints
     {
         public Authorization(AuthToken token) : base("Authorization")
         {
-            UpdateAuthToken(token.AccessToken);
+            UpdateAuthToken(token);
         }
 
         public User User()

@@ -43,9 +43,9 @@ namespace OrionApiSdk.ApiEndpoints
 
         #region Methods
         #region Protected methods
-        protected void UpdateAuthToken(string authToken)
+        protected void UpdateAuthToken(AuthToken authToken)
         {
-            _authToken = authToken;
+            _authToken = authToken.AccessToken;
         }
 
         protected void UpdateCredentials(string username, string password)

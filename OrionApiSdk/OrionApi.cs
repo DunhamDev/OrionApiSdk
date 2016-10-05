@@ -13,7 +13,7 @@ namespace OrionApiSdk
         public AuthToken AuthToken { get; private set; }
 
         private Authorization _authorizationEndpoint;
-        public Authorization Authorization
+        public Authorization AuthorizationEndpoint
         {
             get
             {
@@ -22,31 +22,26 @@ namespace OrionApiSdk
         }
 
         private Security _securityEndpoint;
-        public Security Security
+        public Security SecurityEndpoint
         {
             get
             {
-                return _securityEndpoint ?? (_securityEndpoint = new Security());
+                return _securityEndpoint ?? (_securityEndpoint = new Security(AuthToken));
             }
         }
 
-        public OrionApi()
-        {
-            AuthToken = null;
-        }
         public OrionApi(AuthToken token)
         {
             AuthToken = token;
         }
 
-        public AuthToken AuthenticateUser(string username, string password)
+        public static AuthToken GetUserAuthToken(string username, string password)
         {
-            return AuthenticateUserAsync(username,password).Result;
+            return GetUserAuthTokenAsync(username,password).Result;
         }
-        public async Task<AuthToken> AuthenticateUserAsync(string username, string password)
+        public static async Task<AuthToken> GetUserAuthTokenAsync(string username, string password)
         {
-            AuthToken = await Security.TokenAsync(username, password);
-            return AuthToken;
+            return await Security.TokenAsync(username, password);
         }
 
         public bool IsAuthTokenValid()
@@ -55,7 +50,7 @@ namespace OrionApiSdk
         }
         public async Task<bool> IsAuthTokenValidAsync()
         {
-            User user = await Authorization.UserAsync();
+            User user = await AuthorizationEndpoint.UserAsync();
             return user != null;
         }
     }

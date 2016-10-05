@@ -18,20 +18,19 @@ namespace ConsoleProgram
 
         private static AuthToken GetAuthToken()
         {
-            OrionApi api = new OrionApi();
             Console.Write("Enter username: ");
             string username = Console.ReadLine();
             Console.WriteLine("Enter password: ");
             Console.WriteLine("*** WARNING: Your password WILL be visible ***");
             string password = Console.ReadLine();
 
-            return api.AuthenticateUser(username, password);
+            return OrionApi.GetUserAuthToken(username, password);
         }
 
         private static User GetUser(AuthToken token)
         {
             OrionApi api = new OrionApi(token);
-            return api.Authorization.User();
+            return api.AuthorizationEndpoint.User();
         }
     }
 }
