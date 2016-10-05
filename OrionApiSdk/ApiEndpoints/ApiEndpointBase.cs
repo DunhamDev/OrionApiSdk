@@ -53,7 +53,7 @@ namespace OrionApiSdk.ApiEndpoints
             _credentials = new UserCredentials(username, password);
         }
 
-        protected async Task<JObject> GetJsonAsync(string endpointMethod, Dictionary<string, object> endpointParameters = null)
+        protected async Task<JToken> GetJsonAsync(string endpointMethod, Dictionary<string, object> endpointParameters = null)
         {
             using (HttpClient httpClient = BuildHttpClient())
             {
@@ -65,7 +65,7 @@ namespace OrionApiSdk.ApiEndpoints
             }
         }
 
-        protected async Task<JObject> PutJsonAsync(string endpointMethod, object body)
+        protected async Task<JToken> PutJsonAsync(string endpointMethod, object body)
         {
             using (HttpClient httpClient = BuildHttpClient())
             {
@@ -77,7 +77,7 @@ namespace OrionApiSdk.ApiEndpoints
             }
         }
 
-        protected async Task<JObject> PostJsonAsync(string endpointMethod, object body)
+        protected async Task<JToken> PostJsonAsync(string endpointMethod, object body)
         {
             using (HttpClient httpClient = BuildHttpClient())
             {
@@ -134,10 +134,10 @@ namespace OrionApiSdk.ApiEndpoints
             return endpointQuery.ToString();
         }
 
-        private async Task<JObject> ParseJsonResponseAsync(HttpResponseMessage response)
+        private async Task<JToken> ParseJsonResponseAsync(HttpResponseMessage response)
         {
             string jsonStr = await response.Content.ReadAsStringAsync();
-            return JObject.Parse(jsonStr);
+            return JsonConvert.DeserializeObject<JToken>(jsonStr);
         }
         #endregion
         #endregion

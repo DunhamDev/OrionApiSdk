@@ -13,7 +13,7 @@ namespace ConsoleProgram
         static void Main(string[] args)
         {
             AuthToken token = GetAuthToken();
-            User user = GetUser(token);
+            var result = GetUsers(token);
         }
 
         private static AuthToken GetAuthToken()
@@ -27,10 +27,10 @@ namespace ConsoleProgram
             return OrionApi.GetUserAuthToken(username, password);
         }
 
-        private static User GetUser(AuthToken token)
+        private static List<User> GetUsers(AuthToken token)
         {
             OrionApi api = new OrionApi(token);
-            return api.AuthorizationEndpoint.User();
+            return api.SecurityEndpoint.Users();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using OrionApiSdk.Objects;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints
@@ -16,6 +17,16 @@ namespace OrionApiSdk.ApiEndpoints
             UpdateCredentials(username, password);
         }
 
+        public List<User> Users()
+        {
+            return UsersAsync().Result;
+        }
+        public async Task<List<User>> UsersAsync()
+        {
+            JToken usersList = await GetJsonAsync("Users");
+            return usersList.ToObject<List<User>>();
+        }
+
         internal static AuthToken Token(string username, string password)
         {
             return TokenAsync(username, password).Result;
@@ -23,7 +34,7 @@ namespace OrionApiSdk.ApiEndpoints
         internal static async Task<AuthToken> TokenAsync(string username, string password)
         {
             Security tempSecurityEndpoit = new Security(username, password);
-            JObject tokenJson = await tempSecurityEndpoit.GetJsonAsync("Token");
+            JToken tokenJson = await tempSecurityEndpoit.GetJsonAsync("Token");
             return tokenJson.ToObject<AuthToken>();
         }
     }

@@ -24,7 +24,7 @@ namespace OrionApiSdk.Objects
         public int DatabaseCount { get; set; }
 
         [JsonProperty("userId")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         [JsonProperty("userDetailId")]
         public int UserDetailId { get; set; }

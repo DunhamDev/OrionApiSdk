@@ -21,7 +21,7 @@ namespace OrionApiSdk.ApiEndpoints
         }
         public async Task<User> UserAsync()
         {
-            JObject userJson = await GetJsonAsync("User");
+            JToken userJson = await GetJsonAsync("User");
             return userJson.ToObject<User>();
         }
     }
