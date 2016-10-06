@@ -9,9 +9,8 @@ namespace OrionApiSdk.ApiEndpoints
 {
     public class Security : ApiEndpointBase
     {
-        public Security(AuthToken token) : base("Security")
+        public Security(AuthToken token) : base("Security", token.AccessToken)
         {
-            UpdateAuthToken(token);
         }
 
         private Security(string username, string password) : base("Security")

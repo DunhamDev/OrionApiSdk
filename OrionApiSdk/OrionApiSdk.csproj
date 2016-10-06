@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiEndpoints\ApiEndpointBase.cs" />
+    <Compile Include="ApiEndpoints\Portfolio.cs" />
     <Compile Include="ApiEndpoints\Security.cs" />
     <Compile Include="ApiEndpoints\Authorization.cs" />
     <Compile Include="Common\Converters\CustomDateTimeConverter.cs" />
@@ -62,7 +63,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Objects\Portfolio\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
