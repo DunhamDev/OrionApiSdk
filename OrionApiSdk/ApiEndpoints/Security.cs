@@ -29,11 +29,15 @@ namespace OrionApiSdk.ApiEndpoints
             return usersList.ToObject<List<SimpleUser>>();
         }
 
-        //public SimpleUser Users(int userId)
-        //{
-
-        //}
-        //public
+        public CompleteUser Users(int userId)
+        {
+            return UsersAsync(userId).Result;
+        }
+        public async Task<CompleteUser> UsersAsync(int userId)
+        {
+            JToken userJson = await GetJsonAsync("Users/" + userId.ToString());
+            return userJson.ToObject<CompleteUser>();
+        }
 
         internal static AuthToken Token(string username, string password)
         {
