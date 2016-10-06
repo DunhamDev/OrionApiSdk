@@ -39,13 +39,50 @@ namespace ConsoleProgram
         private static List<UserInfoDetails> GetUsers()
         {
             OrionApi api = new OrionApi(Token);
-            return api.SecurityEndpoint.Users();
+            return api.SecurityEndpoint.GetUsers();
         }
 
         public static UserInfoDetails GetUsers(int id)
         {
             OrionApi api = new OrionApi(Token);
-            return api.SecurityEndpoint.Users(id);
+            return api.SecurityEndpoint.GetUsers(id);
         }
+
+        //public static List<UserInfoDetails> PostUsers()
+        //{
+        //    OrionApi api = new OrionApi(Token);
+        //    return api.SecurityEndpoint.PostUsers(new UserInfoDetails()
+        //    {
+        //        Profiles = new List<Profile>
+        //        {
+        //            new Profile
+        //            {
+        //                Id = 1055186,
+        //                IsUserDefault = true,
+        //                IsInCurrentDb = true,
+        //                LoginEntity = OrionApiSdk.Objects.Enums.LoginEntity.Household,
+        //                EntityId = 4,
+        //                RoleId = 5,
+        //            }
+        //        },
+        //        Password = "T3sting123!",
+        //        UserId = "Dunham.UploadTest",
+        //        FirstName = "Upload Test",
+        //        LastName = "Dunham",
+        //        Email = "billy.wolfington@dunham.com",
+        //        IsActive = true,
+        //        ActiveDate = DateTime.Now.Date,
+        //        InactiveDate = null,
+        //        LastLogin = DateTime.Now.Date,
+        //        LastPasswordChange = DateTime.Now.Date,
+        //        IsReset = false,
+        //        MobilePhone = null,
+        //        BusinessPhone = null,
+        //        BusinessPhoneExtension = null,
+        //        Company = null,
+        //        JobTitle = null,
+        //        EntityName = "Test_Household Test"
+        //    });
+        //}
     }
 }

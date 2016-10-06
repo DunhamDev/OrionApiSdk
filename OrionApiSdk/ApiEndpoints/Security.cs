@@ -19,24 +19,34 @@ namespace OrionApiSdk.ApiEndpoints
             UpdateCredentials(username, password);
         }
 
-        public List<UserInfoDetails> Users()
+        public List<UserInfoDetails> GetUsers()
         {
-            return UsersAsync().Result;
+            return GetUsersAsync().Result;
         }
-        public async Task<List<UserInfoDetails>> UsersAsync()
+        public async Task<List<UserInfoDetails>> GetUsersAsync()
         {
             JToken usersList = await GetJsonAsync("Users");
             return usersList.ToObject<List<UserInfoDetails>>();
         }
 
-        public UserInfoDetails Users(int userId)
+        public UserInfoDetails GetUsers(int userId)
         {
-            return UsersAsync(userId).Result;
+            return GetUsersAsync(userId).Result;
         }
-        public async Task<UserInfoDetails> UsersAsync(int userId)
+        public async Task<UserInfoDetails> GetUsersAsync(int userId)
         {
             JToken userJson = await GetJsonAsync("Users/" + userId.ToString());
             return userJson.ToObject<UserInfoDetails>();
+        }
+
+        public List<UserInfoDetails> PostUsers(params UserInfoDetails[] users)
+        {
+            return PostUsersAsync(users).Result;
+        }
+        public async Task<List<UserInfoDetails>> PostUsersAsync(params UserInfoDetails[] users)
+        {
+            JToken resultList = await PostJsonAsync("Users/Action/Import", users);
+            return resultList.ToObject<List<UserInfoDetails>>();
         }
 
         internal static AuthToken Token(string username, string password)

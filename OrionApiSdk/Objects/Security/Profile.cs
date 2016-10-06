@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using OrionApiSdk.Objects.Enums;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace OrionApiSdk.Objects.Security
         [JsonProperty("loginEntityId")]
         public int LoginEntityId { get; set; }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         [JsonProperty("entity")]
         public LoginEntity LoginEntity { get; set; }
 

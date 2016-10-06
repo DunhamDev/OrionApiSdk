@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using OrionApiSdk.Common.Converters;
 using OrionApiSdk.Objects.Abstract;
 using System;
 using System.Collections.Generic;
@@ -16,15 +17,19 @@ namespace OrionApiSdk.Objects.Security
         [JsonProperty("isActive")]
         public bool IsActive { get; set; }
 
+        [JsonConverter(typeof(CustomDateTimeConverter))]
         [JsonProperty("activeDate")]
         public DateTime ActiveDate { get; set; }
 
+        [JsonConverter(typeof(CustomDateTimeConverter))]
         [JsonProperty("inactiveDate")]
         public DateTime? InactiveDate { get; set; }
 
+        [JsonConverter(typeof(CustomDateTimeConverter))]
         [JsonProperty("lastLogin")]
         public DateTime? LastLogin { get; set; }
 
+        [JsonConverter(typeof(CustomDateTimeConverter))]
         [JsonProperty("lastPasswordChange")]
         public DateTime? LastPasswordChange { get; set; }
 
