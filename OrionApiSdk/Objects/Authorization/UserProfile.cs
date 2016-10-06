@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace OrionApiSdk.Objects.Authorization
 {
 
-    public class User : BaseUser
+    public class UserProfile : BaseUser
     {
         [JsonProperty("entity")]
         public LoginEntity Entity { get; set; }

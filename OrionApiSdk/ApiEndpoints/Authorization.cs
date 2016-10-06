@@ -12,14 +12,14 @@ namespace OrionApiSdk.ApiEndpoints
             UpdateAuthToken(token);
         }
 
-        public User User()
+        public UserProfile User()
         {
             return UserAsync().Result;
         }
-        public async Task<User> UserAsync()
+        public async Task<UserProfile> UserAsync()
         {
             JToken userJson = await GetJsonAsync("User");
-            return userJson.ToObject<User>();
+            return userJson.ToObject<UserProfile>();
         }
     }
 }

@@ -51,10 +51,9 @@
     <Compile Include="Objects\Abstract\BaseUser.cs" />
     <Compile Include="Objects\AuthToken.cs" />
     <Compile Include="Objects\Enums\LoginEntity.cs" />
-    <Compile Include="Objects\Authorization\User.cs" />
-    <Compile Include="Objects\Security\CompleteUser.cs" />
+    <Compile Include="Objects\Authorization\UserProfile.cs" />
+    <Compile Include="Objects\Security\UserInfoDetails.cs" />
     <Compile Include="Objects\Security\Profile.cs" />
-    <Compile Include="Objects\Security\SimpleUser.cs" />
     <Compile Include="Objects\UserCredentials.cs" />
     <Compile Include="OrionApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

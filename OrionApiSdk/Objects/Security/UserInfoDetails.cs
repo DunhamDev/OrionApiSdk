@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using OrionApiSdk.Objects.Abstract;
-using OrionApiSdk.Objects.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.Objects.Security
 {
-    public class SimpleUser : BaseUser
+    public class UserInfoDetails : BaseUser
     {
         [JsonProperty("id")]
         public int Id { get; set; }
@@ -46,5 +45,11 @@ namespace OrionApiSdk.Objects.Security
 
         [JsonProperty("jobTitle")]
         public string JobTitle { get; set; }
+
+        [JsonProperty("password")]
+        public string Password { get; set; }
+
+        [JsonProperty("profiles")]
+        public List<Profile> Profiles { get; set; }
     }
 }

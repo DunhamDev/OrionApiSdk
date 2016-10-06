@@ -51,7 +51,7 @@ namespace OrionApiSdk
         }
         public async Task<bool> IsAuthTokenValidAsync()
         {
-            User user = await AuthorizationEndpoint.UserAsync();
+            UserProfile user = await AuthorizationEndpoint.UserAsync();
             return user != null;
         }
     }

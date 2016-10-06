@@ -30,19 +30,19 @@ namespace ConsoleProgram
             return OrionApi.GetUserAuthToken(username, password);
         }
 
-        public static User GetUser()
+        public static UserProfile GetUser()
         {
             OrionApi api = new OrionApi(Token);
             return api.AuthorizationEndpoint.User();
         }
 
-        private static List<SimpleUser> GetUsers()
+        private static List<UserInfoDetails> GetUsers()
         {
             OrionApi api = new OrionApi(Token);
             return api.SecurityEndpoint.Users();
         }
 
-        public static CompleteUser GetUsers(int id)
+        public static UserInfoDetails GetUsers(int id)
         {
             OrionApi api = new OrionApi(Token);
             return api.SecurityEndpoint.Users(id);
