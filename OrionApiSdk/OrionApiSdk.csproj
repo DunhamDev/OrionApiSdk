@@ -48,9 +48,11 @@
     <Compile Include="ApiEndpoints\ApiEndpointBase.cs" />
     <Compile Include="ApiEndpoints\Security.cs" />
     <Compile Include="ApiEndpoints\Authorization.cs" />
+    <Compile Include="Objects\Abstract\BaseUser.cs" />
     <Compile Include="Objects\AuthToken.cs" />
     <Compile Include="Objects\Enums\LoginEntity.cs" />
     <Compile Include="Objects\Authorization\User.cs" />
+    <Compile Include="Objects\Security\SimpleUser.cs" />
     <Compile Include="Objects\UserCredentials.cs" />
     <Compile Include="OrionApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,6 +60,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

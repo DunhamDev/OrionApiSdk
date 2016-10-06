@@ -1,6 +1,7 @@
 ﻿using OrionApiSdk;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Authorization;
+using OrionApiSdk.Objects.Security;
 using System;
 using System.Collections.Generic;
 
@@ -11,7 +12,8 @@ namespace ConsoleProgram
         static void Main(string[] args)
         {
             AuthToken token = GetAuthToken();
-            var result = GetUsers(token);
+            var user = GetUser(token);
+            var userList = GetUsers(token);
         }
 
         private static AuthToken GetAuthToken()
@@ -25,7 +27,13 @@ namespace ConsoleProgram
             return OrionApi.GetUserAuthToken(username, password);
         }
 
-        private static List<User> GetUsers(AuthToken token)
+        public static User GetUser(AuthToken token)
+        {
+            OrionApi api = new OrionApi(token);
+            return api.AuthorizationEndpoint.User();
+        }
+
+        private static List<SimpleUser> GetUsers(AuthToken token)
         {
             OrionApi api = new OrionApi(token);
             return api.SecurityEndpoint.Users();

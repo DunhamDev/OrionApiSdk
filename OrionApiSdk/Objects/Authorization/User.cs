@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using OrionApiSdk.Objects.Abstract;
 using OrionApiSdk.Objects.Enums;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace OrionApiSdk.Objects.Authorization
 {
 
-    public class User
+    public class User : BaseUser
     {
         [JsonProperty("entity")]
         public LoginEntity Entity { get; set; }
@@ -22,9 +23,6 @@ namespace OrionApiSdk.Objects.Authorization
 
         [JsonProperty("databaseCount")]
         public int DatabaseCount { get; set; }
-
-        [JsonProperty("userId")]
-        public string UserId { get; set; }
 
         [JsonProperty("userDetailId")]
         public int UserDetailId { get; set; }
@@ -44,15 +42,6 @@ namespace OrionApiSdk.Objects.Authorization
         [JsonProperty("userGuid")]
         public Guid UserGuid { get; set; }
 
-        [JsonProperty("firstName")]
-        public string FirstName { get; set; }
-
-        [JsonProperty("lastName")]
-        public string LastName { get; set; }
-
-        [JsonProperty("email")]
-        public string Email { get; set; }
-
         [JsonProperty("twoFactor")]
         public bool TwoFactor { get; set; }
 
@@ -61,9 +50,6 @@ namespace OrionApiSdk.Objects.Authorization
 
         [JsonProperty("entityId")]
         public object EntityId { get; set; }
-
-        [JsonProperty("entityName")]
-        public string EntityName { get; set; }
 
         [JsonProperty("masterGroup")]
         public string MasterGroup { get; set; }
