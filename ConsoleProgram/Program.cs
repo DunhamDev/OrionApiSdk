@@ -1,10 +1,8 @@
 ﻿using OrionApiSdk;
 using OrionApiSdk.Objects;
+using OrionApiSdk.Objects.Authorization;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleProgram
 {

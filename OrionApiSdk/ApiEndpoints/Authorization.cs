@@ -1,9 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using OrionApiSdk.Objects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using OrionApiSdk.Objects.Authorization;
 using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints

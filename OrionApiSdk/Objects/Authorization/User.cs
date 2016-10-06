@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrionApiSdk.Objects
+namespace OrionApiSdk.Objects.Authorization
 {
 
     public class User
