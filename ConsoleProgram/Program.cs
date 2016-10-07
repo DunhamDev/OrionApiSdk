@@ -15,9 +15,9 @@ namespace ConsoleProgram
         static void Main(string[] args)
         {
             Token = GetAuthToken();
-            var reps = GetReps();
             var simpleReps = GetSimpleReps();
-            var rep = GetRep(reps[0].Id);
+            var rep = GetRep(simpleReps[0].Id);
+            var accounts = GetRepAccounts(rep.Id);
         }
 
         private static AuthToken GetAuthToken()
@@ -65,6 +65,12 @@ namespace ConsoleProgram
         {
             OrionApi api = new OrionApi(Token);
             return api.PortolioEndpoint.GetRepresentatives(id);
+        }
+
+        public static List<Account> GetRepAccounts(int id)
+        {
+            OrionApi api = new OrionApi(Token);
+            return api.PortolioEndpoint.GetRepresentativeAccounts(id);
         }
 
         //public static List<UserInfoDetails> PostUsers()
