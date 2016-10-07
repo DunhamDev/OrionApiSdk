@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="ApiEndpoints\ApiEndpointBase.cs" />
     <Compile Include="ApiEndpoints\ApiMethodContainer.cs" />
+    <Compile Include="ApiEndpoints\Portfolio\AccountsMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\Portfolio.cs" />
     <Compile Include="ApiEndpoints\Portfolio\RepresentativesMethods.cs" />
     <Compile Include="ApiEndpoints\Security.cs" />

@@ -4,7 +4,6 @@ namespace OrionApiSdk.Objects.Portfolio
 {
     public class Account
     {
-        
         [JsonProperty("id")]
         public int Id { get; set; }
         
