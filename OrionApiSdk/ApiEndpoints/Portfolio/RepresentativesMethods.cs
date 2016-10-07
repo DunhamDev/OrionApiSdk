@@ -133,5 +133,20 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             });
             return repValues.ToObject<List<RepresentativeSimple>>();
         }
+
+        public List<ClientSimple> SearchClients(int repId, string searchValue, int? top = null, int skip = 0)
+        {
+            return SearchClientsAsync(repId, searchValue, top, skip).Result;
+        }
+        public async Task<List<ClientSimple>> SearchClientsAsync(int repId, string searchValue, int? top = null, int skip = 0)
+        {
+            JToken clientsJson = await GetJsonAsync(string.Format("{0}/Clients/Simple/Search", repId), new Dictionary<string, object>
+            {
+                { "search", searchValue },
+                { "top", top },
+                { "skip", skip }
+            });
+            return clientsJson.ToObject<List<ClientSimple>>();
+        }
     }
 }
