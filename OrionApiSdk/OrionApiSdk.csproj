@@ -56,6 +56,7 @@
     <Compile Include="Objects\Enums\LoginEntity.cs" />
     <Compile Include="Objects\Authorization\UserProfile.cs" />
     <Compile Include="Objects\Portfolio\Account.cs" />
+    <Compile Include="Objects\Portfolio\AccountSimple.cs" />
     <Compile Include="Objects\Portfolio\Representative.cs" />
     <Compile Include="Objects\Portfolio\RepresentativeSimple.cs" />
     <Compile Include="Objects\Security\UserInfoDetails.cs" />

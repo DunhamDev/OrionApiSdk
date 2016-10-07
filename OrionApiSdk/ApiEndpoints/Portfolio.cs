@@ -53,6 +53,20 @@ namespace OrionApiSdk.ApiEndpoints
             return accounts.ToObject<List<Account>>();
         }
 
+        public List<AccountSimple> GetRepresentativeAccountValues(int repId, int? top = null, int? skip = null)
+        {
+            return GetRepresentativeAccountValuesAsync(repId, top, skip).Result;
+        }
+        public async Task<List<AccountSimple>> GetRepresentativeAccountValuesAsync(int repId, int? top = null, int? skip = null)
+        {
+            JToken simpleAccountsJson = await GetJsonAsync(string.Format("Representatives/{0}/Accounts/Value", repId), new Dictionary<string, object>
+            {
+                { "$top", top },
+                { "$skip", skip }
+            });
+            return simpleAccountsJson.ToObject<List<AccountSimple>>();
+        }
+
         public List<RepresentativeSimple> GetRepresentativesSimple(bool? isUsed = null, int? top = null, int? skip = null)
         {
             return GetRepresentativesSimpleAsync(isUsed, top, skip).Result;
