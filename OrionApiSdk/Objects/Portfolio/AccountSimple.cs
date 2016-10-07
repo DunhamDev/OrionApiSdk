@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using OrionApiSdk.Objects.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.Objects.Portfolio
 {
-    public class AccountSimple
+    public class AccountSimple : BaseSimpleEntity
     {
         [JsonProperty("value")]
         public decimal? Value { get; set; }
@@ -26,11 +27,5 @@ namespace OrionApiSdk.Objects.Portfolio
 
         [JsonProperty("custodian")]
         public string Custodian { get; set; }
-
-        [JsonProperty("id")]
-        public int Id { get; set; }
-
-        [JsonProperty("name")]
-        public string Name { get; set; }
     }
 }

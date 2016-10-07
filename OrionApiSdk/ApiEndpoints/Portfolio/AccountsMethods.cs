@@ -47,6 +47,49 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return account.ToObject<Account>();
         }
 
+        public Account Get(string accountNumber)
+        {
+            return GetAsync(accountNumber).Result;
+        }
+        public async Task<Account> GetAsync(string accountNumber)
+        {
+            JToken account = await GetJsonAsync(accountNumber);
+            return account.ToObject<Account>();
+        }
+
+        public List<AccountSimple> GetSimple(bool? hasValue = null, bool? isActive = null, int top = 5000, int skip = 0)
+        {
+            return GetSimpleAsync(hasValue, isActive, top, skip).Result;
+        }
+        public async Task<List<AccountSimple>> GetSimpleAsync(bool? hasValue = null, bool? isActive = null, int top = 5000, int skip = 0)
+        {
+            JToken simpleAccounts = await GetJsonAsync("Simple", new Dictionary<string, object>
+            {
+                { "hasValue", hasValue },
+                { "isActive", isActive },
+                { "$top", top },
+                { "$skip", skip }
+            });
+            return simpleAccounts.ToObject<List<AccountSimple>>();
+        }
+
+        public List<AccountSimple> GetSimpleSearch(string searchedAccountNum, bool? hasValue = null, bool? isActive = null, int top = 5000, int skip = 0)
+        {
+            return GetSimpleSearchAsync(searchedAccountNum, hasValue, isActive, top, skip).Result;
+        }
+        public async Task<List<AccountSimple>> GetSimpleSearchAsync(string searchedAccountNum, bool? hasValue = null, bool? isActive = null, int top = 5000, int skip = 0)
+        {
+            JToken simpleAccounts = await GetJsonAsync("Simple", new Dictionary<string, object>
+            {
+                { "search", searchedAccountNum },
+                { "hasValue", hasValue },
+                { "isActive", isActive },
+                { "$top", top },
+                { "$skip", skip }
+            });
+            return simpleAccounts.ToObject<List<AccountSimple>>();
+        }
+
         private string NullableDateToString(DateTime? dateToConvert)
         {
             if (dateToConvert.HasValue)
