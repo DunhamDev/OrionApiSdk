@@ -109,7 +109,7 @@ namespace OrionApiSdk.ApiEndpoints
 
         private AuthenticationHeaderValue RequestAuthorization()
         {
-            if (_accessToken != null)
+            if (AuthToken != null)
             {
                 return new AuthenticationHeaderValue("Session", _accessToken);
             }

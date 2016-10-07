@@ -59,25 +59,25 @@ namespace ConsoleProgram
         public static List<RepresentativeSimple> GetSimpleReps()
         {
             OrionApi api = new OrionApi(Token);
-            return api.PortolioEndpoint.GetRepresentativesSimple();
+            return api.PortolioEndpoint.Representatives.GetSimple();
         }
 
         public static Representative GetRep(int id)
         {
             OrionApi api = new OrionApi(Token);
-            return api.PortolioEndpoint.GetRepresentatives(id);
+            return api.PortolioEndpoint.Representatives.Get(id);
         }
 
         public static List<Account> GetRepAccounts(int id)
         {
             OrionApi api = new OrionApi(Token);
-            return api.PortolioEndpoint.GetRepresentativeAccounts(id);
+            return api.PortolioEndpoint.Representatives.GetAccounts(id);
         }
 
         public static List<AccountSimple> GetAccountValues(int id)
         {
             OrionApi api = new OrionApi(Token);
-            return api.PortolioEndpoint.GetRepresentativeAccountValues(id);
+            return api.PortolioEndpoint.Representatives.GetAccountValues(id);
         }
 
         //public static List<UserInfoDetails> PostUsers()
