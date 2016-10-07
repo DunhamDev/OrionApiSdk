@@ -60,6 +60,8 @@
     <Compile Include="Objects\Authorization\UserProfile.cs" />
     <Compile Include="Objects\Portfolio\Account.cs" />
     <Compile Include="Objects\Portfolio\AccountSimple.cs" />
+    <Compile Include="Objects\Portfolio\Asset.cs" />
+    <Compile Include="Objects\Portfolio\AssetSimpleWithValue.cs" />
     <Compile Include="Objects\Portfolio\BillRepresentativeForm.cs" />
     <Compile Include="Objects\Portfolio\ClientSimple.cs" />
     <Compile Include="Objects\Portfolio\Document.cs" />

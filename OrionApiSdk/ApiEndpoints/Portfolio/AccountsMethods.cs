@@ -90,6 +90,59 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return simpleAccounts.ToObject<List<AccountSimple>>();
         }
 
+        public List<Asset> GetAssets(int accountId, bool? includeCostBasis = null)
+        {
+            return GetAssetsAsync(accountId, includeCostBasis).Result;
+        }
+        public async Task<List<Asset>> GetAssetsAsync(int accountId, bool? includeCostBasis = null)
+        {
+            JToken assets = await GetJsonAsync(string.Format("{0}/Assets", accountId), new Dictionary<string, object>
+            {
+                { "includeCostBasis", includeCostBasis }
+            });
+            return assets.ToObject<List<Asset>>();
+        }
+
+        public List<AccountSimple> GetValue(bool? hasValue = null)
+        {
+            return GetValueAsync(hasValue).Result;
+        }
+        public async Task<List<AccountSimple>> GetValueAsync(bool? hasValue = null)
+        {
+            // TODO
+            return null;
+        }
+
+        public List<AccountSimple> GetValue(DateTime asOfDate, bool? hasValue = null)
+        {
+            return GetValueAsync(asOfDate, hasValue).Result;
+        }
+        public async Task<List<AccountSimple>> GetValueAsync(DateTime asOfDate, bool? hasValue = null)
+        {
+            // TODO
+            return null;
+        }
+
+        public List<AccountSimple> GetValue(int accountId, bool? includeCash = null)
+        {
+            return GetValueAsync(accountId, includeCash).Result;
+        }
+        public async Task<List<AccountSimple>> GetValueAsync(int accountId, bool? includeCash = null)
+        {
+            // TODO
+            return null;
+        }
+
+        public List<AccountSimple> GetValue(int accountId, DateTime asOfDate, bool? includeCash = null)
+        {
+            return GetValueAsync(accountId, asOfDate, includeCash).Result;
+        }
+        public async Task<List<AccountSimple>> GetValueAsync(int accountId, DateTime asOfDate, bool? includeCash = null)
+        {
+            // TODO
+            return null;
+        }
+
         private string NullableDateToString(DateTime? dateToConvert)
         {
             if (dateToConvert.HasValue)
