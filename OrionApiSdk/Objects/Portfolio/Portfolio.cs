@@ -78,7 +78,7 @@ namespace OrionApiSdk.Objects.Portfolio
         public string EditedBy { get; set; }
         
         [JsonProperty("startDate")]
-        public string StartDate { get; set; }
+        public DateTime StartDate { get; set; }
         
         [JsonProperty("repStatus")]
         public string RepStatus { get; set; }

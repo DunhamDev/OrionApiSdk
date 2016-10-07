@@ -39,14 +39,12 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
 
         public List<RepresentativeSimple> GetSimple(bool? isUsed = null)
         {
-            return GetSimpleAsync(isUsed, top, skip).Result;
+            return GetSimpleAsync(isUsed).Result;
         }
         public async Task<List<RepresentativeSimple>> GetSimpleAsync(bool? isUsed = null)
         {
             JToken simpleReps = await GetJsonAsync("Simple", new Dictionary<string, object> {
                 { "isUsed", isUsed },
-                { "$top", top },
-                { "$skip", skip }
             });
             return simpleReps.ToObject<List<RepresentativeSimple>>();
         }
@@ -147,6 +145,31 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
                 { "skip", skip }
             });
             return clientsJson.ToObject<List<ClientSimple>>();
+        }
+
+        public List<RepresentativeVerbose> GetVerbose(bool? isActive = null, int top = 5000, int skip = 0)
+        {
+            return GetVerboseAsync(isActive, top, skip).Result;
+        }
+        public async Task<List<RepresentativeVerbose>> GetVerboseAsync(bool? isActive = null, int top = 5000, int skip = 0)
+        {
+            JToken verboseReps = await GetJsonAsync("Verbose", new Dictionary<string, object>
+            {
+                { "isActive", isActive },
+                { "$top", top },
+                { "$skip", skip }
+            });
+            return verboseReps.ToObject<List<RepresentativeVerbose>>();
+        }
+
+        public RepresentativeVerbose GetVerbose(int repId)
+        {
+            return GetVerboseAsync(repId).Result;
+        }
+        public async Task<RepresentativeVerbose> GetVerboseAsync(int repId)
+        {
+            JToken rep = await GetJsonAsync("Verbose/" + repId.ToString());
+            return rep.ToObject<RepresentativeVerbose>();
         }
     }
 }
