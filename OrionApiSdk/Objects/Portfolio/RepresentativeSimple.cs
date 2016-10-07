@@ -5,6 +5,9 @@ namespace OrionApiSdk.Objects.Portfolio
 {
     public class RepresentativeSimple : BaseSimpleEntity
     {
+        [JsonProperty("value")]
+        public decimal? Value { get; set; }
+
         [JsonProperty("isActive")]
         public bool IsActive { get; set; }
 

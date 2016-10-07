@@ -77,7 +77,7 @@ namespace ConsoleProgram
         public static List<AccountSimple> GetAccountValues(int id)
         {
             OrionApi api = new OrionApi(Token);
-            return api.PortolioEndpoint.Representatives.GetAccountValues(id);
+            return api.PortolioEndpoint.Representatives.GetAccountValues(id, new DateTime(2016, 9, 30));
         }
 
         //public static List<UserInfoDetails> PostUsers()
