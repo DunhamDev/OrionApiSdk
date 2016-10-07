@@ -7,7 +7,7 @@ namespace OrionApiSdk.ApiEndpoints
 {
     public class Authorization : ApiEndpointBase
     {
-        public Authorization(AuthToken token) : base("Authorization", token.AccessToken)
+        public Authorization(AuthToken token) : base("Authorization", token)
         {
         }
 

@@ -7,27 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrionApiSdk.ApiEndpoints
+namespace OrionApiSdk.ApiEndpoints.Portfolio
 {
-    public class Portfolio : ApiEndpointBase
+    public class PortfolioEndpoint : ApiEndpointBase
     {
-        public Portfolio(AuthToken token) : base("Portfolio", token.AccessToken)
+        public PortfolioEndpoint(AuthToken token) : base("Portfolio", token)
         {
         }
 
-        public List<Representative> GetRepresentatives(bool? isUsed = null, int? top = null, int? skip = null)
+        private RepresentativesMethods _repMethods;
+        public RepresentativesMethods Representatives
         {
-            return GetRepresentativesAsync(isUsed, top, skip).Result;
+            get
+            {
+                return _repMethods ?? (_repMethods = new RepresentativesMethods(AuthToken));
+            }
         }
-        public async Task<List<Representative>> GetRepresentativesAsync(bool? isUsed = null, int? top = null, int? skip = null)
-        {
-            JToken reps = await GetJsonAsync("Representatives", new Dictionary<string, object> {
-                { "isUsed", isUsed },
-                { "$top", top },
-                { "$skip", skip  }
-            });
-            return reps.ToObject<List<Representative>>();
-        }
+
 
         public Representative GetRepresentatives(int repId)
         {

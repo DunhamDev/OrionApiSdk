@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiEndpoints\ApiEndpointBase.cs" />
-    <Compile Include="ApiEndpoints\Portfolio.cs" />
+    <Compile Include="ApiEndpoints\ApiMethodContainer.cs" />
+    <Compile Include="ApiEndpoints\Portfolio\Portfolio.cs" />
+    <Compile Include="ApiEndpoints\Portfolio\RepresentativesMethods.cs" />
     <Compile Include="ApiEndpoints\Security.cs" />
     <Compile Include="ApiEndpoints\Authorization.cs" />
     <Compile Include="Common\Converters\CustomDateTimeConverter.cs" />

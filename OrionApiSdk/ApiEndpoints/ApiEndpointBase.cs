@@ -22,7 +22,14 @@ namespace OrionApiSdk.ApiEndpoints
         #region Instance properties
         protected string EndpointName { get; private set; }
 
-        private string _authToken { get; set; }
+        protected AuthToken AuthToken { get; set; }
+        private string _accessToken
+        {
+            get
+            {
+                return AuthToken.AccessToken;
+            }
+        }
         private UserCredentials _credentials { get; set; }
         #endregion
         #endregion
@@ -31,13 +38,13 @@ namespace OrionApiSdk.ApiEndpoints
         internal ApiEndpointBase(string endpointName)
         {
             EndpointName = endpointName;
-            _authToken = null;
+            AuthToken = null;
             _credentials = null;
         }
-        internal ApiEndpointBase(string endpointName, string authToken)
+        internal ApiEndpointBase(string endpointName, AuthToken authToken)
         {
             EndpointName = endpointName;
-            _authToken = authToken;
+            AuthToken = authToken;
         }
         #endregion
 
@@ -45,7 +52,7 @@ namespace OrionApiSdk.ApiEndpoints
         #region Protected methods
         protected void UpdateAuthToken(AuthToken authToken)
         {
-            _authToken = authToken.AccessToken;
+            AuthToken = authToken;
         }
 
         protected void UpdateCredentials(string username, string password)
@@ -102,9 +109,9 @@ namespace OrionApiSdk.ApiEndpoints
 
         private AuthenticationHeaderValue RequestAuthorization()
         {
-            if (_authToken != null)
+            if (_accessToken != null)
             {
-                return new AuthenticationHeaderValue("Session", _authToken);
+                return new AuthenticationHeaderValue("Session", _accessToken);
             }
             else
             {

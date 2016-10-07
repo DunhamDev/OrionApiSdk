@@ -1,4 +1,5 @@
 ﻿using OrionApiSdk.ApiEndpoints;
+using OrionApiSdk.ApiEndpoints.Portfolio;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Authorization;
 using System;
@@ -22,12 +23,12 @@ namespace OrionApiSdk
             }
         }
 
-        private Portfolio _portfolioEndpoint;
-        public Portfolio PortolioEndpoint
+        private PortfolioEndpoint _portfolioEndpoint;
+        public PortfolioEndpoint PortolioEndpoint
         {
             get
             {
-                return _portfolioEndpoint ?? (_portfolioEndpoint = new Portfolio(AuthToken));
+                return _portfolioEndpoint ?? (_portfolioEndpoint = new PortfolioEndpoint(AuthToken));
             }
         }
 

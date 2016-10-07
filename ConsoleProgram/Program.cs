@@ -53,7 +53,7 @@ namespace ConsoleProgram
         public static List<Representative> GetReps()
         {
             OrionApi api = new OrionApi(Token);
-            return api.PortolioEndpoint.GetRepresentatives();
+            return api.PortolioEndpoint.Representatives.Get();
         }
 
         public static List<RepresentativeSimple> GetSimpleReps()
