@@ -108,13 +108,13 @@ namespace OrionApiSdk.Objects.Portfolio
         public int Payee { get; set; }
         
         [JsonProperty("planAdministrator")]
-        public int PlanAdministrator { get; set; }
+        public int? PlanAdministrator { get; set; }
         
         [JsonProperty("raActive")]
         public bool? RaActive { get; set; }
         
         [JsonProperty("raAmount")]
-        public decimal RaAmount { get; set; }
+        public decimal? RaAmount { get; set; }
         
         [JsonProperty("raDate")]
         public DateTime? RaDate { get; set; }

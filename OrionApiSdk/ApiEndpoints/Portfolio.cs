@@ -11,27 +11,45 @@ namespace OrionApiSdk.ApiEndpoints
 {
     public class Portfolio : ApiEndpointBase
     {
-        public Portfolio(AuthToken  token) : base("Portfolio", token.AccessToken)
+        public Portfolio(AuthToken token) : base("Portfolio", token.AccessToken)
         {
         }
 
-        public List<Representative> GetRepresentatives()
+        public List<Representative> GetRepresentatives(bool? isUsed = null, int? top = null, int? skip = null)
         {
-            return GetRepresentativesAsync().Result;
+            return GetRepresentativesAsync(isUsed, top, skip).Result;
         }
-        public async Task<List<Representative>> GetRepresentativesAsync()
+        public async Task<List<Representative>> GetRepresentativesAsync(bool? isUsed = null, int? top = null, int? skip = null)
         {
-            JToken reps = await GetJsonAsync("Representatives");
+            JToken reps = await GetJsonAsync("Representatives", new Dictionary<string, object> {
+                { "isUsed", isUsed },
+                { "$top", top },
+                { "$skip", skip  }
+            });
             return reps.ToObject<List<Representative>>();
         }
 
-        public List<RepresentativeSimple> GetRepresentativesSimple(bool isUsed = false)
+        public Representative GetRepresentatives(int repId)
         {
-            return GetRepresentativesSimpleAsync(isUsed).Result;
+            return GetRepresentativesAsync(repId).Result;
         }
-        public async Task<List<RepresentativeSimple>> GetRepresentativesSimpleAsync(bool isUsed = false)
+        public async Task<Representative> GetRepresentativesAsync(int repId)
         {
-            JToken simpleReps = await GetJsonAsync("Representatives/Simple", new Dictionary<string, object> { { "isUsed", isUsed } });
+            JToken repJson = await GetJsonAsync("Representatives/" + repId.ToString());
+            return repJson.ToObject<Representative>();
+        }
+
+        public List<RepresentativeSimple> GetRepresentativesSimple(bool? isUsed = null, int? top = null, int? skip = null)
+        {
+            return GetRepresentativesSimpleAsync(isUsed, top, skip).Result;
+        }
+        public async Task<List<RepresentativeSimple>> GetRepresentativesSimpleAsync(bool? isUsed = null, int? top = null, int? skip = null)
+        {
+            JToken simpleReps = await GetJsonAsync("Representatives/Simple", new Dictionary<string, object> {
+                { "isUsed", isUsed },
+                { "$top", top },
+                { "$skip", skip }
+            });
             return simpleReps.ToObject<List<RepresentativeSimple>>();
         }
     }

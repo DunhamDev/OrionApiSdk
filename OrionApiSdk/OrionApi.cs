@@ -22,6 +22,15 @@ namespace OrionApiSdk
             }
         }
 
+        private Portfolio _portfolioEndpoint;
+        public Portfolio PortolioEndpoint
+        {
+            get
+            {
+                return _portfolioEndpoint ?? (_portfolioEndpoint = new Portfolio(AuthToken));
+            }
+        }
+
         private Security _securityEndpoint;
         public Security SecurityEndpoint
         {

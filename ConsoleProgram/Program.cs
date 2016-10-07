@@ -1,6 +1,7 @@
 ﻿using OrionApiSdk;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Authorization;
+using OrionApiSdk.Objects.Portfolio;
 using OrionApiSdk.Objects.Security;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,9 @@ namespace ConsoleProgram
         static void Main(string[] args)
         {
             Token = GetAuthToken();
-            var user = GetUser();
-            var userList = GetUsers();
-            var completeUser = GetUsers(Int32.Parse(user.UserId));
+            var reps = GetReps();
+            var simpleReps = GetSimpleReps();
+            var rep = GetRep(reps[0].Id);
         }
 
         private static AuthToken GetAuthToken()
@@ -46,6 +47,24 @@ namespace ConsoleProgram
         {
             OrionApi api = new OrionApi(Token);
             return api.SecurityEndpoint.GetUsers(id);
+        }
+
+        public static List<Representative> GetReps()
+        {
+            OrionApi api = new OrionApi(Token);
+            return api.PortolioEndpoint.GetRepresentatives();
+        }
+
+        public static List<RepresentativeSimple> GetSimpleReps()
+        {
+            OrionApi api = new OrionApi(Token);
+            return api.PortolioEndpoint.GetRepresentativesSimple();
+        }
+
+        public static Representative GetRep(int id)
+        {
+            OrionApi api = new OrionApi(Token);
+            return api.PortolioEndpoint.GetRepresentatives(id);
         }
 
         //public static List<UserInfoDetails> PostUsers()

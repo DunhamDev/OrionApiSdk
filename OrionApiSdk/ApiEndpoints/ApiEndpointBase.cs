@@ -129,7 +129,10 @@ namespace OrionApiSdk.ApiEndpoints
             var endpointQuery = HttpUtility.ParseQueryString("");
             foreach (var pair in endpointParameters)
             {
-                endpointParameters.Add(pair.Key, pair.Value);
+                if (pair.Value != null)
+                {
+                    endpointQuery.Add(pair.Key, pair.Value.ToString());
+                }
             }
             return endpointQuery.ToString();
         }
