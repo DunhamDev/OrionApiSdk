@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json.Linq;
+using OrionApiSdk.Common.ExtensionMethods;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Portfolio;
+using OrionApiSdk.Objects.Reporting.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -210,5 +212,86 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return assets.ToObject<List<Asset>>();
         }
         #endregion
+
+        #region Registration value
+        public List<RegistrationSimple> GetValues(bool? hasValue = null, bool? resetCache = null, bool? includeCash = null, int top = 5000, int skip = 0)
+        {
+            return GetValuesAsync(hasValue, resetCache, includeCash, top, skip).Result;
+        }
+        public async Task<List<RegistrationSimple>> GetValuesAsync(bool? hasValue = null, bool? resetCache = null, bool? includeCash = null, int top = 5000, int skip = 0)
+        {
+            JToken registationValues = await GetJsonAsync("Values", new Dictionary<string, object>
+            {
+                { "hasValue", hasValue },
+                { "resetCache", resetCache },
+                { "includeCash", includeCash },
+                { "$skip", skip },
+                { "$top", top }
+            });
+            return registationValues.ToObject<List<RegistrationSimple>>();
+        }
+
+        public List<RegistrationSimple> GetValues(DateTime asOfDate, bool? hasValue = null, bool? resetCache = null, bool? includeCash = null, int top = 5000, int skip = 0)
+        {
+            return GetValuesAsync(asOfDate, hasValue, resetCache, includeCash, top, skip).Result;
+        }
+        public async Task<List<RegistrationSimple>> GetValuesAsync(DateTime asOfDate, bool? hasValue = null, bool? resetCache = null, bool? includeCash = null, int top = 5000, int skip = 0)
+        {
+            JToken registationValues = await GetJsonAsync(string.Format("Values/{0:MM-dd-yyyy}", asOfDate), new Dictionary<string, object>
+            {
+                { "hasValue", hasValue },
+                { "resetCache", resetCache },
+                { "includeCash", includeCash },
+                { "$skip", skip },
+                { "$top", top }
+            });
+            return registationValues.ToObject<List<RegistrationSimple>>();
+        }
+
+        public RegistrationSimple GetValue(int registrationId, bool? includeCash = null)
+        {
+            return GetValueAsync(registrationId, includeCash).Result;
+        }
+        public async Task<RegistrationSimple> GetValueAsync(int registrationId, bool? includeCash = null)
+        {
+            JToken registrationSimple = await GetJsonAsync(string.Format("{0}/Value", registrationId), new Dictionary<string, object>
+            {
+                { "includeCash", includeCash }
+            });
+            return registrationSimple.ToObject<RegistrationSimple>();
+        }
+
+        public RegistrationSimple GetValue(int registrationId, DateTime asOfDate, bool? includeCash = null)
+        {
+            return GetValueAsync(registrationId, asOfDate, includeCash).Result;
+        }
+        public async Task<RegistrationSimple> GetValueAsync(int registrationId, DateTime asOfDate, bool? includeCash = null)
+        {
+            JToken registrationSimple = await GetJsonAsync(string.Format("{0}/Value/{1:MM-dd-yyyy}", registrationId, asOfDate), new Dictionary<string, object>
+            {
+                { "includeCash", includeCash }
+            });
+            return registrationSimple.ToObject<RegistrationSimple>();
+        }
+        #endregion
+
+        public List<AumOverTime> GetAumOverTime(int registrationId, DateTime? startDate = null, DateTime? endDate = null, OverTimeInterval interval = OverTimeInterval.Automatic,
+            ReportAccountInclusionOption clientPerformanceInclude = ReportAccountInclusionOption.Default, ReportCategory? unmanagedInclusionOverride = null)
+        {
+            return GetAumOverTimeAsync(registrationId, startDate, endDate, interval, clientPerformanceInclude, unmanagedInclusionOverride).Result;
+        }
+        public async Task<List<AumOverTime>> GetAumOverTimeAsync(int registrationId, DateTime? startDate = null, DateTime? endDate = null, OverTimeInterval interval = OverTimeInterval.Automatic,
+            ReportAccountInclusionOption clientPerformanceInclude = ReportAccountInclusionOption.Default, ReportCategory? unmanagedInclusionOverride = null)
+        {
+            JToken aumTimePoints = await GetJsonAsync(string.Format("{0}/AumOverTime", registrationId), new Dictionary<string, object>
+            {
+                { "startDate", startDate.NullableDateToString() },
+                { "endDate", endDate.NullableDateToString() },
+                { "interval", (char)interval },
+                { "clientPerformanceInclude", (int)clientPerformanceInclude },
+                { "unmanagedInclusionOverride", (int?)unmanagedInclusionOverride }
+            });
+            return aumTimePoints.ToObject<List<AumOverTime>>();
+        }
     }
 }
