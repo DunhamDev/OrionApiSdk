@@ -109,8 +109,11 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
         public async Task<List<AccountSimple>> GetValueAsync(bool? hasValue = null)
         {
-            // TODO
-            return null;
+            JToken accounts = await GetJsonAsync("Value", new Dictionary<string, object>
+            {
+                { "hasValue", hasValue }
+            });
+            return accounts.ToObject<List<AccountSimple>>();
         }
 
         public List<AccountSimple> GetValue(DateTime asOfDate, bool? hasValue = null)
@@ -119,28 +122,37 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
         public async Task<List<AccountSimple>> GetValueAsync(DateTime asOfDate, bool? hasValue = null)
         {
-            // TODO
-            return null;
+            JToken accounts = await GetJsonAsync(string.Format("Value/{0:MM-dd-yyyy}", asOfDate), new Dictionary<string, object>
+            {
+                { "hasValue", hasValue }
+            });
+            return accounts.ToObject<List<AccountSimple>>();
         }
 
-        public List<AccountSimple> GetValue(int accountId, bool? includeCash = null)
+        public AccountSimple GetValue(int accountId, bool? includeCash = null)
         {
             return GetValueAsync(accountId, includeCash).Result;
         }
-        public async Task<List<AccountSimple>> GetValueAsync(int accountId, bool? includeCash = null)
+        public async Task<AccountSimple> GetValueAsync(int accountId, bool? includeCash = null)
         {
-            // TODO
-            return null;
+            JToken account = await GetJsonAsync(string.Format("{0}/Value", accountId), new Dictionary<string, object>
+            {
+                { "includeCash", includeCash }
+            });
+            return account.ToObject<AccountSimple>();
         }
 
-        public List<AccountSimple> GetValue(int accountId, DateTime asOfDate, bool? includeCash = null)
+        public AccountSimple GetValue(int accountId, DateTime asOfDate, bool? includeCash = null)
         {
             return GetValueAsync(accountId, asOfDate, includeCash).Result;
         }
-        public async Task<List<AccountSimple>> GetValueAsync(int accountId, DateTime asOfDate, bool? includeCash = null)
+        public async Task<AccountSimple> GetValueAsync(int accountId, DateTime asOfDate, bool? includeCash = null)
         {
-            // TODO
-            return null;
+            JToken account = await GetJsonAsync(string.Format("{0}/Value/{1:MM-dd-yyyy}", accountId, asOfDate), new Dictionary<string, object>
+            {
+                { "includeCash", includeCash }
+            });
+            return account.ToObject<AccountSimple>();
         }
 
         private string NullableDateToString(DateTime? dateToConvert)
