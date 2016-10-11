@@ -64,5 +64,56 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return registration.ToObject<RegistrationSimple>();
         }
         #endregion
+
+        #region Registration searches
+        public List<RegistrationSimple> GetSimpleSearch(string search, int top = 5000, int skip = 0, bool? isActive = null)
+        {
+            return GetSimpleSearchAsync(search, top, skip, isActive).Result;
+        }
+        public async Task<List<RegistrationSimple>> GetSimpleSearchAsync(string search, int top = 5000, int skip = 0, bool? isActive = null)
+        {
+            JToken registrations = await GetJsonAsync("Simple/Search", new Dictionary<string, object>
+            {
+                { "search", search },
+                { "top", top },
+                { "skip", skip },
+                { "isActive", isActive }
+            });
+            return registrations.ToObject<List<RegistrationSimple>>();
+        }
+
+        public List<RegistrationSimple> GetSimpleLastNameSearch(string search)
+        {
+            return GetSimpleLastNameSearchAsync(search).Result;
+        }
+        public async Task<List<RegistrationSimple>> GetSimpleLastNameSearchAsync(string search)
+        {
+            JToken registrations = await GetJsonAsync("Simple/Search/LastName", new Dictionary<string, object>
+            {
+                { "search", search }
+            });
+            return registrations.ToObject<List<RegistrationSimple>>();
+        }
+
+        public List<Registration> GetAdvancedSearch(int? registrationId = null, string firstName = null, string lastName = null, string name = null,
+            string ssnLast4 = null, int? clientId = null)
+        {
+            return GetAdvancedSearchAsync(registrationId, firstName, lastName, name, ssnLast4, clientId).Result;
+        }
+        public async Task<List<Registration>> GetAdvancedSearchAsync(int? registrationId = null, string firstName = null, string lastName = null, string name = null,
+            string ssnLast4 = null, int? clientId = null)
+        {
+            JToken registrations = await GetJsonAsync("Search/Advanced", new Dictionary<string, object>
+            {
+                { "registrationId", registrationId },
+                { "firstName", firstName },
+                { "lastName", lastName },
+                { "name", name },
+                { "ssnLast4", ssnLast4 },
+                { "clientId", clientId }
+            });
+            return registrations.ToObject<List<Registration>>();
+        }
+        #endregion
     }
 }
