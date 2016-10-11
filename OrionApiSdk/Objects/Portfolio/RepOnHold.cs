@@ -5,7 +5,6 @@ namespace OrionApiSdk.Objects.Portfolio
 {
     public class RepOnHold
     {
-        
         [JsonProperty("id")]
         public int Id { get; set; }
         

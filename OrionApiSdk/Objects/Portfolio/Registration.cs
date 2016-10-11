@@ -1,40 +1,88 @@
-﻿using OrionApiSdk.Objects.Abstract;
+﻿using Newtonsoft.Json;
+using OrionApiSdk.Objects.Abstract;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OrionApiSdk.Objects.Portfolio
 {
     public class Registration : BaseSimpleEntity
     {
-        public bool isActive { get; set; }
-        public string lastName { get; set; }
-        public string firstName { get; set; }
-        public string accountType { get; set; }
-        public int currentValue { get; set; }
-        public object ssN_TaxID { get; set; }
-        public string dob { get; set; }
-        public int clientId { get; set; }
-        public string typeCode { get; set; }
-        public int typeId { get; set; }
-        public object company { get; set; }
-        public object jobTitle { get; set; }
-        public object gender { get; set; }
-        public string createdBy { get; set; }
-        public DateTime createdDate { get; set; }
-        public string editedBy { get; set; }
-        public DateTime editedDate { get; set; }
-        public object riskBudget { get; set; }
-        public string representativeName { get; set; }
-        public string representativeNumber { get; set; }
-        public string missingInformation { get; set; }
-        public object returnObjective { get; set; }
-        public object investmentObjective { get; set; }
-        public object timeHorizon { get; set; }
-        public object stockPercent { get; set; }
-        public object bondPercent { get; set; }
+        [JsonProperty("isActive")]
+        public bool IsActive { get; set; }
+        
+        [JsonProperty("lastName")]
+        public string LastName { get; set; }
+        
+        [JsonProperty("firstName")]
+        public string FirstName { get; set; }
+        
+        [JsonProperty("accountType")]
+        public string AccountType { get; set; }
+        
+        [JsonProperty("currentValue")]
+        public decimal CurrentValue { get; set; }
+        
+        [JsonProperty("ssN_TaxID")]
+        public string SSN_TaxID { get; set; }
+        
+        [JsonProperty("dob")]
+        public DateTime Dob { get; set; }
+        
+        [JsonProperty("clientId")]
+        public int ClientId { get; set; }
+        
+        [JsonProperty("typeCode")]
+        public string TypeCode { get; set; }
+        
+        [JsonProperty("typeId")]
+        public int TypeId { get; set; }
+        
+        [JsonProperty("company")]
+        public string Company { get; set; }
+        
+        [JsonProperty("jobTitle")]
+        public string JobTitle { get; set; }
+        
+        [JsonProperty("gender")]
+        public string Gender { get; set; }
+        
+        [JsonProperty("createdBy")]
+        public string CreatedBy { get; set; }
+        
+        [JsonProperty("createdDate")]
+        public DateTime CreatedDate { get; set; }
+        
+        [JsonProperty("editedBy")]
+        public string EditedBy { get; set; }
+        
+        [JsonProperty("editedDate")]
+        public DateTime EditedDate { get; set; }
+        
+        [JsonProperty("riskBudget")]
+        public int RiskBudget { get; set; }
+        
+        [JsonProperty("representativeName")]
+        public string RepresentativeName { get; set; }
+        
+        [JsonProperty("representativeNumber")]
+        public string RepresentativeNumber { get; set; }
+        
+        [JsonProperty("missingInformation")]
+        public string MissingInformation { get; set; }
+        
+        [JsonProperty("returnObjective")]
+        public string ReturnObjective { get; set; }
+        
+        [JsonProperty("investmentObjective")]
+        public string InvestmentObjective { get; set; }
+        
+        [JsonProperty("timeHorizon")]
+        public string TimeHorizon { get; set; }
+        
+        [JsonProperty("stockPercent")]
+        public string StockPercent { get; set; }
+        
+        [JsonProperty("bondPercent")]
+        public string BondPercent { get; set; }
     }
 
 }

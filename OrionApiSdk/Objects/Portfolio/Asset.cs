@@ -112,7 +112,7 @@ namespace OrionApiSdk.Objects.Portfolio
         public string ExcludeAmountType { get; set; }
         
         [JsonProperty("excludeAmount")]
-        public int ExcludeAmount { get; set; }
+        public decimal ExcludeAmount { get; set; }
         
         [JsonProperty("excludePercentOf")]
         public string ExcludePercentOf { get; set; }
