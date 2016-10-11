@@ -19,6 +19,7 @@ namespace ConsoleProgram
             Api = new OrionApi(Token);
             var accounts = GetAccounts();
             var dealers = GetBDs();
+            var aumPoints = GetAumOverTime(7);
         }
 
         private static AuthToken GetAuthToken()
@@ -86,6 +87,12 @@ namespace ConsoleProgram
         {
             return Api.PortolioEndpoint.BrokerDealers.Get();
         }
+
+        public static List<AumOverTime> GetAumOverTime(int clientId)
+        {
+            return Api.PortolioEndpoint.Clients.GetAumOverTime(clientId);
+        }
+
         //public static List<UserInfoDetails> PostUsers()
         //{
         //    OrionApi api = new OrionApi(Token);

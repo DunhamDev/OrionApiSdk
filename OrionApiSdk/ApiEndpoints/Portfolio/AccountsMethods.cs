@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using OrionApiSdk.Common.ExtensionMethods;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Portfolio;
 using System;
@@ -25,11 +26,11 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             {
                 { "isActive", isActive },
                 { "isManager", isManager },
-                { "createdDateStart", NullableDateToString(createdDateStart) },
+                { "createdDateStart", createdDateStart.NullableDateToString() },
                 { "newAccountFilter", newAccountFilter },
                 { "clientId", clientId },
                 { "registrationId", registrationId },
-                { "asOfDate", NullableDateToString(asOfDate) },
+                { "asOfDate", asOfDate.NullableDateToString() },
                 { "hasValue", hasValue },
                 { "$skip", skip },
                 { "$top", top }
@@ -153,15 +154,6 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
                 { "includeCash", includeCash }
             });
             return account.ToObject<AccountSimple>();
-        }
-
-        private string NullableDateToString(DateTime? dateToConvert)
-        {
-            if (dateToConvert.HasValue)
-            {
-                return dateToConvert.Value.ToString("MM-dd-yyyy");
-            }
-            return null;
         }
     }
 }

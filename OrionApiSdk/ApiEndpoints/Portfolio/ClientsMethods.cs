@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json.Linq;
+using OrionApiSdk.Common.ExtensionMethods;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Portfolio;
+using OrionApiSdk.Objects.Reporting.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -261,5 +263,24 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return assets.ToObject<List<Asset>>();
         }
         #endregion
+
+        public List<AumOverTime> GetAumOverTime(int clientId, DateTime? startDate = null, DateTime? endDate = null, OverTimeInterval interval = OverTimeInterval.Automatic,
+            ReportAccountInclusionOption clientPerformanceInclude = ReportAccountInclusionOption.Default, ReportCategory? unmanagedInclusionOverride = null)
+        {
+            return GetAumOverTimeAsync(clientId, startDate, endDate, interval, clientPerformanceInclude, unmanagedInclusionOverride).Result;
+        }
+        public async Task<List<AumOverTime>> GetAumOverTimeAsync(int clientId, DateTime? startDate = null, DateTime? endDate = null, OverTimeInterval interval = OverTimeInterval.Automatic,
+            ReportAccountInclusionOption clientPerformanceInclude = ReportAccountInclusionOption.Default, ReportCategory? unmanagedInclusionOverride = null)
+        {
+            JToken aumOverTimePoints = await GetJsonAsync(string.Format("{0}/AumOverTime", clientId), new Dictionary<string, object>
+            {
+                { "startDate", startDate.NullableDateToString() },
+                { "endDate", endDate.NullableDateToString() },
+                { "interval", (char)interval },
+                { "clientPerformanceInclude", (int)clientPerformanceInclude },
+                { "unmanagedInclusionOverride", (int?)unmanagedInclusionOverride }
+            });
+            return aumOverTimePoints.ToObject<List<AumOverTime>>();
+        }
     }
 }
