@@ -13,6 +13,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
     {
         public ClientsMethods(AuthToken token) : base("Portfolio", "Clients", token) { }
 
+        #region Get clients
         public List<Client> Get(bool? hasValue = null, bool? isActive = null, int? representativeId = null, string registrationId = null, int top = 5000, int skip = 0)
         {
             return GetAsync(hasValue, isActive, representativeId, registrationId, top, skip).Result;
@@ -65,7 +66,9 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             JToken client = await GetJsonAsync(string.Format("{0}/Simple", clientId));
             return client.ToObject<ClientSimple>();
         }
+        #endregion
 
+        #region Client values
         public List<ClientSimple> GetValues(bool? hasValue = null, bool? resetCache = null, bool? includeCash = null, int top = 5000, int skip = 0)
         {
             return GetValuesAsync(hasValue, resetCache, includeCash, top, skip).Result;
@@ -125,7 +128,9 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             });
             return client.ToObject<ClientSimple>();
         }
+        #endregion
 
+        #region Client accounts
         public List<Account> GetAccounts(int clientId, bool? isActive = null)
         {
             return GetAccountsAsync(clientId, isActive).Result;
@@ -136,6 +141,16 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             {
                 { "isActive", isActive }
             });
+            return accounts.ToObject<List<Account>>();
+        }
+
+        public List<Account> GetAdditionalAccounts(int clientId)
+        {
+            return GetAdditionalAccountsAsync(clientId).Result;
+        }
+        public async Task<List<Account>> GetAdditionalAccountsAsync(int clientId)
+        {
+            JToken accounts = await GetJsonAsync(string.Format("{0}/AdditionalAccounts", clientId));
             return accounts.ToObject<List<Account>>();
         }
 
@@ -164,5 +179,59 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             });
             return accountValues.ToObject<List<AccountSimple>>();
         }
+        #endregion
+
+        #region Search clients
+        public List<ClientSimple> GetSimpleSearch(string search, int top = 5000, int skip = 0, bool? hasValue = null, bool? isActive = null)
+        {
+            return GetSimpleSearchAsync(search, top, skip, hasValue, isActive).Result;
+        }
+        public async Task<List<ClientSimple>> GetSimpleSearchAsync(string search, int top = 5000, int skip = 0, bool? hasValue = null, bool? isActive = null)
+        {
+            JToken searchedClients = await GetJsonAsync("Simple/Search", new Dictionary<string, object>
+            {
+                { "search", search },
+                { "top", top },
+                { "skip", skip },
+                { "hasValue", hasValue },
+                { "isActive", isActive }
+            });
+            return searchedClients.ToObject<List<ClientSimple>>();
+        }
+
+        public List<ClientSimple> GetSimpleLastNameSearch(string lastNameSearch, int top = 5000, int skip = 0, bool? hasValue = null, bool? isActive = null)
+        {
+            return GetSimpleLastNameSearchAsync(lastNameSearch, top, skip, hasValue, isActive).Result;
+        }
+        public async Task<List<ClientSimple>> GetSimpleLastNameSearchAsync(string lastNameSearch, int top = 5000, int skip = 0, bool? hasValue = null, bool? isActive = null)
+        {
+            JToken clients = await GetJsonAsync("Simple/Search/LastName", new Dictionary<string, object>
+            {
+                { "search", lastNameSearch }
+            });
+            return clients.ToObject<List<ClientSimple>>();
+        }
+
+        public List<Client> GetAdvancedSearch(int? clientId = null, string firstName = null, string lastName = null, string ssnLast4 = null, string repLastName = null,
+            string repNumber = null, int? repId = null)
+        {
+            return GetAdvancedSearchAsync(clientId, firstName, lastName, ssnLast4, repLastName, repNumber, repId).Result;
+        }
+        public async Task<List<Client>> GetAdvancedSearchAsync(int? clientId = null, string firstName = null, string lastName = null, string ssnLast4 = null, string repLastName = null,
+            string repNumber = null, int? repId = null)
+        {
+            JToken clients = await GetJsonAsync("Search/Advanced", new Dictionary<string, object>
+            {
+                { "clientId", clientId },
+                { "firstName", firstName },
+                { "lastName", lastName },
+                { "ssnLast4", ssnLast4 },
+                { "repLastName", repLastName },
+                { "repNumber", repNumber },
+                { "repId", repId }
+            });
+            return clients.ToObject<List<Client>>();
+        }
+        #endregion
     }
 }
