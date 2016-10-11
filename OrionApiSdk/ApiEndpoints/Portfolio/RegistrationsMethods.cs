@@ -156,5 +156,59 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return accounts.ToObject<List<AccountSimple>>();
         }
         #endregion
+
+        #region Registration assets
+        public List<Asset> GetAssets(int registrationId, bool? includeCostBasis = null)
+        {
+            return GetAssetsAsync(registrationId, includeCostBasis).Result;
+        }
+        public async Task<List<Asset>> GetAssetsAsync(int registrationId, bool? includeCostBasis = null)
+        {
+            JToken assets = await GetJsonAsync(string.Format("{0}/Assets", registrationId), new Dictionary<string, object>
+            {
+                { "includeCostBasis", includeCostBasis }
+            });
+            return assets.ToObject<List<Asset>>();
+        }
+
+        public List<Asset> GetAssets(int registrationId, DateTime asOfDate, bool? includeCostBasis = null)
+        {
+            return GetAssetsAsync(registrationId, includeCostBasis).Result;
+        }
+        public async Task<List<Asset>> GetAssetsAsync(int registrationId, DateTime asOfDate, bool? includeCostBasis = null)
+        {
+            JToken assets = await GetJsonAsync(string.Format("{0}/Assets/{1:MM-dd-yyyy}", registrationId, asOfDate), new Dictionary<string, object>
+            {
+                { "includeCostBasis", includeCostBasis }
+            });
+            return assets.ToObject<List<Asset>>();
+        }
+
+        public List<Asset> GetAssetValues(int registrationId, bool? hasValue = null)
+        {
+            return GetAssetValuesAsync(registrationId, hasValue).Result;
+        }
+        public async Task<List<Asset>> GetAssetValuesAsync(int registrationId, bool? hasValue = null)
+        {
+            JToken assets = await GetJsonAsync(string.Format("{0}/Assets/Value", registrationId), new Dictionary<string, object>
+            {
+                { "hasValue", hasValue }
+            });
+            return assets.ToObject<List<Asset>>();
+        }
+
+        public List<Asset> GetAssetValues(int registrationId, DateTime asOfDate, bool? hasValue = null)
+        {
+            return GetAssetValuesAsync(registrationId, hasValue).Result;
+        }
+        public async Task<List<Asset>> GetAssetValuesAsync(int registrationId, DateTime asOfDate, bool? hasValue = null)
+        {
+            JToken assets = await GetJsonAsync(string.Format("{0}/Assets/Value/{1:MM-dd-yyyy}", registrationId, asOfDate), new Dictionary<string, object>
+            {
+                { "hasValue", hasValue }
+            });
+            return assets.ToObject<List<Asset>>();
+        }
+        #endregion
     }
 }
