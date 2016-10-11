@@ -121,7 +121,12 @@ namespace OrionApiSdk.ApiEndpoints
 
         private string EndpointUri(string endpointMethod, Dictionary<string, object> endpointParameters)
         {
-            UriBuilder uriBuilder = new UriBuilder(ORION_API_URL + EndpointName + "/" + endpointMethod);
+            string uri = ORION_API_URL + EndpointName;
+            if (!string.IsNullOrWhiteSpace(endpointMethod))
+            {
+                uri += "/" + endpointMethod;
+            }
+            UriBuilder uriBuilder = new UriBuilder(uri);
             uriBuilder.Query = GenerateQueryString(endpointParameters);
             return uriBuilder.ToString();
         }

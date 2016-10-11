@@ -17,15 +17,8 @@ namespace ConsoleProgram
         {
             Token = GetAuthToken();
             Api = new OrionApi(Token);
-            var reps = GetReps();
-            var simpleReps = GetSimpleReps();
-            var rep = GetRep(simpleReps[0].Id);
-            var accounts = GetRepAccounts(rep.Id);
-            var accountValues = GetAccountValues(rep.Id);
-            foreach (var account in accounts)
-            {
-                var accountValue = GetAccountValue(account.Id);
-            }
+            var accounts = GetAccounts();
+            var dealers = GetBDs();
         }
 
         private static AuthToken GetAuthToken()
@@ -59,6 +52,11 @@ namespace ConsoleProgram
             return Api.PortolioEndpoint.Representatives.GetVerbose();
         }
 
+        public static List<Account> GetAccounts()
+        {
+            return Api.PortolioEndpoint.Accounts.Get();
+        }
+
         public static List<RepresentativeSimple> GetSimpleReps()
         {
             return Api.PortolioEndpoint.Representatives.GetSimple();
@@ -82,6 +80,11 @@ namespace ConsoleProgram
         public static AccountSimple GetAccountValue(int accountId)
         {
             return Api.PortolioEndpoint.Accounts.GetValue(accountId);
+        }
+
+        public static List<BrokerDealer> GetBDs()
+        {
+            return Api.PortolioEndpoint.BrokerDealers.Get();
         }
         //public static List<UserInfoDetails> PostUsers()
         //{
