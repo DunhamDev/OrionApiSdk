@@ -11,15 +11,21 @@ namespace ConsoleProgram
     class Program
     {
         private static AuthToken Token { get; set; }
+        private static OrionApi Api { get; set; }
 
         static void Main(string[] args)
         {
             Token = GetAuthToken();
+            Api = new OrionApi(Token);
             var reps = GetReps();
             var simpleReps = GetSimpleReps();
             var rep = GetRep(simpleReps[0].Id);
             var accounts = GetRepAccounts(rep.Id);
             var accountValues = GetAccountValues(rep.Id);
+            foreach (var account in accounts)
+            {
+                var accountValue = GetAccountValue(account.Id);
+            }
         }
 
         private static AuthToken GetAuthToken()
@@ -35,52 +41,48 @@ namespace ConsoleProgram
 
         public static UserProfile GetUser()
         {
-            OrionApi api = new OrionApi(Token);
-            return api.AuthorizationEndpoint.User();
+            return Api.AuthorizationEndpoint.User();
         }
 
         private static List<UserInfoDetails> GetUsers()
         {
-            OrionApi api = new OrionApi(Token);
-            return api.SecurityEndpoint.GetUsers();
+            return Api.SecurityEndpoint.GetUsers();
         }
 
         public static UserInfoDetails GetUsers(int id)
         {
-            OrionApi api = new OrionApi(Token);
-            return api.SecurityEndpoint.GetUsers(id);
+            return Api.SecurityEndpoint.GetUsers(id);
         }
 
         public static List<RepresentativeVerbose> GetReps()
         {
-            OrionApi api = new OrionApi(Token);
-            return api.PortolioEndpoint.Representatives.GetVerbose();
+            return Api.PortolioEndpoint.Representatives.GetVerbose();
         }
 
         public static List<RepresentativeSimple> GetSimpleReps()
         {
-            OrionApi api = new OrionApi(Token);
-            return api.PortolioEndpoint.Representatives.GetSimple();
+            return Api.PortolioEndpoint.Representatives.GetSimple();
         }
 
         public static Representative GetRep(int id)
         {
-            OrionApi api = new OrionApi(Token);
-            return api.PortolioEndpoint.Representatives.Get(id);
+            return Api.PortolioEndpoint.Representatives.Get(id);
         }
 
         public static List<Account> GetRepAccounts(int id)
         {
-            OrionApi api = new OrionApi(Token);
-            return api.PortolioEndpoint.Representatives.GetAccounts(id);
+            return Api.PortolioEndpoint.Representatives.GetAccounts(id);
         }
 
         public static List<AccountSimple> GetAccountValues(int id)
         {
-            OrionApi api = new OrionApi(Token);
-            return api.PortolioEndpoint.Representatives.GetAccountValues(id, new DateTime(2016, 9, 30));
+            return Api.PortolioEndpoint.Representatives.GetAccountValues(id, new DateTime(2016, 9, 30));
         }
 
+        public static AccountSimple GetAccountValue(int accountId)
+        {
+            return Api.PortolioEndpoint.Accounts.GetValue(accountId);
+        }
         //public static List<UserInfoDetails> PostUsers()
         //{
         //    OrionApi api = new OrionApi(Token);
