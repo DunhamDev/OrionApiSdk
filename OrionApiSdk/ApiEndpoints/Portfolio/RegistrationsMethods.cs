@@ -10,5 +10,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
     public class RegistrationsMethods : ApiMethodContainer
     {
         public RegistrationsMethods(AuthToken token) : base("Portfolio", "Registrations", token) { }
+
+
     }
 }

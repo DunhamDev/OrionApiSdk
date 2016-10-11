@@ -50,12 +50,15 @@
     <Compile Include="ApiEndpoints\Portfolio\AccountsMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\BrokerDealersMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\ClientsMethods.cs" />
-    <Compile Include="ApiEndpoints\Portfolio\Portfolio.cs" />
+    <Compile Include="ApiEndpoints\Portfolio\PortfolioEndpoint.cs" />
     <Compile Include="ApiEndpoints\Portfolio\RegistrationsMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\RepresentativesMethods.cs" />
+    <Compile Include="ApiEndpoints\Trading\ModelsMethods.cs" />
+    <Compile Include="ApiEndpoints\Trading\TradingEndpoint.cs" />
     <Compile Include="Common\ExtensionMethods\DateTimeExtensionMethods.cs" />
     <Compile Include="Objects\Portfolio\AumOverTime.cs" />
     <Compile Include="Objects\Portfolio\Client.cs" />
+    <Compile Include="Objects\Portfolio\Registration.cs" />
     <Compile Include="Objects\Reporting\Enums\OverTimeInterval.cs" />
     <Compile Include="Objects\Reporting\Enums\ReportAccountInclusionOption.cs" />
     <Compile Include="Objects\Portfolio\RIA.cs" />
