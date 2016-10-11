@@ -53,6 +53,7 @@
     <Compile Include="ApiEndpoints\Portfolio\Portfolio.cs" />
     <Compile Include="ApiEndpoints\Portfolio\RegistrationsMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\RepresentativesMethods.cs" />
+    <Compile Include="Objects\Portfolio\RIA.cs" />
     <Compile Include="ApiEndpoints\Portfolio\RiasMethods.cs" />
     <Compile Include="ApiEndpoints\Security.cs" />
     <Compile Include="ApiEndpoints\Authorization.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Objects\Portfolio\RepresentativeSimple.cs" />
     <Compile Include="Objects\Portfolio\RepresentativeVerbose.cs" />
     <Compile Include="Objects\Portfolio\RepState.cs" />
+    <Compile Include="Objects\Portfolio\RIASimple.cs" />
     <Compile Include="Objects\Security\UserInfoDetails.cs" />
     <Compile Include="Objects\Security\Profile.cs" />
     <Compile Include="Objects\UserCredentials.cs" />
