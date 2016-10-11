@@ -125,5 +125,44 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             });
             return client.ToObject<ClientSimple>();
         }
+
+        public List<Account> GetAccounts(int clientId, bool? isActive = null)
+        {
+            return GetAccountsAsync(clientId, isActive).Result;
+        }
+        public async Task<List<Account>> GetAccountsAsync(int clientId, bool? isActive = null)
+        {
+            JToken accounts = await GetJsonAsync(string.Format("{0}/Accounts", clientId), new Dictionary<string, object>
+            {
+                { "isActive", isActive }
+            });
+            return accounts.ToObject<List<Account>>();
+        }
+
+        public List<AccountSimple> GetAccountValues(int clientId, bool? hasValue = null)
+        {
+            return GetAccountValuesAsync(clientId, hasValue).Result;
+        }
+        public async Task<List<AccountSimple>> GetAccountValuesAsync(int clientId, bool? hasValue = null)
+        {
+            JToken accountValues = await GetJsonAsync(string.Format("{0}/Accounts/Value", clientId), new Dictionary<string, object>
+            {
+                { "hasValue", hasValue }
+            });
+            return accountValues.ToObject<List<AccountSimple>>();
+        }
+
+        public List<AccountSimple> GetAccountValues(int clientId, DateTime asOfDate, bool? hasValue = null)
+        {
+            return GetAccountValuesAsync(clientId, asOfDate, hasValue).Result;
+        }
+        public async Task<List<AccountSimple>> GetAccountValuesAsync(int clientId, DateTime asOfDate, bool? hasValue = null)
+        {
+            JToken accountValues = await GetJsonAsync(string.Format("{0}/Accounts/Value/{1:MM-dd-yyyy}", clientId, asOfDate), new Dictionary<string, object>
+            {
+                { "hasValue", hasValue }
+            });
+            return accountValues.ToObject<List<AccountSimple>>();
+        }
     }
 }
