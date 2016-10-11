@@ -10,6 +10,9 @@ namespace OrionApiSdk.Objects.Portfolio
 {
     public class ClientSimple : BaseSimpleEntity
     {
+        [JsonProperty("value")]
+        public decimal? Value { get; set; }
+
         [JsonProperty("firstName")]
         public string FirstName { get; set; }
 

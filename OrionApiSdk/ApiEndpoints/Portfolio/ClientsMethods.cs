@@ -55,5 +55,75 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             });
             return simpleClients.ToObject<List<ClientSimple>>();
         }
+
+        public ClientSimple GetSimple(int clientId)
+        {
+            return GetSimpleAsync(clientId).Result;
+        }
+        public async Task<ClientSimple> GetSimpleAsync(int clientId)
+        {
+            JToken client = await GetJsonAsync(string.Format("{0}/Simple", clientId));
+            return client.ToObject<ClientSimple>();
+        }
+
+        public List<ClientSimple> GetValues(bool? hasValue = null, bool? resetCache = null, bool? includeCash = null, int top = 5000, int skip = 0)
+        {
+            return GetValuesAsync(hasValue, resetCache, includeCash, top, skip).Result;
+        }
+        public async Task<List<ClientSimple>> GetValuesAsync(bool? hasValue = null, bool? resetCache = null, bool? includeCash = null, int top = 5000, int skip = 0)
+        {
+            JToken clients = await GetJsonAsync("Values", new Dictionary<string, object>
+            {
+                { "hasValue", hasValue },
+                { "resetCache", resetCache },
+                { "includeCash", includeCash },
+                { "$skip", skip },
+                { "$top", top }
+            });
+            return clients.ToObject<List<ClientSimple>>();
+        }
+
+        public List<ClientSimple> GetValues(DateTime asOfDate, bool? hasValue = null, bool? resetCache = null, bool? includeCash = null, int top = 5000, int skip = 0)
+        {
+            return GetValuesAsync(asOfDate, hasValue, resetCache, includeCash, top, skip).Result;
+        }
+        public async Task<List<ClientSimple>> GetValuesAsync(DateTime asOfDate, bool? hasValue = null, bool? resetCache = null, bool? includeCash = null, int top = 5000, int skip = 0)
+        {
+            JToken clients = await GetJsonAsync(string.Format("Values/{0:MM-dd-yyyy}", asOfDate), new Dictionary<string, object>
+            {
+                { "hasValue", hasValue },
+                { "resetCache", resetCache },
+                { "includeCash", includeCash },
+                { "$skip", skip },
+                { "$top", top }
+            });
+            return clients.ToObject<List<ClientSimple>>();
+        }
+
+        public ClientSimple GetValue(int clientId, bool? includeCash = null)
+        {
+            return GetValueAsync(clientId, includeCash).Result;
+        }
+        public async Task<ClientSimple> GetValueAsync(int clientId, bool? includeCash = null)
+        {
+            JToken client = await GetJsonAsync(string.Format("{0}/Value", clientId), new Dictionary<string, object>
+            {
+                { "includeCash", includeCash }
+            });
+            return client.ToObject<ClientSimple>();
+        }
+
+        public ClientSimple GetValue(int clientId, DateTime asOfDate, bool? includeCash = null)
+        {
+            return GetValueAsync(clientId, asOfDate, includeCash).Result;
+        }
+        public async Task<ClientSimple> GetValueAsync(int clientId, DateTime asOfDate, bool? includeCash = null)
+        {
+            JToken client = await GetJsonAsync(string.Format("{0}/Value/{1:MM-dd-yyyy}", clientId, asOfDate), new Dictionary<string, object>
+            {
+                { "includeCash", includeCash }
+            });
+            return client.ToObject<ClientSimple>();
+        }
     }
 }
