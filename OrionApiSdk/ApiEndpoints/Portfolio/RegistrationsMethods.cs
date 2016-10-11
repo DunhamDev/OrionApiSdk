@@ -115,5 +115,46 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return registrations.ToObject<List<Registration>>();
         }
         #endregion
+
+        #region Registration accounts
+        public List<Account> GetAccounts(int registrationId, bool? isActive = null)
+        {
+            return GetAccountsAsync(registrationId, isActive).Result;
+        }
+        public async Task<List<Account>> GetAccountsAsync(int registrationId, bool? isActive = null)
+        {
+            JToken accounts = await GetJsonAsync(string.Format("{0}/Accounts", registrationId), new Dictionary<string, object>
+            {
+                { "isActive", isActive }
+            });
+            return accounts.ToObject<List<Account>>();
+        }
+
+        public List<AccountSimple> GetAccountValues(int registrationId, bool? hasValue = null)
+        {
+            return GetAccountValuesAsync(registrationId, hasValue).Result;
+        }
+        public async Task<List<AccountSimple>> GetAccountValuesAsync(int registrationId, bool? hasValue = null)
+        {
+            JToken accounts = await GetJsonAsync(string.Format("{0}/Accounts/Value", registrationId), new Dictionary<string, object>
+            {
+                { "hasValue", hasValue }
+            });
+            return accounts.ToObject<List<AccountSimple>>();
+        }
+
+        public List<AccountSimple> GetAccountValues(int registrationId, DateTime asOfDate, bool? hasValue = null)
+        {
+            return GetAccountValuesAsync(registrationId, hasValue).Result;
+        }
+        public async Task<List<AccountSimple>> GetAccountValuesAsync(int registrationId, DateTime asOfDate, bool? hasValue = null)
+        {
+            JToken accounts = await GetJsonAsync(string.Format("{0}/Accounts/Value/{1:MM-dd-yyyy}", registrationId, asOfDate), new Dictionary<string, object>
+            {
+                { "hasValue", hasValue }
+            });
+            return accounts.ToObject<List<AccountSimple>>();
+        }
+        #endregion
     }
 }
