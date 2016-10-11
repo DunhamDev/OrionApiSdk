@@ -3,7 +3,7 @@ using OrionApiSdk.Objects.Abstract;
 
 namespace OrionApiSdk.Objects.Portfolio
 {
-    class AssetSimpleWithValue : BaseSimpleEntity
+    public class AssetSimpleWithValue : BaseSimpleEntity
     {
         [JsonProperty("shares")]
         public decimal Shares { get; set; }

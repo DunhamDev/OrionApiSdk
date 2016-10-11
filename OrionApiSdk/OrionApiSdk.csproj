@@ -53,6 +53,7 @@
     <Compile Include="ApiEndpoints\Portfolio\Portfolio.cs" />
     <Compile Include="ApiEndpoints\Portfolio\RegistrationsMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\RepresentativesMethods.cs" />
+    <Compile Include="Objects\Portfolio\Client.cs" />
     <Compile Include="Objects\Portfolio\RIA.cs" />
     <Compile Include="ApiEndpoints\Portfolio\RiasMethods.cs" />
     <Compile Include="ApiEndpoints\Security.cs" />
