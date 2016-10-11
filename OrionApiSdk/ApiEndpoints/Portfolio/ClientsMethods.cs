@@ -233,5 +233,33 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return clients.ToObject<List<Client>>();
         }
         #endregion
+
+        #region Client Assets
+        public List<Asset> GetAssets(int clientId, bool? includeCostBasis = null)
+        {
+            return GetAssetsAsync(clientId, includeCostBasis).Result;
+        }
+        public async Task<List<Asset>> GetAssetsAsync(int clientId, bool? includeCostBasis = null)
+        {
+            JToken assets = await GetJsonAsync(string.Format("{0}/Assets", clientId), new Dictionary<string, object>
+            {
+                { "includeCostBasis", includeCostBasis }
+            });
+            return assets.ToObject<List<Asset>>();
+        }
+
+        public List<Asset> GetAssets(int clientId, DateTime asOfDate, bool? includeCostBasis = null)
+        {
+            return GetAssetsAsync(clientId, asOfDate, includeCostBasis).Result;
+        }
+        public async Task<List<Asset>> GetAssetsAsync(int clientId, DateTime asOfDate, bool? includeCostBasis = null)
+        {
+            JToken assets = await GetJsonAsync(string.Format("{0}/Assets/{1:MM-dd-yyyy}", clientId, asOfDate), new Dictionary<string, object>
+            {
+                { "includeCostBasis", includeCostBasis }
+            });
+            return assets.ToObject<List<Asset>>();
+        }
+        #endregion
     }
 }
