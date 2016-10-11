@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Portfolio;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -58,6 +59,32 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
                 { "search", startsWith }
             });
             return dealers.ToObject<List<BrokerDealerSimple>>();
+        }
+
+        public List<BrokerDealerSimple> GetValue(bool? hasValue = null)
+        {
+            return GetValueAsync(hasValue).Result;
+        }
+        public async Task<List<BrokerDealerSimple>> GetValueAsync(bool? hasValue = null)
+        {
+            JToken dealerValues = await GetJsonAsync("Value", new Dictionary<string, object>
+            {
+                { "hasValue", hasValue }
+            });
+            return dealerValues.ToObject<List<BrokerDealerSimple>>();
+        }
+
+        public List<BrokerDealerSimple> GetValue(DateTime asOfDate, bool? hasValue = null)
+        {
+            return GetValueAsync(asOfDate, hasValue).Result;
+        }
+        public async Task<List<BrokerDealerSimple>> GetValueAsync(DateTime asOfDate, bool? hasValue = null)
+        {
+            JToken dealerValues = await GetJsonAsync(string.Format("Value/{0:MM-dd-yyyy}", asOfDate), new Dictionary<string, object>
+            {
+                { "hasValue", hasValue }
+            });
+            return dealerValues.ToObject<List<BrokerDealerSimple>>();
         }
     }
 }
