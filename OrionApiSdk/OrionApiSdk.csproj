@@ -94,6 +94,11 @@
     <Compile Include="Objects\Reporting\Enums\ReportCategory.cs" />
     <Compile Include="Objects\Security\UserInfoDetails.cs" />
     <Compile Include="Objects\Security\Profile.cs" />
+    <Compile Include="Objects\Trading\ModelAccount.cs" />
+    <Compile Include="Objects\Trading\Model.cs" />
+    <Compile Include="Objects\Trading\ModelItem.cs" />
+    <Compile Include="Objects\Trading\ModelRange.cs" />
+    <Compile Include="Objects\Trading\ModelSimple.cs" />
     <Compile Include="Objects\UserCredentials.cs" />
     <Compile Include="OrionApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
