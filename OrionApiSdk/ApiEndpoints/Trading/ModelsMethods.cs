@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Trading;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -58,5 +59,56 @@ namespace OrionApiSdk.ApiEndpoints.Trading
             return models.ToObject<List<ModelSimple>>();
         }
         #endregion
+
+        #region Model value
+        public List<Model> GetValues(bool? isUsed = null, bool? resetCache = null, bool? excludeSelfDirected = null, int top = 500, int skip = 0)
+        {
+            return GetValuesAsync(isUsed, resetCache, excludeSelfDirected, top, skip).Result;
+        }
+        public async Task<List<Model>> GetValuesAsync(bool? isUsed = null, bool? resetCache = null, bool? excludeSelfDirected = null, int top = 500, int skip = 0)
+        {
+            JToken modelValues = await GetJsonAsync("Value", new Dictionary<string, object>
+            {
+                { "isUsed", isUsed },
+                { "resetCache", resetCache },
+                { "excludeSelfDirected", excludeSelfDirected },
+                { "$top", top },
+                { "$skip", skip }
+            });
+            return modelValues.ToObject<List<Model>>();
+        }
+
+        public List<Model> GetValues(DateTime asOfDate, bool? isUsed = null, bool? resetCache = null, bool? excludeSelfDirected = null, int top = 500, int skip = 0)
+        {
+            return GetValuesAsync(asOfDate, isUsed, resetCache, excludeSelfDirected, top, skip).Result;
+        }
+        public async Task<List<Model>> GetValuesAsync(DateTime asOfDate, bool? isUsed = null, bool? resetCache = null, bool? excludeSelfDirected = null, int top = 500, int skip = 0)
+        {
+            JToken modelValues = await GetJsonAsync(string.Format("Value/{0:MM-dd-yyyy}", asOfDate), new Dictionary<string, object>
+            {
+                { "isUsed", isUsed },
+                { "resetCache", resetCache },
+                { "excludeSelfDirected", excludeSelfDirected },
+                { "$top", top },
+                { "$skip", skip }
+            });
+            return modelValues.ToObject<List<Model>>();
+        }
+        #endregion
+
+        public List<ModelSimple> GetSimpleSearch(string search, int top = 5000, int skip = 0)
+        {
+            return GetSimpleSearchAsync(search, top, skip).Result;
+        }
+        public async Task<List<ModelSimple>> GetSimpleSearchAsync(string search, int top = 5000, int skip = 0)
+        {
+            JToken models = await GetJsonAsync("Simple/Search", new Dictionary<string, object>
+            {
+                { "search", search },
+                { "$skip", skip },
+                { "$top", top }
+            });
+            return models.ToObject<List<ModelSimple>>();
+        }
     }
 }

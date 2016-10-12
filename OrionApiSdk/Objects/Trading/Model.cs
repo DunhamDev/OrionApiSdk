@@ -80,6 +80,9 @@ namespace OrionApiSdk.Objects.Trading
         [JsonProperty("useRestrictions")]
         public bool UseRestrictions { get; set; }
 
+        [JsonProperty("value")]
+        public decimal? Value { get; set; }
+
         [JsonProperty("items")]
         public List<ModelItem> Items { get; set; }
 
