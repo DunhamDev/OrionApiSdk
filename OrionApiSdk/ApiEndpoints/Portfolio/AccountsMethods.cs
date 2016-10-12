@@ -10,10 +10,18 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Portfolio
 {
+    /// <summary>
+    /// Acts as a container for all /Portfolio/Accounts methods
+    /// </summary>
     public class AccountsMethods : ApiMethodContainer
     {
+        /// <summary>
+        /// Constructs a /Portfolio/Accounts endpoint instance
+        /// </summary>
+        /// <param name="token">The access token of the user making requests</param>
         public AccountsMethods(AuthToken token) : base ("Portfolio", "Accounts", token) { }
 
+        #region Get account
         public List<Account> Get(bool? isActive = null, bool? isManager = null, DateTime? createdDateStart = null, string newAccountFilter = null,
             int? clientId = null, int? registrationId = null, DateTime? asOfDate = null, bool? hasValue = null, int top = 5000, int skip = 0)
         {
@@ -73,7 +81,9 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             });
             return simpleAccounts.ToObject<List<AccountSimple>>();
         }
+        #endregion
 
+        #region Search accounts
         public List<AccountSimple> GetSimpleSearch(string searchedAccountNum, bool? hasValue = null, bool? isActive = null, int top = 5000, int skip = 0)
         {
             return GetSimpleSearchAsync(searchedAccountNum, hasValue, isActive, top, skip).Result;
@@ -91,19 +101,32 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return simpleAccounts.ToObject<List<AccountSimple>>();
         }
 
-        public List<Asset> GetAssets(int accountId, bool? includeCostBasis = null)
+        public List<Account> GetAdvancedSearch(int? assetId = null, int? registrationTypeId = null, string lastName = null, string firstName = null,
+            string accountNumber = null, string secondaryAccountNumber = null, string outsideId = null, int? registrationId = null, int? clientId = null, int? accountId = null)
         {
-            return GetAssetsAsync(accountId, includeCostBasis).Result;
+            return GetAdvancedSearchAsync(assetId, registrationTypeId, lastName, firstName, accountNumber, secondaryAccountNumber, outsideId, registrationId, clientId, accountId).Result;
         }
-        public async Task<List<Asset>> GetAssetsAsync(int accountId, bool? includeCostBasis = null)
+        public async Task<List<Account>> GetAdvancedSearchAsync(int? assetId = null, int? registrationTypeId = null, string lastName = null, string firstName = null,
+            string accountNumber = null, string secondaryAccountNumber = null, string outsideId = null, int? registrationId = null, int? clientId = null, int? accountId = null)
         {
-            JToken assets = await GetJsonAsync(string.Format("{0}/Assets", accountId), new Dictionary<string, object>
+            JToken accounts = await GetJsonAsync("Search/Advanced", new Dictionary<string, object>
             {
-                { "includeCostBasis", includeCostBasis }
+                { "assetId", assetId },
+                { "registrationTypeId", registrationTypeId },
+                { "lastName", lastName },
+                { "firstName", firstName },
+                { "accountNumber", accountNumber },
+                { "secondaryAccountNumber", secondaryAccountNumber },
+                { "outsideId", outsideId },
+                { "registrationId", registrationId },
+                { "clientId", clientId },
+                { "accountId", accountId }
             });
-            return assets.ToObject<List<Asset>>();
+            return accounts.ToObject<List<Account>>();
         }
+        #endregion
 
+        #region Account value
         public List<AccountSimple> GetValue(bool? hasValue = null)
         {
             return GetValueAsync(hasValue).Result;
@@ -154,6 +177,20 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
                 { "includeCash", includeCash }
             });
             return account.ToObject<AccountSimple>();
+        }
+        #endregion
+
+        public List<Asset> GetAssets(int accountId, bool? includeCostBasis = null)
+        {
+            return GetAssetsAsync(accountId, includeCostBasis).Result;
+        }
+        public async Task<List<Asset>> GetAssetsAsync(int accountId, bool? includeCostBasis = null)
+        {
+            JToken assets = await GetJsonAsync(string.Format("{0}/Assets", accountId), new Dictionary<string, object>
+            {
+                { "includeCostBasis", includeCostBasis }
+            });
+            return assets.ToObject<List<Asset>>();
         }
     }
 }
