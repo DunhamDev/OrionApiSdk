@@ -1,5 +1,6 @@
 ﻿using OrionApiSdk.ApiEndpoints;
 using OrionApiSdk.ApiEndpoints.Portfolio;
+using OrionApiSdk.ApiEndpoints.Trading;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Authorization;
 using System;
@@ -14,17 +15,17 @@ namespace OrionApiSdk
     {
         public AuthToken AuthToken { get; private set; }
 
-        private Authorization _authorizationEndpoint;
-        public Authorization AuthorizationEndpoint
+        private AuthorizationEndpoint _authorizationEndpoint;
+        public AuthorizationEndpoint Authorization
         {
             get
             {
-                return _authorizationEndpoint ?? (_authorizationEndpoint = new Authorization(AuthToken));
+                return _authorizationEndpoint ?? (_authorizationEndpoint = new AuthorizationEndpoint(AuthToken));
             }
         }
 
         private PortfolioEndpoint _portfolioEndpoint;
-        public PortfolioEndpoint PortolioEndpoint
+        public PortfolioEndpoint Portfolio
         {
             get
             {
@@ -32,12 +33,21 @@ namespace OrionApiSdk
             }
         }
 
-        private Security _securityEndpoint;
-        public Security SecurityEndpoint
+        private SecurityEndpoint _securityEndpoint;
+        public SecurityEndpoint Security
         {
             get
             {
-                return _securityEndpoint ?? (_securityEndpoint = new Security(AuthToken));
+                return _securityEndpoint ?? (_securityEndpoint = new SecurityEndpoint(AuthToken));
+            }
+        }
+
+        private TradingEndpoint _tradingEndpoint;
+        public TradingEndpoint Trading
+        {
+            get
+            {
+                return _tradingEndpoint ?? (_tradingEndpoint = new TradingEndpoint(AuthToken));
             }
         }
 
@@ -52,7 +62,7 @@ namespace OrionApiSdk
         }
         public static async Task<AuthToken> GetUserAuthTokenAsync(string username, string password)
         {
-            return await Security.TokenAsync(username, password);
+            return await SecurityEndpoint.TokenAsync(username, password);
         }
 
         public bool IsAuthTokenValid()
@@ -61,7 +71,7 @@ namespace OrionApiSdk
         }
         public async Task<bool> IsAuthTokenValidAsync()
         {
-            UserProfile user = await AuthorizationEndpoint.UserAsync();
+            UserProfile user = await Authorization.UserAsync();
             return user != null;
         }
     }

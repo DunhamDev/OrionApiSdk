@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints
 {
-    public class Authorization : ApiEndpointBase
+    public class AuthorizationEndpoint : ApiEndpointBase
     {
-        public Authorization(AuthToken token) : base("Authorization", token)
+        public AuthorizationEndpoint(AuthToken token) : base("Authorization", token)
         {
         }
 

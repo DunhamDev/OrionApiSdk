@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints
 {
-    public class Security : ApiEndpointBase
+    public class SecurityEndpoint : ApiEndpointBase
     {
-        public Security(AuthToken token) : base("Security", token)
+        public SecurityEndpoint(AuthToken token) : base("Security", token)
         {
         }
 
-        private Security(string username, string password) : base("Security")
+        private SecurityEndpoint(string username, string password) : base("Security")
         {
             UpdateCredentials(username, password);
         }
@@ -54,7 +54,7 @@ namespace OrionApiSdk.ApiEndpoints
         }
         internal static async Task<AuthToken> TokenAsync(string username, string password)
         {
-            Security tempSecurityEndpoit = new Security(username, password);
+            SecurityEndpoint tempSecurityEndpoit = new SecurityEndpoint(username, password);
             JToken tokenJson = await tempSecurityEndpoit.GetJsonAsync("Token");
             return tokenJson.ToObject<AuthToken>();
         }

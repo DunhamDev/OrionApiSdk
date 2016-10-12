@@ -35,62 +35,62 @@ namespace ConsoleProgram
 
         public static UserProfile GetUser()
         {
-            return Api.AuthorizationEndpoint.User();
+            return Api.Authorization.User();
         }
 
         private static List<UserInfoDetails> GetUsers()
         {
-            return Api.SecurityEndpoint.GetUsers();
+            return Api.Security.GetUsers();
         }
 
         public static UserInfoDetails GetUsers(int id)
         {
-            return Api.SecurityEndpoint.GetUsers(id);
+            return Api.Security.GetUsers(id);
         }
 
         public static List<RepresentativeVerbose> GetReps()
         {
-            return Api.PortolioEndpoint.Representatives.GetVerbose();
+            return Api.Portfolio.Representatives.GetVerbose();
         }
 
         public static List<Account> GetAccounts()
         {
-            return Api.PortolioEndpoint.Accounts.Get();
+            return Api.Portfolio.Accounts.Get();
         }
 
         public static List<RepresentativeSimple> GetSimpleReps()
         {
-            return Api.PortolioEndpoint.Representatives.GetSimple();
+            return Api.Portfolio.Representatives.GetSimple();
         }
 
         public static Representative GetRep(int id)
         {
-            return Api.PortolioEndpoint.Representatives.Get(id);
+            return Api.Portfolio.Representatives.Get(id);
         }
 
         public static List<Account> GetRepAccounts(int id)
         {
-            return Api.PortolioEndpoint.Representatives.GetAccounts(id);
+            return Api.Portfolio.Representatives.GetAccounts(id);
         }
 
         public static List<AccountSimple> GetAccountValues(int id)
         {
-            return Api.PortolioEndpoint.Representatives.GetAccountValues(id, new DateTime(2016, 9, 30));
+            return Api.Portfolio.Representatives.GetAccountValues(id, new DateTime(2016, 9, 30));
         }
 
         public static AccountSimple GetAccountValue(int accountId)
         {
-            return Api.PortolioEndpoint.Accounts.GetValue(accountId);
+            return Api.Portfolio.Accounts.GetValue(accountId);
         }
 
         public static List<BrokerDealer> GetBDs()
         {
-            return Api.PortolioEndpoint.BrokerDealers.Get();
+            return Api.Portfolio.BrokerDealers.Get();
         }
 
         public static List<AumOverTime> GetAumOverTime(int clientId)
         {
-            return Api.PortolioEndpoint.Clients.GetAumOverTime(clientId);
+            return Api.Portfolio.Clients.GetAumOverTime(clientId);
         }
 
         //public static List<UserInfoDetails> PostUsers()
