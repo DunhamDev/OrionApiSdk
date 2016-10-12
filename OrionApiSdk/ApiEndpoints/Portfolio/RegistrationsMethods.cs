@@ -13,6 +13,10 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
 {
     public class RegistrationsMethods : ApiMethodContainer
     {
+        /// <summary>
+        /// Constructs a /Portfolio/Registrations endpoint instance
+        /// </summary>
+        /// <param name="token">The access token of the user making requests</param>
         public RegistrationsMethods(AuthToken token) : base("Portfolio", "Registrations", token) { }
 
         #region Get registrations

@@ -23,7 +23,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
 
         #region Get account
         /// <summary>
-        /// HTTP GET: /Portfolio/Accounts<br />
+        /// HTTP GET: /Portfolio/Accounts
         /// Gets a list of accounts available to the user
         /// </summary>
         /// <param name="isActive"></param>
