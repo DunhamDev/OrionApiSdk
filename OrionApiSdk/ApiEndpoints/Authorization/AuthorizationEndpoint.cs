@@ -16,6 +16,7 @@ namespace OrionApiSdk.ApiEndpoints.Authorization
         }
 
         /// <summary>
+        /// HTTP GET: /Authorization/User
         /// Gets the user's profile information
         /// </summary>
         /// <returns>The user's profile</returns>
@@ -24,6 +25,7 @@ namespace OrionApiSdk.ApiEndpoints.Authorization
             return UserAsync().Result;
         }
         /// <summary>
+        /// HTTP GET: /Authorization/User
         /// Gets the user's profile information
         /// </summary>
         /// <returns>The user's profile</returns>

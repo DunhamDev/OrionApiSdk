@@ -23,6 +23,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
 
         #region Get account
         /// <summary>
+        /// HTTP GET: /Portfolio/Accounts<br />
         /// Gets a list of accounts available to the user
         /// </summary>
         /// <param name="isActive"></param>
@@ -42,6 +43,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return GetAsync(isActive, isManager, createdDateStart, newAccountFilter, clientId, registrationId, asOfDate, hasValue, top, skip).Result;
         }
         /// <summary>
+        /// HTTP GET: /Portfolio/Accounts
         /// Gets a list of accounts available to the user
         /// </summary>
         /// <param name="isActive"></param>
@@ -75,6 +77,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
 
         /// <summary>
+        /// HTTP GET: /Portfolio/Accounts/{accountId}
         /// Get a specific account
         /// </summary>
         /// <param name="accountId">The ID of the account</param>
@@ -84,6 +87,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return GetAsync(accountId).Result;
         }
         /// <summary>
+        /// HTTP GET: /Portfolio/Accounts/{accountId}
         /// Get a specific account
         /// </summary>
         /// <param name="accountId">The ID of the account</param>
@@ -95,6 +99,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
 
         /// <summary>
+        /// HTTP GET: /Portfolio/Accounts/{accountNumber}
         /// Get a specific account by account number
         /// </summary>
         /// <param name="accountNumber">The account number of the account</param>
@@ -104,6 +109,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return GetAsync(accountNumber).Result;
         }
         /// <summary>
+        /// HTTP GET: /Portfolio/Accounts/{accountNumber}
         /// Get a specific account by account number
         /// </summary>
         /// <param name="accountNumber">The account number of the account</param>
@@ -115,6 +121,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
 
         /// <summary>
+        /// HTTP GET: /Portfolio/Accounts/Simple
         /// Gets a simple list of accounts
         /// </summary>
         /// <param name="hasValue"></param>
@@ -127,6 +134,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return GetSimpleAsync(hasValue, isActive, top, skip).Result;
         }
         /// <summary>
+        /// HTTP GET: /Portfolio/Accounts/Simple
         /// Gets a simple list of accounts
         /// </summary>
         /// <param name="hasValue"></param>
@@ -149,6 +157,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
 
         #region Search accounts
         /// <summary>
+        /// HTTP GET: /Portfolio/Accounts/Simple/Search
         /// Performs a simple search on the accounts
         /// </summary>
         /// <param name="searchedAccountNum">Account Id, partial account number, or outside id to search for</param>
@@ -162,6 +171,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return GetSimpleSearchAsync(searchedAccountNum, hasValue, isActive, top, skip).Result;
         }
         /// <summary>
+        /// HTTP GET: /Portfolio/Accounts/Simple/Search
         /// Performs a simple search on the accounts
         /// </summary>
         /// <param name="searchedAccountNum">Account Id, partial account number, or outside id to search for</param>
@@ -184,6 +194,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
 
         /// <summary>
+        /// HTTP GET: /Portfolio/Accounts/Search/Advanced
         /// Performs an advanced search of accounts the user has access to
         /// </summary>
         /// <param name="assetId"></param>
@@ -203,6 +214,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return GetAdvancedSearchAsync(assetId, registrationTypeId, lastName, firstName, accountNumber, secondaryAccountNumber, outsideId, registrationId, clientId, accountId).Result;
         }
         /// <summary>
+        /// HTTP GET: /Portfolio/Accounts/Search/Advanced
         /// Performs an advanced search of accounts the user has access to
         /// </summary>
         /// <param name="assetId"></param>
@@ -238,6 +250,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
 
         #region Account value
         /// <summary>
+        /// HTTP GET: /Portfolio/Accounts/Value
         /// Gets the value of all accounts the user has access to
         /// </summary>
         /// <param name="hasValue"></param>
@@ -247,6 +260,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return GetValueAsync(hasValue).Result;
         }
         /// <summary>
+        /// HTTP GET: /Portfolio/Accounts/Value
         /// Gets the value of all accounts the user has access to
         /// </summary>
         /// <param name="hasValue"></param>
@@ -261,6 +275,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
 
         /// <summary>
+        /// HTTP GET: /Portfolio/Accounts/Value/{asOfDate}
         /// Gets the value of all accounts the user has access to as of a specific date
         /// </summary>
         /// <param name="asOfDate">Specific date to check</param>
@@ -271,6 +286,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return GetValueAsync(asOfDate, hasValue).Result;
         }
         /// <summary>
+        /// HTTP GET: /Portfolio/Accounts/Value/{asOfDate}
         /// Gets the value of all accounts the user has access to as of a specific date
         /// </summary>
         /// <param name="asOfDate">Specific date to check</param>
@@ -286,6 +302,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
 
         /// <summary>
+        /// HTTP GET: /Portfolio/Accounts/{accountId}/Value
         /// Get the account value of a specific account
         /// </summary>
         /// <param name="accountId">The ID of the account</param>
@@ -296,6 +313,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return GetValueAsync(accountId, includeCash).Result;
         }
         /// <summary>
+        /// HTTP GET: /Portfolio/Accounts/{accountId}/Value
         /// Get the account value of a specific account
         /// </summary>
         /// <param name="accountId">The ID of the account</param>
@@ -311,6 +329,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
 
         /// <summary>
+        /// HTTP GET: /Portfolio/Accounts/{accountId}/Value/{asOfDate}
         /// Get the account value of a specific account as of a specific date
         /// </summary>
         /// <param name="accountId">The ID of the account</param>
@@ -322,6 +341,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return GetValueAsync(accountId, asOfDate, includeCash).Result;
         }
         /// <summary>
+        /// HTTP GET: /Portfolio/Accounts/{accountId}/Value/{asOfDate}
         /// Get the account value of a specific account as of a specific date
         /// </summary>
         /// <param name="accountId">The ID of the account</param>
@@ -339,6 +359,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         #endregion
 
         /// <summary>
+        /// HTTP GET: /Portfolio/Accounts/{accountId}/Assets
         /// Gets the list of assets associated with a specific account
         /// </summary>
         /// <param name="accountId">The account ID</param>
@@ -349,6 +370,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return GetAssetsAsync(accountId, includeCostBasis).Result;
         }
         /// <summary>
+        /// HTTP GET: /Portfolio/Accounts/{accountId}/Assets
         /// Gets the list of assets associated with a specific account
         /// </summary>
         /// <param name="accountId">The account ID</param>
