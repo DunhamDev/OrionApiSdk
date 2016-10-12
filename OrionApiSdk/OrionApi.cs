@@ -1,5 +1,6 @@
-﻿using OrionApiSdk.ApiEndpoints;
+﻿using OrionApiSdk.ApiEndpoints.Authorization;
 using OrionApiSdk.ApiEndpoints.Portfolio;
+using OrionApiSdk.ApiEndpoints.Security;
 using OrionApiSdk.ApiEndpoints.Trading;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Authorization;

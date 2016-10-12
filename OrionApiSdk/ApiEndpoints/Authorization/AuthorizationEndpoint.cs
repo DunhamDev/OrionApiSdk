@@ -3,7 +3,7 @@ using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Authorization;
 using System.Threading.Tasks;
 
-namespace OrionApiSdk.ApiEndpoints
+namespace OrionApiSdk.ApiEndpoints.Authorization
 {
     public class AuthorizationEndpoint : ApiEndpointBase
     {

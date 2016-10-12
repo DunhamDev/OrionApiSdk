@@ -5,7 +5,7 @@ using OrionApiSdk.Objects.Security;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace OrionApiSdk.ApiEndpoints
+namespace OrionApiSdk.ApiEndpoints.Security
 {
     public class SecurityEndpoint : ApiEndpointBase
     {
