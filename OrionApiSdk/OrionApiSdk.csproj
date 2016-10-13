@@ -53,6 +53,7 @@
     <Compile Include="ApiEndpoints\Portfolio\PortfolioEndpoint.cs" />
     <Compile Include="ApiEndpoints\Portfolio\RegistrationsMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\RepresentativesMethods.cs" />
+    <Compile Include="ApiEndpoints\Trading\ModelAggsMethods.cs" />
     <Compile Include="ApiEndpoints\Trading\ModelsMethods.cs" />
     <Compile Include="ApiEndpoints\Trading\TradingEndpoint.cs" />
     <Compile Include="Common\ExtensionMethods\DateTimeExtensionMethods.cs" />
@@ -94,8 +95,12 @@
     <Compile Include="Objects\Reporting\Enums\ReportCategory.cs" />
     <Compile Include="Objects\Security\UserInfoDetails.cs" />
     <Compile Include="Objects\Security\Profile.cs" />
-    <Compile Include="Objects\Trading\ModelAccount.cs" />
+    <Compile Include="Objects\Trading\Account.cs" />
     <Compile Include="Objects\Trading\Model.cs" />
+    <Compile Include="Objects\Trading\ModelAgg.cs" />
+    <Compile Include="Objects\Trading\ModelAggDetail.cs" />
+    <Compile Include="Objects\Trading\ModelAggEntity.cs" />
+    <Compile Include="Objects\Trading\ModelAggSimple.cs" />
     <Compile Include="Objects\Trading\ModelItem.cs" />
     <Compile Include="Objects\Trading\ModelRange.cs" />
     <Compile Include="Objects\Trading\ModelSimple.cs" />

@@ -87,7 +87,7 @@ namespace OrionApiSdk.Objects.Trading
         public List<ModelItem> Items { get; set; }
 
         [JsonProperty("accounts")]
-        public List<ModelAccount> Accounts { get; set; }
+        public List<Account> Accounts { get; set; }
 
         [JsonProperty("ranges")]
         public List<ModelRange> Ranges { get; set; }

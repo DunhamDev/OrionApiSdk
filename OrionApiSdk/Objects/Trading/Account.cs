@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.Objects.Trading
 {
-    public class ModelAccount
+    public class Account
     {
         [JsonProperty("accountId")]
         public int AccountId { get; set; }
