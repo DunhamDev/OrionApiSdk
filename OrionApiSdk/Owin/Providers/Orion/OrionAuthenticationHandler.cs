@@ -17,8 +17,8 @@ namespace OrionApiSdk.Owin.Providers.Orion
     public class OrionAuthenticationHandler : AuthenticationHandler<OrionAuthenticationOptions>
     {
         private const int HTTP_UNAUTHORIZED = 401;
-        private const string AUTHORIZE_ENDPOINT = "https://api.orion.com/api/oauth";
-        private const string TEST_AUTHORIZE_ENDPOINT = "https://testapi.orion.com/api/oauth";
+        private const string AUTHORIZE_ENDPOINT = "https://api.orionadvisor.com/api/oauth";
+        private const string TEST_AUTHORIZE_ENDPOINT = "https://testapi.orionadvisor.com/api/oauth";
 
         private readonly ILogger _logger;
 
