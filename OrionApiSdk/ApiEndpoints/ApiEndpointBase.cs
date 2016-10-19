@@ -116,7 +116,15 @@ namespace OrionApiSdk.ApiEndpoints
         {
             using (HttpClient httpClient = BuildHttpClient())
             {
-                var postContent = new StringContent(JsonConvert.SerializeObject(body));
+                HttpContent postContent;
+                if (body is HttpContent)
+                {
+                    postContent = (HttpContent)body;
+                }
+                else
+                {
+                    postContent = new StringContent(JsonConvert.SerializeObject(body));
+                }
                 var response = await httpClient.PostAsync(EndpointUri(endpointMethod, endpointParameters), postContent);
 
                 response.EnsureSuccessStatusCode();

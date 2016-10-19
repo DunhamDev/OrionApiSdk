@@ -3,6 +3,8 @@ using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Authorization;
 using OrionApiSdk.Objects.Security;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Security
@@ -70,14 +72,15 @@ namespace OrionApiSdk.ApiEndpoints.Security
         internal static async Task<OAuthToken> PostOAuthTemporaryTokenAsync(string temporaryToken, string redirectUri, string clientId, string clientSecret, bool useTestApi)
         {
             SecurityEndpoint tempSecurityEndpoint = new SecurityEndpoint(useTestApi);
-            var oauthTokenJson = await tempSecurityEndpoint.PostJsonAsync("Token", null, new Dictionary<string, object>
+            var postData = new Dictionary<string, string>
             {
                 { "grant_type", "authorization_code" },
                 { "code", temporaryToken },
                 { "redirect_uri", redirectUri },
                 { "client_id", clientId },
                 { "client_secret", clientSecret },
-            });
+            };
+            var oauthTokenJson = await tempSecurityEndpoint.PostJsonAsync("Token", new FormUrlEncodedContent(postData));
 
             return oauthTokenJson.ToObject<OAuthToken>();
         }

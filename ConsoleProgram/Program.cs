@@ -1,4 +1,5 @@
 ﻿using OrionApiSdk;
+using OrionApiSdk.ApiEndpoints.Security;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Authorization;
 using OrionApiSdk.Objects.Portfolio;
