@@ -106,6 +106,10 @@
     <Compile Include="Objects\Trading\ModelSimple.cs" />
     <Compile Include="Objects\UserCredentials.cs" />
     <Compile Include="OrionApi.cs" />
+    <Compile Include="Owin\Providers\Orion\OrionAuthenticationExtensions.cs" />
+    <Compile Include="Owin\Providers\Orion\OrionAuthenticationHandler.cs" />
+    <Compile Include="Owin\Providers\Orion\OrionAuthenticationMiddleware.cs" />
+    <Compile Include="Owin\Providers\Orion\OrionAuthenticationOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
