@@ -112,12 +112,12 @@ namespace OrionApiSdk.ApiEndpoints
             }
         }
 
-        protected async Task<JToken> PostJsonAsync(string endpointMethod, object body)
+        protected async Task<JToken> PostJsonAsync(string endpointMethod, object body, Dictionary<string, object> endpointParameters = null)
         {
             using (HttpClient httpClient = BuildHttpClient())
             {
                 var postContent = new StringContent(JsonConvert.SerializeObject(body));
-                var response = await httpClient.PostAsync(EndpointUri(endpointMethod, null), postContent);
+                var response = await httpClient.PostAsync(EndpointUri(endpointMethod, endpointParameters), postContent);
 
                 response.EnsureSuccessStatusCode();
                 return await ParseJsonResponseAsync(response);
@@ -130,8 +130,11 @@ namespace OrionApiSdk.ApiEndpoints
         {
             HttpClient httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Accept.Clear();
-            httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            httpClient.DefaultRequestHeaders.Authorization = RequestAuthorization();
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            if (AuthToken != null || _credentials != null)
+            {
+                httpClient.DefaultRequestHeaders.Authorization = RequestAuthorization();
+            }
             return httpClient;
         }
 

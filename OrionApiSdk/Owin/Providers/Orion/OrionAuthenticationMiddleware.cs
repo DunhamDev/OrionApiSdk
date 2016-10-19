@@ -1,12 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Owin;
+using Microsoft.Owin.Logging;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.DataHandler;
+using Microsoft.Owin.Security.DataProtection;
+using Microsoft.Owin.Security.Infrastructure;
+using Owin;
 
 namespace OrionApiSdk.Owin.Providers.Orion
 {
-    public class OrionAuthenticationMiddleware
+    public class OrionAuthenticationMiddleware : AuthenticationMiddleware<OrionAuthenticationOptions>
     {
+        private readonly ILogger _logger;
+
+        public OrionAuthenticationMiddleware(OwinMiddleware next, IAppBuilder app, OrionAuthenticationOptions options) : base(next, options)
+        {
+            if (string.IsNullOrWhiteSpace(options.SignInAsAutenticationType))
+            {
+                options.SignInAsAutenticationType = app.GetDefaultSignInAsAuthenticationType();
+            }
+            if (options.StateDataFormat == null)
+            {
+                var dataProtector = app.CreateDataProtector(typeof(OrionAuthenticationMiddleware).FullName, options.AuthenticationType);
+                options.StateDataFormat = new PropertiesDataFormat(dataProtector);
+            }
+            _logger = app.CreateLogger<OrionAuthenticationMiddleware>();
+        }
+
+        protected override AuthenticationHandler<OrionAuthenticationOptions> CreateHandler()
+        {
+            return new OrionAuthenticationHandler(_logger);
+        }
     }
 }

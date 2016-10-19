@@ -17,6 +17,10 @@ namespace OrionApiSdk.ApiEndpoints.Security
         {
             UpdateCredentials(username, password);
         }
+        private SecurityEndpoint(bool useTestApi) : base("Security", useTestApi)
+        {
+
+        }
 
         public List<UserInfoDetails> GetUsers()
         {
@@ -57,6 +61,25 @@ namespace OrionApiSdk.ApiEndpoints.Security
             SecurityEndpoint tempSecurityEndpoit = new SecurityEndpoint(username, password);
             JToken tokenJson = await tempSecurityEndpoit.GetJsonAsync("Token");
             return tokenJson.ToObject<AuthToken>();
+        }
+
+        internal static OAuthToken PostOAuthTemporaryToken(string temporaryToken, string redirectUri, string clientId, string clientSecret, bool useTestApi)
+        {
+            return PostOAuthTemporaryTokenAsync(temporaryToken, redirectUri, clientId, clientSecret, useTestApi).Result;
+        }
+        internal static async Task<OAuthToken> PostOAuthTemporaryTokenAsync(string temporaryToken, string redirectUri, string clientId, string clientSecret, bool useTestApi)
+        {
+            SecurityEndpoint tempSecurityEndpoint = new SecurityEndpoint(useTestApi);
+            var oauthTokenJson = await tempSecurityEndpoint.PostJsonAsync("Token", null, new Dictionary<string, object>
+            {
+                { "grant_type", "authorization_code" },
+                { "code", temporaryToken },
+                { "redirect_uri", redirectUri },
+                { "client_id", clientId },
+                { "client_secret", clientSecret },
+            });
+
+            return oauthTokenJson.ToObject<OAuthToken>();
         }
     }
 }

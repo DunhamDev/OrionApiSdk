@@ -1,10 +1,5 @@
 ﻿using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OrionApiSdk.Owin.Providers.Orion
 {
@@ -19,14 +14,17 @@ namespace OrionApiSdk.Owin.Providers.Orion
 
         public string SignInAsAutenticationType { get; set; }
 
+        public bool UseTestApiEndpoint { get; set; }
+
         public ISecureDataFormat<AuthenticationProperties> StateDataFormat { get; set; }
         #endregion
 
-        public OrionAuthenticationOptions(string clientId, string clientSecret) : base("Orion")
+        public OrionAuthenticationOptions(string clientId, string clientSecret, bool useTestApiEndpoint = false) : base("Orion")
         {
             ClientId = clientId;
             ClientSecret = clientSecret;
             CallbackPath = new PathString("/signin-orion");
+            UseTestApiEndpoint = useTestApiEndpoint;
             Description.Caption = "Orion";
             AuthenticationMode = AuthenticationMode.Passive;
         }
