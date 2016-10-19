@@ -68,5 +68,55 @@ namespace OrionApiSdk.ApiEndpoints.Trading
             return simpleAggs.ToObject<List<ModelAggSimple>>();
         }
         #endregion
+
+        public List<Objects.Portfolio.Account> GetAccounts(int modelAggId, bool? isActive = null, bool? isManaged = null, int top = 5000, int skip = 0)
+        {
+            return GetAccountsAsync(modelAggId, isActive, isManaged, top, skip).Result;
+        }
+        public async Task<List<Objects.Portfolio.Account>> GetAccountsAsync(int modelAggId, bool? isActive = null, bool? isManaged = null, int top = 5000, int skip = 0)
+        {
+            var accountsJson = await GetJsonAsync(string.Format("{0}/Accounts", modelAggId), new Dictionary<string, object>
+            {
+                { "isActive", isActive },
+                { "isManaged", isManaged },
+                { "$top", top },
+                { "$skip", skip },
+            });
+
+            return accountsJson.ToObject<List<Objects.Portfolio.Account>>();
+        }
+
+        #region Allocations
+        public List<ModelItem> GetAllocations(int modelAggId)
+        {
+            return GetAllocationsAsync(modelAggId).Result;
+        }
+        public async Task<List<ModelItem>> GetAllocationsAsync(int modelAggId)
+        {
+            var allocationsJson = await GetJsonAsync(string.Format("{0}/Allocations", modelAggId));
+            return allocationsJson.ToObject<List<ModelItem>>();
+        }
+
+        public List<ModelItem> GetAccountAllocations(int modelAggId, int accountId)
+        {
+            return GetAccountAllocationsAsync(modelAggId, accountId).Result;
+        }
+        public async Task<List<ModelItem>> GetAccountAllocationsAsync(int modelAggId, int accountId)
+        {
+            var allocationsJson = await GetJsonAsync(string.Format("{0}/{1}/Allocations", modelAggId, accountId));
+            return allocationsJson.ToObject<List<ModelItem>>();
+        }
+        #endregion
+
+        public List<string> GetAggTypes()
+        {
+            return GetAggTypesAsync().Result;
+        }
+        public async Task<List<string>> GetAggTypesAsync()
+        {
+            var aggTypesJson = await GetJsonAsync("AggTypes");
+            return aggTypesJson.ToObject<List<string>>();
+        }
+
     }
 }

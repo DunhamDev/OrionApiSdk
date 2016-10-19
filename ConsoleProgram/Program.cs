@@ -18,9 +18,8 @@ namespace ConsoleProgram
         {
             Token = GetAuthToken();
             Api = new OrionApi(Token);
-            var accounts = GetAccounts();
-            var dealers = GetBDs();
-            var aumPoints = GetAumOverTime(7);
+            var accounts = Api.Trading.ModelAggs.GetAccounts(11);
+            var allocations = Api.Trading.ModelAggs.GetAllocations(11);
         }
 
         private static AuthToken GetAuthToken()

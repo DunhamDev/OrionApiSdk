@@ -19,5 +19,14 @@ namespace OrionApiSdk.ApiEndpoints.Trading
                 return _modelsMethods ?? (_modelsMethods = new ModelsMethods(AuthToken));
             }
         }
+
+        private ModelAggsMethods _modelAggsMethods;
+        public ModelAggsMethods ModelAggs
+        {
+            get
+            {
+                return _modelAggsMethods ?? (_modelAggsMethods = new ModelAggsMethods(AuthToken));
+            }
+        }
     }
 }
