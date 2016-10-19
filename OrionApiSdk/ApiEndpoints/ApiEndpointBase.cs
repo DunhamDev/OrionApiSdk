@@ -16,7 +16,9 @@ namespace OrionApiSdk.ApiEndpoints
     {
         #region Properties
         #region Static properties
-        private const string ORION_API_URL = "https://api.orionadvisor.com/api/v1/";
+        private const string ORION_API_URL = "https://api.orionadvisor.com/api/";
+        private const string TEST_ORION_API_RUL = "https://testapi.orionadvisor.com/api/";
+        private const string VERSION = "v1";
         #endregion
 
         #region Instance properties
@@ -31,6 +33,20 @@ namespace OrionApiSdk.ApiEndpoints
             }
         }
         private UserCredentials _credentials { get; set; }
+
+        private bool UseTestApi { get; set; }
+
+        private string ApiUrl
+        {
+            get
+            {
+                if (UseTestApi)
+                {
+                    return TEST_ORION_API_RUL + VERSION + "/";
+                }
+                return ORION_API_URL + VERSION + "/";
+            }
+        }
         #endregion
         #endregion
 
@@ -40,11 +56,22 @@ namespace OrionApiSdk.ApiEndpoints
             EndpointName = endpointName;
             AuthToken = null;
             _credentials = null;
+            UseTestApi = false;
         }
+        internal ApiEndpointBase(string endpointName, bool useTestApi) : this(endpointName)
+        {
+            UseTestApi = useTestApi;
+        }
+
         internal ApiEndpointBase(string endpointName, AuthToken authToken)
         {
             EndpointName = endpointName;
             AuthToken = authToken;
+            UseTestApi = false;
+        }
+        internal ApiEndpointBase(string endpointName, AuthToken authToken, bool useTestApi) : this(endpointName, authToken)
+        {
+            UseTestApi = useTestApi;
         }
         #endregion
 
@@ -58,6 +85,7 @@ namespace OrionApiSdk.ApiEndpoints
         protected void UpdateCredentials(string username, string password)
         {
             _credentials = new UserCredentials(username, password);
+            UseTestApi = false;
         }
 
         protected async Task<JToken> GetJsonAsync(string endpointMethod, Dictionary<string, object> endpointParameters = null)
@@ -121,7 +149,7 @@ namespace OrionApiSdk.ApiEndpoints
 
         private string EndpointUri(string endpointMethod, Dictionary<string, object> endpointParameters)
         {
-            string uri = ORION_API_URL + EndpointName;
+            string uri = ApiUrl + EndpointName;
             if (!string.IsNullOrWhiteSpace(endpointMethod))
             {
                 uri += "/" + endpointMethod;
