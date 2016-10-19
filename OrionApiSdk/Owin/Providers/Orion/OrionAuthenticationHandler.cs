@@ -1,15 +1,16 @@
-﻿using Microsoft.Owin.Security.Infrastructure;
+﻿using Microsoft.Owin;
+using Microsoft.Owin.Infrastructure;
+using Microsoft.Owin.Logging;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Infrastructure;
+using OrionApiSdk.ApiEndpoints.Security;
+using OrionApiSdk.Objects;
+using OrionApiSdk.Objects.Authorization;
+using OrionApiSdk.Objects.Security;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Owin.Security;
 using System.Security.Claims;
-using Microsoft.Owin.Infrastructure;
-using Microsoft.Owin;
-using Microsoft.Owin.Logging;
-using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace OrionApiSdk.Owin.Providers.Orion
 {
@@ -47,10 +48,10 @@ namespace OrionApiSdk.Owin.Providers.Orion
                     return new AuthenticationTicket(null, properties);
                 }
 
-                string requestPrefix = Request.Scheme + "://" + Request.Host;
-                string redirectUri = requestPrefix + Request.PathBase + Options.CallbackPath;
-
-
+                OAuthToken accessToken = await GetOAuthTokenFromTemporaryToken(temporaryToken);
+                OrionApi api = new OrionApi(accessToken as AuthToken);
+                UserProfile user = await api.Authorization.UserAsync();
+                
             }
             catch (Exception ex)
             {
@@ -81,6 +82,18 @@ namespace OrionApiSdk.Owin.Providers.Orion
                 state = values[0];
             }
             return state;
+        }
+        private async Task<OAuthToken> GetOAuthTokenFromTemporaryToken(string temporaryToken)
+        {
+            string requestPrefix = Request.Scheme + "://" + Request.Host;
+            string redirectUri = requestPrefix + Request.PathBase + Options.CallbackPath;
+            return await SecurityEndpoint.PostOAuthTemporaryTokenAsync(
+                temporaryToken,
+                redirectUri,
+                Options.ClientId,
+                Options.ClientSecret,
+                Options.UseTestApiEndpoint
+            );
         }
 
         #region ApplyResponseChallengeAsync
