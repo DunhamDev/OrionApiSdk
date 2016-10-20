@@ -23,7 +23,16 @@ namespace ConsoleProgram
             {
                 Name = "Test Model " + DateTime.Now.ToString("g"),
                 ModelType = "0",
-                
+                PlatformId = 24,
+                IsListTraded = false,
+                Items = new List<ModelItem>
+                {
+                    new ModelItem
+                    {
+                        ProductId = 194264,
+                        TargetPercent = 1,
+                    }
+                }
             };
             var response = Api.Trading.Models.PostModel(m);
         }

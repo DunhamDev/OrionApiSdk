@@ -117,20 +117,25 @@ namespace OrionApiSdk.ApiEndpoints.Trading
 
         public Model PostModel(Model model)
         {
-            return PostModelAsync(model).Result;
+            try
+            {
+                return PostModelAsync(model).Result;
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException ?? ex;
+            }
         }
         public async Task<Model> PostModelAsync(Model model)
         {
-            if (HasRequiredData(model))
+            if (model == null)
             {
-                var modelResponse = await PostJsonAsync("", "=" + JsonConvert.SerializeObject(model).ToString());
+                throw new ArgumentNullException("model");
             }
-            return model;
-        }
 
-        private bool HasRequiredData(Model model)
-        {
-            return true;
+            model.CheckForMinimumDataForCreate();
+            var modelResponse = await PostJsonAsync("", model);
+            return modelResponse.ToObject<Model>();
         }
     }
 }

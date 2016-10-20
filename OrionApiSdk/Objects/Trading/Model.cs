@@ -8,6 +8,39 @@ namespace OrionApiSdk.Objects.Trading
 
     public class Model : BaseSimpleEntity
     {
+        [JsonProperty("fundFamilyId")]
+        public int? FundFamilyId { get; set; }
+
+        [JsonProperty("shareClassId")]
+        public int? ShareClassId { get; set; }
+
+        [JsonProperty("platformId")]
+        public int? PlatformId { get; set; }
+
+        [JsonProperty("isListTraded")]
+        public bool? IsListTraded { get; set; }
+
+        [JsonProperty("representativeId")]
+        public int? RepresentativeId { get; set; }
+
+        [JsonProperty("modNotes")]
+        public string ModNotes { get; set; }
+
+        [JsonProperty("sequence")]
+        public int? Sequence { get; set; }
+
+        [JsonProperty("changeReason")]
+        public string ChangeReason { get; set; }
+
+        [JsonProperty("modelLevels")]
+        public int? ModelLevels { get; set; }
+
+        [JsonProperty("dynamicEffectiveDate")]
+        public DateTime? DynamicEffectiveDate { get; set; }
+
+        [JsonProperty("custodianId")]
+        public int? CustodianId { get; set; }
+
         [JsonProperty("lastRebalanced")]
         public DateTime? LastRebalanced { get; set; }
         
@@ -91,5 +124,30 @@ namespace OrionApiSdk.Objects.Trading
 
         [JsonProperty("ranges")]
         public List<ModelRange> Ranges { get; set; }
+
+        internal void CheckForMinimumDataForCreate()
+        {
+            if (string.IsNullOrWhiteSpace(Name))
+            {
+                throw new ArgumentException("Name cannot be null or whitespace");
+            }
+            if (!ItemsTotal100Percent())
+            {
+                throw new ArgumentException("Target Percent of Items list does not total 100%");
+            }
+        }
+        internal bool ItemsTotal100Percent()
+        {
+            if (Items == null || Items.Count == 0)
+            {
+                return false;
+            }
+            decimal totalPercent = 0;
+            foreach (ModelItem item in Items)
+            {
+                totalPercent += item.TargetPercent;
+            }
+            return totalPercent == 100;
+        }
     }
 }
