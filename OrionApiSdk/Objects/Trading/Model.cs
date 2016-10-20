@@ -134,7 +134,7 @@ namespace OrionApiSdk.Objects.Trading
         #region Public methods
         /// <summary>
         /// Validates that <see cref="BaseSimpleEntity.Name"/> and <see cref="ModelType"/> are populated, and verifies that
-        /// Items contains <see cref="ModelItem"/>s which have a total <see cref="ModelItem.TargetPercent"/> which
+        /// <see cref="Items"/> contains <see cref="ModelItem"/>s which have a total <see cref="ModelItem.TargetPercent"/> which
         /// totals 100
         /// </summary>
         public void CheckForMinimumDataForCreate()
@@ -155,7 +155,7 @@ namespace OrionApiSdk.Objects.Trading
         }
         /// <summary>
         /// Validates that <see cref="BaseSimpleEntity.Name"/> and <see cref="ModelType"/> are populated, and verifies that
-        /// Items contains <see cref="ModelItem"/>s which have a total <see cref="ModelItem.TargetPercent"/> which
+        /// <see cref="Items"/> contains <see cref="ModelItem"/>s which have a total <see cref="ModelItem.TargetPercent"/> which
         /// totals 100
         /// </summary>
         public void CheckForMinimumDataForUpdate()

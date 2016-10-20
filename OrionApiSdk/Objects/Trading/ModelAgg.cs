@@ -8,6 +8,8 @@ namespace OrionApiSdk.Objects.Trading
 {
     public class ModelAgg : BaseSimpleEntity
     {
+        #region Properties
+        #region Instance properties
         [JsonProperty("isSystemMaintained")]
         public bool IsSystemMaintained { get; set; }
         
@@ -61,7 +63,16 @@ namespace OrionApiSdk.Objects.Trading
 
         [JsonProperty("entities")]
         public List<ModelAggEntity> Entities { get; set; }
+        #endregion
+        #endregion
 
+        #region Methods
+        #region Public methods
+        /// <summary>
+        /// Validates that <see cref="BaseSimpleEntity.Name"/>  is populated, and
+        /// verifies that <see cref="Details"/> contains <see cref="ModelAggDetail"/>s which
+        /// have a total <see cref="ModelAggDetail.WeightPercent"/>  of 100
+        /// </summary>
         public void CheckForMinimumDataForCreate()
         {
             if (string.IsNullOrWhiteSpace(Name))
@@ -73,7 +84,9 @@ namespace OrionApiSdk.Objects.Trading
                 throw new ArgumentException("WeightPercent of Details does not total 1");
             }
         }
+        #endregion
 
+        #region Private methods
         private bool DetailsWeightTotal100()
         {
             if (Details == null || Details.Count == 0)
@@ -83,6 +96,7 @@ namespace OrionApiSdk.Objects.Trading
             decimal totalWeight = Details.Sum(d => d.WeightPercent);
             return totalWeight == 100;
         }
+        #endregion
+        #endregion
     }
-
 }

@@ -134,6 +134,13 @@ namespace OrionApiSdk.ApiEndpoints.Trading
             return modelAggsJson.ToObject<List<ModelAggSimple>>();
         }
 
+        /// <summary>
+        /// HTTP POST: /Trading/ModelAggs
+        /// Creates a model aggreagtion. Use <see cref="ModelAgg.CheckForMinimumDataForCreate"/> to verify
+        /// the minimum data points needed for creation are populated
+        /// </summary>
+        /// <param name="modelAggToCreate">The model aggreation to create</param>
+        /// <returns>The newly created model aggregation</returns>
         public ModelAgg Create(ModelAgg modelAggToCreate)
         {
             try
@@ -145,6 +152,13 @@ namespace OrionApiSdk.ApiEndpoints.Trading
                 throw ex.InnerException ?? ex;
             }
         }
+        /// <summary>
+        /// HTTP POST: /Trading/ModelAggs
+        /// Creates a model aggreagtion. Use <see cref="ModelAgg.CheckForMinimumDataForCreate"/> to verify
+        /// the minimum data points needed for creation are populated
+        /// </summary>
+        /// <param name="modelAggToCreate">The model aggreation to create</param>
+        /// <returns>The newly created model aggregation</returns>
         public async Task<ModelAgg> CreateAsync(ModelAgg modelAggToCreate)
         {
             if (modelAggToCreate == null)
