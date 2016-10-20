@@ -160,7 +160,7 @@ namespace OrionApiSdk.Owin.Providers.Orion
 
         public override async Task<bool> InvokeAsync()
         {
-            return await base.InvokeAsync();
+            return await InvokeReplyPathAsync();
         }
 
         private async Task<bool> InvokeReplyPathAsync()
