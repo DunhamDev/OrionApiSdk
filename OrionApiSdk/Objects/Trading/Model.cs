@@ -9,6 +9,8 @@ namespace OrionApiSdk.Objects.Trading
 
     public class Model : BaseSimpleEntity
     {
+        #region Properties
+        #region Instance properties
         [JsonProperty("fundFamilyId")]
         public int? FundFamilyId { get; set; }
 
@@ -125,7 +127,16 @@ namespace OrionApiSdk.Objects.Trading
 
         [JsonProperty("ranges")]
         public List<ModelRange> Ranges { get; set; }
+        #endregion
+        #endregion
 
+        #region Methods
+        #region Public methods
+        /// <summary>
+        /// Validates that <see cref="BaseSimpleEntity.Name"/> and <see cref="ModelType"/> are populated, and verifies that
+        /// Items contains <see cref="ModelItem"/>s which have a total <see cref="ModelItem.TargetPercent"/> which
+        /// totals 100
+        /// </summary>
         public void CheckForMinimumDataForCreate()
         {
             if (string.IsNullOrWhiteSpace(Name))
@@ -141,7 +152,19 @@ namespace OrionApiSdk.Objects.Trading
                 throw new ArgumentException("Target Percent of Items list does not total 100%");
             }
         }
-        internal bool ItemsTotal100Percent()
+        /// <summary>
+        /// Validates that <see cref="BaseSimpleEntity.Name"/> and <see cref="ModelType"/> are populated, and verifies that
+        /// Items contains <see cref="ModelItem"/>s which have a total <see cref="ModelItem.TargetPercent"/> which
+        /// totals 100
+        /// </summary>
+        public void CheckForMinimumDataForUpdate()
+        {
+            CheckForMinimumDataForCreate();
+        }
+        #endregion
+
+        #region Private methods
+        private bool ItemsTotal100Percent()
         {
             if (Items == null || Items.Count == 0)
             {
@@ -150,5 +173,7 @@ namespace OrionApiSdk.Objects.Trading
             decimal totalPercent = Items.Sum(i => i.TargetPercent);
             return totalPercent == 100;
         }
+        #endregion
+        #endregion
     }
 }

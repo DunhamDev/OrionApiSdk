@@ -117,14 +117,16 @@ namespace OrionApiSdk.ApiEndpoints.Trading
 
         /// <summary>
         /// HTTP POST: /Trading/Models
+        /// Creates a model. Use <see cref="Model.CheckForMinimumDataForCreate"/> to verify the necessary
+        /// data points have been filled
         /// </summary>
-        /// <param name="model">The model to post</param>
+        /// <param name="modelToCreate">The model to create</param>
         /// <returns>The newly created model</returns>
-        public Model CreateModel(Model model)
+        public Model CreateModel(Model modelToCreate)
         {
             try
             {
-                return CreateModelAsync(model).Result;
+                return CreateModelAsync(modelToCreate).Result;
             }
             catch (Exception ex)
             {
@@ -133,18 +135,57 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         }
         /// <summary>
         /// HTTP POST: /Trading/Models
+        /// Creates a model. Use <see cref="Model.CheckForMinimumDataForCreate"/> to verify the necessary
+        /// data points have been filled
         /// </summary>
-        /// <param name="model">The model to post</param>
+        /// <param name="modelToCreate">The model to post</param>
         /// <returns>The newly created model</returns>
-        public async Task<Model> CreateModelAsync(Model model)
+        public async Task<Model> CreateModelAsync(Model modelToCreate)
         {
-            if (model == null)
+            if (modelToCreate == null)
             {
-                throw new ArgumentNullException("model");
+                throw new ArgumentNullException("modelToCreate");
             }
 
-            model.CheckForMinimumDataForCreate();
-            var modelResponse = await PostJsonAsync("", model);
+            modelToCreate.CheckForMinimumDataForCreate();
+            var modelResponse = await PostJsonAsync("", modelToCreate);
+            return modelResponse.ToObject<Model>();
+        }
+
+        /// <summary>
+        /// HTTP PUT: /Trading/Models/{modelId}
+        /// Updates the given model. Use <see cref="Model.CheckForMinimumDataForUpdate"/> to verify the necssary
+        /// data points have been filled
+        /// </summary>
+        /// <param name="modelToUpdate">The model to update</param>
+        /// <returns>The newly updated model</returns>
+        public Model UpdateModel(Model modelToUpdate)
+        {
+            try
+            {
+                return UpdateModelAsync(modelToUpdate).Result;
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException ?? ex;
+            }
+        }
+        /// <summary>
+        /// HTTP PUT: /Trading/Models/{modelId}
+        /// Updates the given model. Use <see cref="Model.CheckForMinimumDataForUpdate"/> to verify the necssary
+        /// data points have been filled
+        /// </summary>
+        /// <param name="modelToUpdate">The model to update</param>
+        /// <returns>The newly updated model</returns>
+        public async Task<Model> UpdateModelAsync(Model modelToUpdate)
+        {
+            if (modelToUpdate == null)
+            {
+                throw new ArgumentNullException("modelToUpdate");
+            }
+
+            modelToUpdate.CheckForMinimumDataForUpdate();
+            var modelResponse = await PutJsonAsync(modelToUpdate.Id.ToString(), modelToUpdate);
             return modelResponse.ToObject<Model>();
         }
     }
