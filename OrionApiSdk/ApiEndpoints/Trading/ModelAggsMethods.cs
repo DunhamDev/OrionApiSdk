@@ -170,5 +170,42 @@ namespace OrionApiSdk.ApiEndpoints.Trading
             var modelAggResponse = await PostJsonAsync("", modelAggToCreate);
             return modelAggResponse.ToObject<ModelAgg>();
         }
+
+        /// <summary>
+        /// HTTP PUT: /Trading/ModelAggs/{modelAggId}
+        /// Updates the given model aggreation. Use <see cref="ModelAgg.CheckForMinimumDataForUpdate"/> 
+        /// to verify the necessary data points have been filled
+        /// </summary>
+        /// <param name="modelAggToUpdate">The model aggregation to update</param>
+        /// <returns>The newly updated model aggregation</returns>
+        public ModelAgg Update(ModelAgg modelAggToUpdate)
+        {
+            try
+            {
+                return UpdateAsync(modelAggToUpdate).Result;
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException ?? ex;
+            }
+        }
+        /// <summary>
+        /// HTTP PUT: /Trading/ModelAggs/{modelAggId}
+        /// Updates the given model aggreation. Use <see cref="ModelAgg.CheckForMinimumDataForUpdate"/> 
+        /// to verify the necessary data points have been filled
+        /// </summary>
+        /// <param name="modelAggToUpdate">The model aggregation to update</param>
+        /// <returns>The newly updated model aggregation</returns>
+        public async Task<ModelAgg> UpdateAsync(ModelAgg modelAggToUpdate)
+        {
+            if (modelAggToUpdate == null)
+            {
+                throw new ArgumentNullException("modelAggToUpdate");
+            }
+
+            modelAggToUpdate.CheckForMinimumDataForUpdate();
+            var modelAggResponse = await PutJsonAsync(modelAggToUpdate.Id.ToString(), modelAggToUpdate);
+            return modelAggResponse.ToObject<ModelAgg>();
+        }
     }
 }

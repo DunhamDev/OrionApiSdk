@@ -69,30 +69,49 @@ namespace OrionApiSdk.Objects.Trading
         #region Methods
         #region Public methods
         /// <summary>
-        /// Validates that <see cref="BaseSimpleEntity.Name"/>  is populated, and
-        /// verifies that <see cref="Details"/> contains <see cref="ModelAggDetail"/>s which
-        /// have a total <see cref="ModelAggDetail.WeightPercent"/>  of 100
+        /// Validates that <see cref="BaseSimpleEntity.Name"/>  is populated, and that <see cref="Details"/> 
+        /// is initialized, and that <see cref="Details"/> contains <see cref="ModelAggDetail"/>s which
+        /// have a total <see cref="ModelAggDetail.WeightPercent"/> of 100
         /// </summary>
         public void CheckForMinimumDataForCreate()
         {
-            if (string.IsNullOrWhiteSpace(Name))
+            CheckName();
+            if (Details == null)
             {
-                throw new ArgumentException("Name cannot be null or whitespace");
+                throw new ArgumentException("Details must be initialized");
             }
             if (!DetailsWeightTotal100())
             {
-                throw new ArgumentException("WeightPercent of Details does not total 1");
+                throw new ArgumentException("WeightPercent of Details does not total 100");
+            }
+        }
+
+        /// <summary>
+        /// Validates that <see cref="BaseSimpleEntity.Name"/>  is populated, and that <see cref="Details"/> 
+        /// is initialized, and that <see cref="Details"/> contains <see cref="ModelAggDetail"/>s which
+        /// have a total <see cref="ModelAggDetail.WeightPercent"/> of 100
+        /// </summary>
+        public void CheckForMinimumDataForUpdate()
+        {
+            CheckName();
+            if (Details != null && !DetailsWeightTotal100())
+            {
+                throw new ArgumentException("WeightPercent of Details does not total 100");
             }
         }
         #endregion
 
         #region Private methods
+        private void CheckName()
+        {
+            if (string.IsNullOrWhiteSpace(Name))
+            {
+                throw new ArgumentException("Name cannot be null or whitespace");
+            }
+        }
+
         private bool DetailsWeightTotal100()
         {
-            if (Details == null || Details.Count == 0)
-            {
-                return false;
-            }
             decimal totalWeight = Details.Sum(d => d.WeightPercent);
             return totalWeight == 100;
         }

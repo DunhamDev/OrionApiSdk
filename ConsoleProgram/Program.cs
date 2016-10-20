@@ -21,20 +21,8 @@ namespace ConsoleProgram
             Api = new OrionApi(Token);
             ModelAgg agg = new ModelAgg
             {
-                Name = "60% AAP Core Equity / 40% AAP Core Fixed Income",
-                Details = new List<ModelAggDetail>
-                {
-                    new ModelAggDetail
-                    {
-                        ModelId = 15,
-                        WeightPercent = 60,
-                    },
-                    new ModelAggDetail
-                    {
-                        ModelId = 16,
-                        WeightPercent = 40,
-                    }
-                }
+                Name = "80% AAP Core Equity / 20% AAP Core Fixed Income",
+                Details = new List<ModelAggDetail>(),
             };
             agg = Api.Trading.ModelAggs.Create(agg);
         }

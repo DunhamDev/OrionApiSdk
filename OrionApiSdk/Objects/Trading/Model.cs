@@ -133,9 +133,9 @@ namespace OrionApiSdk.Objects.Trading
         #region Methods
         #region Public methods
         /// <summary>
-        /// Validates that <see cref="BaseSimpleEntity.Name"/> and <see cref="ModelType"/> are populated, and verifies that
-        /// <see cref="Items"/> contains <see cref="ModelItem"/>s which have a total <see cref="ModelItem.TargetPercent"/> which
-        /// totals 100
+        /// Validates that <see cref="BaseSimpleEntity.Name"/> and <see cref="ModelType"/> are populated, that
+        /// <see cref="Items"/> is initalized, and <see cref="Items"/> contains either 0 items or
+        /// <see cref="ModelItem"/>s which have a total <see cref="ModelItem.TargetPercent"/> which totals 100
         /// </summary>
         public void CheckForMinimumDataForCreate()
         {
@@ -148,15 +148,20 @@ namespace OrionApiSdk.Objects.Trading
                 throw new ArgumentException("ModelType cannot be null or whitespace");
             }
             
+            if (Items == null)
+            {
+                throw new ArgumentException("Items must be initialized");
+            }
             if (!ItemsTotal100Percent())
             {
-                throw new ArgumentException("TargetPercent of Items list does not total 100%");
+                throw new ArgumentException("TargetPercent of Items must equal 100");
             }
         }
+        
         /// <summary>
-        /// Validates that <see cref="BaseSimpleEntity.Name"/> and <see cref="ModelType"/> are populated, and verifies that
-        /// <see cref="Items"/> contains <see cref="ModelItem"/>s which have a total <see cref="ModelItem.TargetPercent"/> which
-        /// totals 100
+        /// Validates that <see cref="BaseSimpleEntity.Name"/> and <see cref="ModelType"/> are populated, that
+        /// <see cref="Items"/> is initalized, and <see cref="Items"/> contains either 0 items or
+        /// <see cref="ModelItem"/>s which have a total <see cref="ModelItem.TargetPercent"/> which totals 100
         /// </summary>
         public void CheckForMinimumDataForUpdate()
         {
@@ -167,12 +172,8 @@ namespace OrionApiSdk.Objects.Trading
         #region Private methods
         private bool ItemsTotal100Percent()
         {
-            if (Items == null || Items.Count == 0)
-            {
-                return false;
-            }
             decimal totalPercent = Items.Sum(i => i.TargetPercent);
-            return totalPercent == 100;
+            return Items.Count == 0 || totalPercent == 100;
         }
         #endregion
         #endregion
