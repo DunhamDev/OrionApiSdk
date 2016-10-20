@@ -11,7 +11,7 @@ namespace OrionApiSdk.Objects.Trading
         public string ModelName { get; set; }
         
         [JsonProperty("weightPercent")]
-        public float WeightPercent { get; set; }
+        public decimal WeightPercent { get; set; }
         
         [JsonProperty("managementStyle")]
         public string ManagementStyle { get; set; }

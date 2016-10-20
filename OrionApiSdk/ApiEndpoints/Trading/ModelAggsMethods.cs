@@ -133,5 +133,28 @@ namespace OrionApiSdk.ApiEndpoints.Trading
             });
             return modelAggsJson.ToObject<List<ModelAggSimple>>();
         }
+
+        public ModelAgg Create(ModelAgg modelAggToCreate)
+        {
+            try
+            {
+                return CreateAsync(modelAggToCreate).Result;
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException ?? ex;
+            }
+        }
+        public async Task<ModelAgg> CreateAsync(ModelAgg modelAggToCreate)
+        {
+            if (modelAggToCreate == null)
+            {
+                throw new ArgumentNullException("modelAggToCreate");
+            }
+
+            modelAggToCreate.CheckForMinimumDataForCreate();
+            var modelAggResponse = await PostJsonAsync("", modelAggToCreate);
+            return modelAggResponse.ToObject<ModelAgg>();
+        }
     }
 }

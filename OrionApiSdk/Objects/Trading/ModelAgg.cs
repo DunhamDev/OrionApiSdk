@@ -2,6 +2,7 @@
 using OrionApiSdk.Objects.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OrionApiSdk.Objects.Trading
 {
@@ -60,6 +61,28 @@ namespace OrionApiSdk.Objects.Trading
 
         [JsonProperty("entities")]
         public List<ModelAggEntity> Entities { get; set; }
+
+        public void CheckForMinimumDataForCreate()
+        {
+            if (string.IsNullOrWhiteSpace(Name))
+            {
+                throw new ArgumentException("Name cannot be null or whitespace");
+            }
+            if (!DetailsWeightTotal100())
+            {
+                throw new ArgumentException("WeightPercent of Details does not total 1");
+            }
+        }
+
+        private bool DetailsWeightTotal100()
+        {
+            if (Details == null || Details.Count == 0)
+            {
+                return false;
+            }
+            decimal totalWeight = Details.Sum(d => d.WeightPercent);
+            return totalWeight == 100;
+        }
     }
 
 }

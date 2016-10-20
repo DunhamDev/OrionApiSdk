@@ -19,20 +19,24 @@ namespace ConsoleProgram
         {
             Token = GetAuthToken();
             Api = new OrionApi(Token);
-            Model m = new Model
+            ModelAgg agg = new ModelAgg
             {
-                Name = "Test Model " + DateTime.Now.ToString("g"),
-                ModelType = "0",
-                Items = new List<ModelItem>
+                Name = "60% AAP Core Equity / 40% AAP Core Fixed Income",
+                Details = new List<ModelAggDetail>
                 {
-                    new ModelItem
+                    new ModelAggDetail
                     {
-                        ProductId = 194264,
-                        TargetPercent = 1,
+                        ModelId = 15,
+                        WeightPercent = 60,
+                    },
+                    new ModelAggDetail
+                    {
+                        ModelId = 16,
+                        WeightPercent = 40,
                     }
                 }
             };
-            var response = Api.Trading.Models.CreateModel(m);
+            agg = Api.Trading.ModelAggs.Create(agg);
         }
 
         private static AuthToken GetAuthToken()

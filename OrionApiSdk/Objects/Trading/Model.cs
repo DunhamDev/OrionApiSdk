@@ -147,9 +147,10 @@ namespace OrionApiSdk.Objects.Trading
             {
                 throw new ArgumentException("ModelType cannot be null or whitespace");
             }
+            
             if (!ItemsTotal100Percent())
             {
-                throw new ArgumentException("Target Percent of Items list does not total 100%");
+                throw new ArgumentException("TargetPercent of Items list does not total 100%");
             }
         }
         /// <summary>

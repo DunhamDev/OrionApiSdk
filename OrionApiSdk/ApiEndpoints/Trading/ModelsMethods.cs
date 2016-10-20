@@ -122,11 +122,11 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         /// </summary>
         /// <param name="modelToCreate">The model to create</param>
         /// <returns>The newly created model</returns>
-        public Model CreateModel(Model modelToCreate)
+        public Model Create(Model modelToCreate)
         {
             try
             {
-                return CreateModelAsync(modelToCreate).Result;
+                return CreateAsync(modelToCreate).Result;
             }
             catch (Exception ex)
             {
@@ -140,7 +140,7 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         /// </summary>
         /// <param name="modelToCreate">The model to post</param>
         /// <returns>The newly created model</returns>
-        public async Task<Model> CreateModelAsync(Model modelToCreate)
+        public async Task<Model> CreateAsync(Model modelToCreate)
         {
             if (modelToCreate == null)
             {
@@ -159,11 +159,11 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         /// </summary>
         /// <param name="modelToUpdate">The model to update</param>
         /// <returns>The newly updated model</returns>
-        public Model UpdateModel(Model modelToUpdate)
+        public Model Update(Model modelToUpdate)
         {
             try
             {
-                return UpdateModelAsync(modelToUpdate).Result;
+                return UpdateAsync(modelToUpdate).Result;
             }
             catch (Exception ex)
             {
@@ -177,7 +177,7 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         /// </summary>
         /// <param name="modelToUpdate">The model to update</param>
         /// <returns>The newly updated model</returns>
-        public async Task<Model> UpdateModelAsync(Model modelToUpdate)
+        public async Task<Model> UpdateAsync(Model modelToUpdate)
         {
             if (modelToUpdate == null)
             {
