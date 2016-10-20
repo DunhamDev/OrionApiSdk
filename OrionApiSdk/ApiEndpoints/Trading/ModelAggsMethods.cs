@@ -118,5 +118,20 @@ namespace OrionApiSdk.ApiEndpoints.Trading
             return aggTypesJson.ToObject<List<string>>();
         }
 
+        public List<ModelAggSimple> GetSimpleSearch(string search, int top = 5000, int skip = 0, bool? activeOnly = null)
+        {
+            return GetSimpleSearchAsync(search, top, skip, activeOnly).Result;
+        }
+        public async Task<List<ModelAggSimple>> GetSimpleSearchAsync(string search, int top = 5000, int skip = 0, bool? activeOnly = null)
+        {
+            var modelAggsJson = await GetJsonAsync("Search", new Dictionary<string, object>
+            {
+                { "search", search },
+                { "top", top },
+                { "skip", skip },
+                { "activeOnly", activeOnly },
+            });
+            return modelAggsJson.ToObject<List<ModelAggSimple>>();
+        }
     }
 }

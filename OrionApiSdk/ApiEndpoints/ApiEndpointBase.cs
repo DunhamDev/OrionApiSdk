@@ -123,7 +123,7 @@ namespace OrionApiSdk.ApiEndpoints
                 }
                 else
                 {
-                    postContent = new StringContent(JsonConvert.SerializeObject(body));
+                    postContent = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
                 }
                 var response = await httpClient.PostAsync(EndpointUri(endpointMethod, endpointParameters), postContent);
 

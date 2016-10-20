@@ -4,6 +4,7 @@ using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Authorization;
 using OrionApiSdk.Objects.Portfolio;
 using OrionApiSdk.Objects.Security;
+using OrionApiSdk.Objects.Trading;
 using System;
 using System.Collections.Generic;
 
@@ -18,8 +19,13 @@ namespace ConsoleProgram
         {
             Token = GetAuthToken();
             Api = new OrionApi(Token);
-            var accounts = Api.Trading.ModelAggs.GetAccounts(11);
-            var allocations = Api.Trading.ModelAggs.GetAllocations(11);
+            Model m = new Model
+            {
+                Name = "Test Model " + DateTime.Now.ToString("g"),
+                ModelType = "0",
+                
+            };
+            var response = Api.Trading.Models.PostModel(m);
         }
 
         private static AuthToken GetAuthToken()
@@ -53,7 +59,7 @@ namespace ConsoleProgram
             return Api.Portfolio.Representatives.GetVerbose();
         }
 
-        public static List<Account> GetAccounts()
+        public static List<OrionApiSdk.Objects.Portfolio.Account> GetAccounts()
         {
             return Api.Portfolio.Accounts.Get();
         }
@@ -68,7 +74,7 @@ namespace ConsoleProgram
             return Api.Portfolio.Representatives.Get(id);
         }
 
-        public static List<Account> GetRepAccounts(int id)
+        public static List<OrionApiSdk.Objects.Portfolio.Account> GetRepAccounts(int id)
         {
             return Api.Portfolio.Representatives.GetAccounts(id);
         }

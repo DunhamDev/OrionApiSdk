@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Trading;
 using System;
@@ -96,6 +98,7 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         }
         #endregion
 
+        #region Get search
         public List<ModelSimple> GetSimpleSearch(string search, int top = 5000, int skip = 0)
         {
             return GetSimpleSearchAsync(search, top, skip).Result;
@@ -109,6 +112,25 @@ namespace OrionApiSdk.ApiEndpoints.Trading
                 { "$top", top }
             });
             return models.ToObject<List<ModelSimple>>();
+        }
+        #endregion
+
+        public Model PostModel(Model model)
+        {
+            return PostModelAsync(model).Result;
+        }
+        public async Task<Model> PostModelAsync(Model model)
+        {
+            if (HasRequiredData(model))
+            {
+                var modelResponse = await PostJsonAsync("", "=" + JsonConvert.SerializeObject(model).ToString());
+            }
+            return model;
+        }
+
+        private bool HasRequiredData(Model model)
+        {
+            return true;
         }
     }
 }
