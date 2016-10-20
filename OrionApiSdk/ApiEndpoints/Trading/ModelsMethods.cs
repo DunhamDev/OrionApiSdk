@@ -115,18 +115,28 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         }
         #endregion
 
-        public Model PostModel(Model model)
+        /// <summary>
+        /// HTTP POST: /Trading/Models
+        /// </summary>
+        /// <param name="model">The model to post</param>
+        /// <returns>The newly created model</returns>
+        public Model CreateModel(Model model)
         {
             try
             {
-                return PostModelAsync(model).Result;
+                return CreateModelAsync(model).Result;
             }
             catch (Exception ex)
             {
                 throw ex.InnerException ?? ex;
             }
         }
-        public async Task<Model> PostModelAsync(Model model)
+        /// <summary>
+        /// HTTP POST: /Trading/Models
+        /// </summary>
+        /// <param name="model">The model to post</param>
+        /// <returns>The newly created model</returns>
+        public async Task<Model> CreateModelAsync(Model model)
         {
             if (model == null)
             {

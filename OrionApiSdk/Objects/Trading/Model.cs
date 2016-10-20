@@ -2,6 +2,7 @@
 using OrionApiSdk.Objects.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OrionApiSdk.Objects.Trading
 {
@@ -125,11 +126,15 @@ namespace OrionApiSdk.Objects.Trading
         [JsonProperty("ranges")]
         public List<ModelRange> Ranges { get; set; }
 
-        internal void CheckForMinimumDataForCreate()
+        public void CheckForMinimumDataForCreate()
         {
             if (string.IsNullOrWhiteSpace(Name))
             {
                 throw new ArgumentException("Name cannot be null or whitespace");
+            }
+            if (string.IsNullOrWhiteSpace(ModelType))
+            {
+                throw new ArgumentException("ModelType cannot be null or whitespace");
             }
             if (!ItemsTotal100Percent())
             {
@@ -142,11 +147,7 @@ namespace OrionApiSdk.Objects.Trading
             {
                 return false;
             }
-            decimal totalPercent = 0;
-            foreach (ModelItem item in Items)
-            {
-                totalPercent += item.TargetPercent;
-            }
+            decimal totalPercent = Items.Sum(i => i.TargetPercent);
             return totalPercent == 100;
         }
     }

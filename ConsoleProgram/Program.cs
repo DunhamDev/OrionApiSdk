@@ -23,8 +23,6 @@ namespace ConsoleProgram
             {
                 Name = "Test Model " + DateTime.Now.ToString("g"),
                 ModelType = "0",
-                PlatformId = 24,
-                IsListTraded = false,
                 Items = new List<ModelItem>
                 {
                     new ModelItem
@@ -34,7 +32,7 @@ namespace ConsoleProgram
                     }
                 }
             };
-            var response = Api.Trading.Models.PostModel(m);
+            var response = Api.Trading.Models.CreateModel(m);
         }
 
         private static AuthToken GetAuthToken()
