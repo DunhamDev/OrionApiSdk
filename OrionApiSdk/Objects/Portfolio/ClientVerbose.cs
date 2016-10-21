@@ -11,6 +11,9 @@ namespace OrionApiSdk.Objects.Portfolio
         #region Properties
         #region Instance properties
         // TODO: Create remaining properties
+        [JsonProperty("billing")]
+        public List<ClientBilling> Billing { get; set; }
+
         [JsonProperty("portfolio")]
         public ClientPortfolio Portfolio { get; set; }
 

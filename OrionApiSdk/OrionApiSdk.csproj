@@ -78,7 +78,9 @@
     <Compile Include="Objects\Interfaces\ICreatable.cs" />
     <Compile Include="Objects\Interfaces\IUpdatable.cs" />
     <Compile Include="Objects\Portfolio\AumOverTime.cs" />
+    <Compile Include="Objects\Portfolio\BillRelatedClient.cs" />
     <Compile Include="Objects\Portfolio\Client.cs" />
+    <Compile Include="Objects\Portfolio\ClientBilling.cs" />
     <Compile Include="Objects\Portfolio\ClientPortfolio.cs" />
     <Compile Include="Objects\Portfolio\ClientVerbose.cs" />
     <Compile Include="Objects\Portfolio\Registration.cs" />
