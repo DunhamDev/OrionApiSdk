@@ -3,6 +3,7 @@ using OrionApiSdk.ApiEndpoints.Abstract;
 using OrionApiSdk.Common.ExtensionMethods;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Portfolio;
+using OrionApiSdk.Objects.Portfolio.Enums;
 using OrionApiSdk.Objects.Reporting.Enums;
 using System;
 using System.Collections.Generic;
@@ -86,13 +87,18 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return registrations.ToObject<List<RegistrationVerbose>>();
         }
 
-        public RegistrationVerbose GetVerbose(int registrationId)
+        public RegistrationVerbose GetVerbose(int registrationId, params RegistrationPropertyExpand[] expand)
         {
-            return GetVerboseAsync(registrationId).Result;
+            return GetVerboseAsync(registrationId, expand).Result;
         }
-        public async Task<RegistrationVerbose> GetVerboseAsync(int registrationId)
+        public async Task<RegistrationVerbose> GetVerboseAsync(int registrationId, params RegistrationPropertyExpand[] expand)
         {
-            var registrationJson = await GetJsonAsync("Verbose/" + registrationId.ToString());
+            Dictionary<string, object> expandParams = new Dictionary<string, object>();
+            if (expand.Length == 0)
+            {
+                expandParams.Add("expand", RegistrationPropertyExpand.Portfolio);
+            }
+            var registrationJson = await GetJsonAsync("Verbose/" + registrationId.ToString(), expandParams);
             return registrationJson.ToObject<RegistrationVerbose>();
         }
         #endregion
