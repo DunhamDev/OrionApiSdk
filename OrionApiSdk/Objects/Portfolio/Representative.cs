@@ -5,7 +5,7 @@ using System;
 
 namespace OrionApiSdk.Objects.Portfolio
 {
-    public class Representative : BaseSimpleEntity, IUpdatable, ICreatable
+    public class Representative : BaseSimpleEntity
     {
         #region Properties
         #region Instance properties
@@ -140,20 +140,6 @@ namespace OrionApiSdk.Objects.Portfolio
 
         [JsonProperty("wholeSaler")]
         public string WholeSaler { get; set; }
-        #endregion
-        #endregion
-
-        #region Methods
-        #region Public methods
-        public void CheckNecessaryDataForUpdate()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CheckNecessaryDataForCreate()
-        {
-            throw new NotImplementedException();
-        }
         #endregion
         #endregion
     }

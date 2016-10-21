@@ -10,10 +10,11 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Portfolio
 {
-    public class RepresentativesMethods : ApiMethodContainer<Representative>
+    public class RepresentativesMethods : ApiMethodContainerForVeboseObject<RepresentativeVerbose>
     {
         public RepresentativesMethods(AuthToken token) : base("Portfolio", "Representatives", token) { }
 
+        #region Get representatives
         public List<Representative> Get(bool? isUsed = null, int top = 5000, int skip = 0)
         {
             return GetAsync(isUsed, top, skip).Result;
@@ -63,6 +64,32 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return reps.ToObject<List<RepresentativeSimple>>();
         }
 
+        public List<RepresentativeVerbose> GetVerbose(bool? isActive = null, int top = 5000, int skip = 0)
+        {
+            return GetVerboseAsync(isActive, top, skip).Result;
+        }
+        public async Task<List<RepresentativeVerbose>> GetVerboseAsync(bool? isActive = null, int top = 5000, int skip = 0)
+        {
+            JToken verboseReps = await GetJsonAsync("Verbose", new Dictionary<string, object>
+            {
+                { "isActive", isActive },
+                { "$top", top },
+                { "$skip", skip }
+            });
+            return verboseReps.ToObject<List<RepresentativeVerbose>>();
+        }
+
+        public RepresentativeVerbose GetVerbose(int repId)
+        {
+            return GetVerboseAsync(repId).Result;
+        }
+        public async Task<RepresentativeVerbose> GetVerboseAsync(int repId)
+        {
+            JToken rep = await GetJsonAsync("Verbose/" + repId.ToString());
+            return rep.ToObject<RepresentativeVerbose>();
+        }
+        #endregion
+
         public List<Account> GetAccounts(int repId, int top = 5000, int skip = 0)
         {
             return GetAccountsAsync(repId, top, skip).Result;
@@ -77,6 +104,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return accounts.ToObject<List<Account>>();
         }
 
+        #region Get values
         public List<AccountSimple> GetAccountValues(int repId, int top = 5000, int skip = 0)
         {
             return GetAccountValuesAsync(repId, top, skip).Result;
@@ -132,6 +160,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             });
             return repValues.ToObject<List<RepresentativeSimple>>();
         }
+        #endregion
 
         public List<ClientSimple> SearchClients(int repId, string searchValue, int? top = null, int skip = 0)
         {
@@ -148,29 +177,44 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return clientsJson.ToObject<List<ClientSimple>>();
         }
 
-        public List<RepresentativeVerbose> GetVerbose(bool? isActive = null, int top = 5000, int skip = 0)
+        #region Overrides
+        /// <summary>
+        /// HTTP POST: /Portfolio/Representatives/Verbose
+        /// </summary>
+        /// <param name="toCreate"></param>
+        /// <returns></returns>
+        public override RepresentativeVerbose Create(RepresentativeVerbose toCreate)
         {
-            return GetVerboseAsync(isActive, top, skip).Result;
+            return base.Create(toCreate);
         }
-        public async Task<List<RepresentativeVerbose>> GetVerboseAsync(bool? isActive = null, int top = 5000, int skip = 0)
+        /// <summary>
+        /// HTTP POST: /Portfolio/Representatives/Verbose
+        /// </summary>
+        /// <param name="toCreate"></param>
+        /// <returns></returns>
+        public override async Task<RepresentativeVerbose> CreateAsync(RepresentativeVerbose toCreate)
         {
-            JToken verboseReps = await GetJsonAsync("Verbose", new Dictionary<string, object>
-            {
-                { "isActive", isActive },
-                { "$top", top },
-                { "$skip", skip }
-            });
-            return verboseReps.ToObject<List<RepresentativeVerbose>>();
+            return await base.CreateAsync(toCreate);
         }
 
-        public RepresentativeVerbose GetVerbose(int repId)
+        /// <summary>
+        /// HTTP PUT: /Portfolio/Representative/Verbose/{repId}
+        /// </summary>
+        /// <param name="toUpdate"></param>
+        /// <returns></returns>
+        public override RepresentativeVerbose Update(RepresentativeVerbose toUpdate)
         {
-            return GetVerboseAsync(repId).Result;
+            return base.Update(toUpdate);
         }
-        public async Task<RepresentativeVerbose> GetVerboseAsync(int repId)
+        /// <summary>
+        /// HTTP PUT: /Portfolio/Representative/Verbose/{repId}
+        /// </summary>
+        /// <param name="toUpdate"></param>
+        /// <returns></returns>
+        public override async Task<RepresentativeVerbose> UpdateAsync(RepresentativeVerbose toUpdate)
         {
-            JToken rep = await GetJsonAsync("Verbose/" + repId.ToString());
-            return rep.ToObject<RepresentativeVerbose>();
+            return await base.UpdateAsync(toUpdate);
         }
+        #endregion
     }
 }

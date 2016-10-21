@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Portfolio
 {
-    public class ClientsMethods : ApiMethodContainer<ClientVerbose>
+    public class ClientsMethods : ApiMethodContainerForVeboseObject<ClientVerbose>
     {
         /// <summary>
         /// Constructs a /Portfolio/Clients endpoint instance

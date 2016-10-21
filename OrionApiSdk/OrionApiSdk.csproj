@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="ApiEndpoints\Abstract\ApiEndpointBase.cs" />
     <Compile Include="ApiEndpoints\Abstract\ApiMethodContainer.cs" />
+    <Compile Include="ApiEndpoints\Abstract\ApiMethodContainerForVeboseObject.cs" />
     <Compile Include="ApiEndpoints\Portfolio\AccountsMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\BrokerDealersMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\ClientsMethods.cs" />
