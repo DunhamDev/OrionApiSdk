@@ -85,6 +85,8 @@
     <Compile Include="Objects\Portfolio\ClientBilling.cs" />
     <Compile Include="Objects\Portfolio\ClientPortfolio.cs" />
     <Compile Include="Objects\Portfolio\ClientVerbose.cs" />
+    <Compile Include="Objects\Portfolio\HouseholdMember.cs" />
+    <Compile Include="Objects\Portfolio\HouseholdMemberAdditionalAddress.cs" />
     <Compile Include="Objects\Portfolio\Registration.cs" />
     <Compile Include="Objects\Portfolio\RegistrationSimple.cs" />
     <Compile Include="Objects\Portfolio\RepresentativePortolfio.cs" />

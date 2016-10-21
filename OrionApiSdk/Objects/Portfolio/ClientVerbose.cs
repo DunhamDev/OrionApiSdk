@@ -20,6 +20,9 @@ namespace OrionApiSdk.Objects.Portfolio
         [JsonProperty("feePayingAccounts")]
         public List<BillFeePayingAccount> FeePayingAccounts { get; set; }
 
+        [JsonProperty("householdMembers")]
+        public List<HouseholdMember> HouseholdMembers { get; set; }
+
         [JsonProperty("portfolio")]
         public ClientPortfolio Portfolio { get; set; }
 
