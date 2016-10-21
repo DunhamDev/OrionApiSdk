@@ -2,11 +2,7 @@
 using OrionApiSdk.Objects.Abstract;
 using OrionApiSdk.Objects.Exceptions;
 using OrionApiSdk.Objects.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OrionApiSdk.Objects.Portfolio
 {
@@ -28,7 +24,7 @@ namespace OrionApiSdk.Objects.Portfolio
 
         #region Methods
         #region Public methods
-        public void CheckForMinimumDataForCreate()
+        public void CheckNecessaryDataForCreate()
         {
             if (string.IsNullOrWhiteSpace(Name))
             {
@@ -41,7 +37,7 @@ namespace OrionApiSdk.Objects.Portfolio
             CheckPortfolioProperties();
         }
 
-        public void CheckForMinimumDataForUpdate()
+        public void CheckNecessaryDataForUpdate()
         {
             if (Portfolio != null)
             {

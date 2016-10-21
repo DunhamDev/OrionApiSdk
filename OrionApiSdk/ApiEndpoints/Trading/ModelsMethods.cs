@@ -119,7 +119,7 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         #region Overrides
         /// <summary>
         /// HTTP POST: /Trading/Models
-        /// Creates a model. Use <see cref="Model.CheckForMinimumDataForCreate"/> to verify the necessary
+        /// Creates a model. Use <see cref="Model.CheckNecessaryDataForCreate"/> to verify the necessary
         /// data points have been filled
         /// </summary>
         /// <param name="modelToCreate">The model to create</param>
@@ -130,7 +130,7 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         }
         /// <summary>
         /// HTTP POST: /Trading/Models
-        /// Creates a model. Use <see cref="Model.CheckForMinimumDataForCreate"/> to verify the necessary
+        /// Creates a model. Use <see cref="Model.CheckNecessaryDataForCreate"/> to verify the necessary
         /// data points have been filled
         /// </summary>
         /// <param name="modelToCreate">The model to post</param>
@@ -142,7 +142,7 @@ namespace OrionApiSdk.ApiEndpoints.Trading
 
         /// <summary>
         /// HTTP PUT: /Trading/Models/{modelId}
-        /// Updates the given model. Use <see cref="Model.CheckForMinimumDataForUpdate"/> to verify the necssary
+        /// Updates the given model. Use <see cref="Model.CheckNecessaryDataForUpdate"/> to verify the necssary
         /// data points have been filled
         /// </summary>
         /// <param name="modelToUpdate">The model to update</param>
@@ -153,7 +153,7 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         }
         /// <summary>
         /// HTTP PUT: /Trading/Models/{modelId}
-        /// Updates the given model. Use <see cref="Model.CheckForMinimumDataForUpdate"/> to verify the necssary
+        /// Updates the given model. Use <see cref="Model.CheckNecessaryDataForUpdate"/> to verify the necssary
         /// data points have been filled
         /// </summary>
         /// <param name="modelToUpdate">The model to update</param>

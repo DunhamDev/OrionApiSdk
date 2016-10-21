@@ -136,7 +136,7 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         #region Overrides
         /// <summary>
         /// HTTP POST: /Trading/ModelAggs
-        /// Creates a model aggreagtion. Use <see cref="ModelAgg.CheckForMinimumDataForCreate"/> to verify
+        /// Creates a model aggreagtion. Use <see cref="ModelAgg.CheckNecessaryDataForCreate"/> to verify
         /// the minimum data points needed for creation are populated
         /// </summary>
         /// <param name="modelAggToCreate">The model aggreation to create</param>
@@ -147,7 +147,7 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         }
         /// <summary>
         /// HTTP POST: /Trading/ModelAggs
-        /// Creates a model aggreagtion. Use <see cref="ModelAgg.CheckForMinimumDataForCreate"/> to verify
+        /// Creates a model aggreagtion. Use <see cref="ModelAgg.CheckNecessaryDataForCreate"/> to verify
         /// the minimum data points needed for creation are populated
         /// </summary>
         /// <param name="modelAggToCreate">The model aggreation to create</param>
@@ -159,7 +159,7 @@ namespace OrionApiSdk.ApiEndpoints.Trading
 
         /// <summary>
         /// HTTP PUT: /Trading/ModelAggs/{modelAggId}
-        /// Updates the given model aggreation. Use <see cref="ModelAgg.CheckForMinimumDataForUpdate"/> 
+        /// Updates the given model aggreation. Use <see cref="ModelAgg.CheckNecessaryDataForUpdate"/> 
         /// to verify the necessary data points have been filled
         /// </summary>
         /// <param name="modelAggToUpdate">The model aggregation to update</param>
@@ -170,7 +170,7 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         }
         /// <summary>
         /// HTTP PUT: /Trading/ModelAggs/{modelAggId}
-        /// Updates the given model aggreation. Use <see cref="ModelAgg.CheckForMinimumDataForUpdate"/> 
+        /// Updates the given model aggreation. Use <see cref="ModelAgg.CheckNecessaryDataForUpdate"/> 
         /// to verify the necessary data points have been filled
         /// </summary>
         /// <param name="modelAggToUpdate">The model aggregation to update</param>

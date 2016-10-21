@@ -75,7 +75,7 @@ namespace OrionApiSdk.Objects.Trading
         /// is initialized, and that <see cref="Details"/> contains <see cref="ModelAggDetail"/>s which
         /// have a total <see cref="ModelAggDetail.WeightPercent"/> of 100
         /// </summary>
-        public void CheckForMinimumDataForCreate()
+        public void CheckNecessaryDataForCreate()
         {
             CheckName();
             if (Details == null)
@@ -93,7 +93,7 @@ namespace OrionApiSdk.Objects.Trading
         /// is initialized, and that <see cref="Details"/> contains <see cref="ModelAggDetail"/>s which
         /// have a total <see cref="ModelAggDetail.WeightPercent"/> of 100
         /// </summary>
-        public void CheckForMinimumDataForUpdate()
+        public void CheckNecessaryDataForUpdate()
         {
             CheckName();
             if (Details != null && !DetailsWeightTotal100())

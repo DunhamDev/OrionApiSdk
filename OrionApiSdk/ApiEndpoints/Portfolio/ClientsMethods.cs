@@ -599,7 +599,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         #region Overrides
         /// <summary>
         /// HTTP POST: /Portfolio/Clients/Verbose
-        /// Creates a client, and their corresponding portfolio. Use <see cref="ClientVerbose.CheckForMinimumDataForCreate"/> to
+        /// Creates a client, and their corresponding portfolio. Use <see cref="ClientVerbose.CheckNecessaryDataForCreate"/> to
         /// verify all necessary data points have been filled
         /// </summary>
         /// <param name="toCreate">The client to create</param>
@@ -610,7 +610,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
         /// <summary>
         /// HTTP POST: /Portfolio/Clients/Verbose
-        /// Creates a client, and their corresponding portfolio. Use <see cref="ClientVerbose.CheckForMinimumDataForCreate"/> to
+        /// Creates a client, and their corresponding portfolio. Use <see cref="ClientVerbose.CheckNecessaryDataForCreate"/> to
         /// verify all necessary data points have been filled
         /// </summary>
         /// <param name="toCreate">The client to create</param>
@@ -622,7 +622,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
 
         /// <summary>
         /// HTTP PUT : /Portfolio/Clients/Verbose/{clientId}
-        /// Updates the provided client and its corresponding portfolio. Use <see cref="ClientVerbose.CheckForMinimumDataForUpdate"/> 
+        /// Updates the provided client and its corresponding portfolio. Use <see cref="ClientVerbose.CheckNecessaryDataForUpdate"/> 
         /// to verify that all necessary data points have been filled
         /// </summary>
         /// <param name="toUpdate">The client to update</param>
@@ -633,7 +633,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
         /// <summary>
         /// HTTP PUT : /Portfolio/Clients/Verbose/{clientId}
-        /// Updates the provided client and its corresponding portfolio. Use <see cref="ClientVerbose.CheckForMinimumDataForUpdate"/> 
+        /// Updates the provided client and its corresponding portfolio. Use <see cref="ClientVerbose.CheckNecessaryDataForUpdate"/> 
         /// to verify that all necessary data points have been filled
         /// </summary>
         /// <param name="toUpdate">The client to update</param>

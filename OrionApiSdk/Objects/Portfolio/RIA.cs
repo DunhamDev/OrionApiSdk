@@ -120,12 +120,12 @@ namespace OrionApiSdk.Objects.Portfolio
 
         #region Methods
         #region Public methods
-        public void CheckForMinimumDataForCreate()
+        public void CheckNecessaryDataForCreate()
         {
             throw new NotImplementedException();
         }
 
-        public void CheckForMinimumDataForUpdate()
+        public void CheckNecessaryDataForUpdate()
         {
             throw new NotImplementedException();
         }

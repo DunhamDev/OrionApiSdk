@@ -30,7 +30,7 @@ namespace OrionApiSdk.ApiEndpoints.Abstract
                 throw new ArgumentNullException("toCreate");
             }
 
-            toCreate.CheckForMinimumDataForCreate();
+            toCreate.CheckNecessaryDataForCreate();
             var responseObject = await PostJsonAsync("", toCreate);
             return responseObject.ToObject<TObject>();
         }
@@ -53,7 +53,7 @@ namespace OrionApiSdk.ApiEndpoints.Abstract
                 throw new ArgumentNullException("toUpdate");
             }
 
-            toUpdate.CheckForMinimumDataForUpdate();
+            toUpdate.CheckNecessaryDataForUpdate();
             var responseObject = await PostJsonAsync(toUpdate.Id.ToString(), toUpdate);
             return responseObject.ToObject<TObject>();
         }

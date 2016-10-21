@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OrionApiSdk.Objects.Interfaces
+﻿namespace OrionApiSdk.Objects.Interfaces
 {
     public interface ICreatable
     {
-        void CheckForMinimumDataForCreate();
+        void CheckNecessaryDataForCreate();
     }
 }

@@ -139,7 +139,7 @@ namespace OrionApiSdk.Objects.Trading
         /// <see cref="Items"/> is initalized, and <see cref="Items"/> contains either 0 items or
         /// <see cref="ModelItem"/>s which have a total <see cref="ModelItem.TargetPercent"/> which totals 100
         /// </summary>
-        public void CheckForMinimumDataForCreate()
+        public void CheckNecessaryDataForCreate()
         {
             if (string.IsNullOrWhiteSpace(Name))
             {
@@ -165,9 +165,9 @@ namespace OrionApiSdk.Objects.Trading
         /// <see cref="Items"/> is initalized, and <see cref="Items"/> contains either 0 items or
         /// <see cref="ModelItem"/>s which have a total <see cref="ModelItem.TargetPercent"/> which totals 100
         /// </summary>
-        public void CheckForMinimumDataForUpdate()
+        public void CheckNecessaryDataForUpdate()
         {
-            CheckForMinimumDataForCreate();
+            CheckNecessaryDataForCreate();
         }
         #endregion
 
