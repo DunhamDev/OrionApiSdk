@@ -14,6 +14,7 @@ namespace OrionApiSdk.Objects.Portfolio
     {
         #region Properties
         #region Instance properties
+        // TODO: Create remaining properties
         [JsonProperty("portfolio")]
         public Portfolio Portfolio { get; set; }
 
@@ -37,11 +38,33 @@ namespace OrionApiSdk.Objects.Portfolio
             {
                 throw new UninitializedPropertyException("Portfolio");
             }
+            CheckPortfolioProperties();
         }
 
         public void CheckForMinimumDataForUpdate()
         {
-            throw new NotImplementedException();
+            if (Portfolio != null)
+            {
+                CheckPortfolioProperties();
+            }
+        }
+        #endregion
+
+        #region Private methods
+        private void CheckPortfolioProperties()
+        {
+            if (Portfolio.RepresentativeId == null)
+            {
+                throw new UninitializedPropertyException("Portfolio.RepresentativeId");
+            }
+            if (string.IsNullOrWhiteSpace(Portfolio.LastName))
+            {
+                throw new EmptyStringException("Portfolio.LastName");
+            }
+            if (string.IsNullOrWhiteSpace(Portfolio.Name))
+            {
+                throw new EmptyStringException("Portfolio.Name");
+            }
         }
         #endregion
         #endregion

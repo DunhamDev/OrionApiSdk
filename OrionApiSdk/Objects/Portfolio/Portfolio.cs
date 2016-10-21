@@ -1,16 +1,18 @@
 ﻿using Newtonsoft.Json;
-using OrionApiSdk.Objects.Abstract;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OrionApiSdk.Objects.Portfolio
 {
 
-    public class Portfolio : BaseSimpleEntity
+    public class Portfolio
     {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("representativeId")]
+        public int? RepresentativeId { get; set; }
+
         [JsonProperty("brokerDealerId")]
         public int BrokerDealerId { get; set; }
         

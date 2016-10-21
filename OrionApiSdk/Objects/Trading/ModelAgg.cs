@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using OrionApiSdk.Objects.Abstract;
+using OrionApiSdk.Objects.Exceptions;
 using OrionApiSdk.Objects.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -79,7 +80,7 @@ namespace OrionApiSdk.Objects.Trading
             CheckName();
             if (Details == null)
             {
-                throw new ArgumentException("Details must be initialized");
+                throw new UninitializedPropertyException("Details");
             }
             if (!DetailsWeightTotal100())
             {
@@ -110,7 +111,7 @@ namespace OrionApiSdk.Objects.Trading
         {
             if (string.IsNullOrWhiteSpace(Name))
             {
-                throw new ArgumentException("Name cannot be null or whitespace");
+                throw new EmptyStringException("Name");
             }
         }
 

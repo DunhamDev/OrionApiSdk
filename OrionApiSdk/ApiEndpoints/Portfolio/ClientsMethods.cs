@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Portfolio
 {
-    public class ClientsMethods : ApiMethodContainer<Client>
+    public class ClientsMethods : ApiMethodContainer<ClientVerbose>
     {
         /// <summary>
         /// Constructs a /Portfolio/Clients endpoint instance
@@ -595,5 +595,53 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             });
             return aumOverTimePoints.ToObject<List<AumOverTime>>();
         }
+
+        #region Overrides
+        /// <summary>
+        /// HTTP POST: /Portfolio/Clients/Verbose
+        /// Creates a client, and their corresponding portfolio. Use <see cref="ClientVerbose.CheckForMinimumDataForCreate"/> to
+        /// verify all necessary data points have been filled
+        /// </summary>
+        /// <param name="toCreate">The client to create</param>
+        /// <returns>The newly created client</returns>
+        public override ClientVerbose Create(ClientVerbose toCreate)
+        {
+            return base.Create(toCreate);
+        }
+        /// <summary>
+        /// HTTP POST: /Portfolio/Clients/Verbose
+        /// Creates a client, and their corresponding portfolio. Use <see cref="ClientVerbose.CheckForMinimumDataForCreate"/> to
+        /// verify all necessary data points have been filled
+        /// </summary>
+        /// <param name="toCreate">The client to create</param>
+        /// <returns>The newly created client</returns>
+        public override async Task<ClientVerbose> CreateAsync(ClientVerbose toCreate)
+        {
+            return await base.CreateAsync(toCreate);
+        }
+
+        /// <summary>
+        /// HTTP PUT : /Portfolio/Clients/Verbose/{clientId}
+        /// Updates the provided client and its corresponding portfolio. Use <see cref="ClientVerbose.CheckForMinimumDataForUpdate"/> 
+        /// to verify that all necessary data points have been filled
+        /// </summary>
+        /// <param name="toUpdate">The client to update</param>
+        /// <returns>The updated client</returns>
+        public override ClientVerbose Update(ClientVerbose toUpdate)
+        {
+            return base.Update(toUpdate);
+        }
+        /// <summary>
+        /// HTTP PUT : /Portfolio/Clients/Verbose/{clientId}
+        /// Updates the provided client and its corresponding portfolio. Use <see cref="ClientVerbose.CheckForMinimumDataForUpdate"/> 
+        /// to verify that all necessary data points have been filled
+        /// </summary>
+        /// <param name="toUpdate">The client to update</param>
+        /// <returns>The updated client</returns>
+        public override async Task<ClientVerbose> UpdateAsync(ClientVerbose toUpdate)
+        {
+            return await base.UpdateAsync(toUpdate);
+        }
+        #endregion
     }
 }
