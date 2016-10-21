@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Portfolio
 {
-    public class RegistrationsMethods : ApiMethodContainer
+    public class RegistrationsMethods : ApiMethodContainer<Registration>
     {
         /// <summary>
         /// Constructs a /Portfolio/Registrations endpoint instance

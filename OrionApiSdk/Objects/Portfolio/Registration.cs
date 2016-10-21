@@ -1,11 +1,14 @@
 ﻿using Newtonsoft.Json;
 using OrionApiSdk.Objects.Abstract;
+using OrionApiSdk.Objects.Interfaces;
 using System;
 
 namespace OrionApiSdk.Objects.Portfolio
 {
-    public class Registration : BaseSimpleEntity
+    public class Registration : BaseSimpleEntity, IUpdatable, ICreatable
     {
+        #region Properties
+        #region Instance properties
         [JsonProperty("isActive")]
         public bool IsActive { get; set; }
         
@@ -83,6 +86,22 @@ namespace OrionApiSdk.Objects.Portfolio
         
         [JsonProperty("bondPercent")]
         public string BondPercent { get; set; }
+        #endregion
+        #endregion
+
+        #region Methods
+        #region Public methods
+        public void CheckForMinimumDataForCreate()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CheckForMinimumDataForUpdate()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+        #endregion
     }
 
 }

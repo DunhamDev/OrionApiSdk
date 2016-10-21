@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Portfolio
 {
-    public class BrokerDealersMethods : ApiMethodContainer
+    public class BrokerDealersMethods : ApiMethodContainer<BrokerDealer>
     {
         /// <summary>
         /// Constructs an instance of a /Portfolio/BrokerDealers endpoint instance

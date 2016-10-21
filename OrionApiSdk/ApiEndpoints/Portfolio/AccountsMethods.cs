@@ -14,7 +14,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
     /// <summary>
     /// Acts as a container for all /Portfolio/Accounts methods
     /// </summary>
-    public class AccountsMethods : ApiMethodContainer
+    public class AccountsMethods : ApiMethodContainer<Account>
     {
         /// <summary>
         /// Constructs a /Portfolio/Accounts endpoint instance

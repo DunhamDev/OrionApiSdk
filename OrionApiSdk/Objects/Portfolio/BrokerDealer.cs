@@ -1,11 +1,14 @@
 ﻿using Newtonsoft.Json;
 using OrionApiSdk.Objects.Abstract;
+using OrionApiSdk.Objects.Interfaces;
 using System;
 
 namespace OrionApiSdk.Objects.Portfolio
 {
-    public class BrokerDealer : BaseSimpleEntity
+    public class BrokerDealer : BaseSimpleEntity, IUpdatable, ICreatable
     {
+        #region Properties
+        #region Instance properties
         [JsonProperty("isActive")]
         public bool IsActive { get; set; }
         
@@ -131,5 +134,21 @@ namespace OrionApiSdk.Objects.Portfolio
         
         [JsonProperty("transmissionMethod")]
         public int TransmissionMethod { get; set; }
+        #endregion
+        #endregion
+
+        #region Methods
+        #region Public methods
+        public void CheckForMinimumDataForUpdate()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CheckForMinimumDataForCreate()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+        #endregion
     }
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Portfolio
 {
-    public class RepresentativesMethods : ApiMethodContainer
+    public class RepresentativesMethods : ApiMethodContainer<Representative>
     {
         public RepresentativesMethods(AuthToken token) : base("Portfolio", "Representatives", token) { }
 

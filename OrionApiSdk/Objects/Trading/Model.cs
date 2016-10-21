@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using OrionApiSdk.Objects.Abstract;
+using OrionApiSdk.Objects.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Linq;
 namespace OrionApiSdk.Objects.Trading
 {
 
-    public class Model : BaseSimpleEntity
+    public class Model : BaseSimpleEntity, IUpdatable, ICreatable
     {
         #region Properties
         #region Instance properties
@@ -170,6 +171,11 @@ namespace OrionApiSdk.Objects.Trading
         #endregion
 
         #region Private methods
+        /// <summary>
+        /// Verifies that <see cref="Items"/> either contains 0 items, or that the total
+        /// <see cref="ModelItem.TargetPercent"/> is 100
+        /// </summary>
+        /// <returns>True iff <see cref="Items"/>'s size is 0, or if its total percent is 100, otherwise false</returns>
         private bool ItemsTotal100Percent()
         {
             decimal totalPercent = Items.Sum(i => i.TargetPercent);

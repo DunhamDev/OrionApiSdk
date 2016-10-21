@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Trading
 {
-    public class ModelAggsMethods : ApiMethodContainer
+    public class ModelAggsMethods : ApiMethodContainer<ModelAgg>
     {
         public ModelAggsMethods(AuthToken token) : base("Trading", "ModelAggs", token) { }
 
@@ -140,16 +140,9 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         /// </summary>
         /// <param name="modelAggToCreate">The model aggreation to create</param>
         /// <returns>The newly created model aggregation</returns>
-        public ModelAgg Create(ModelAgg modelAggToCreate)
+        public override ModelAgg Create(ModelAgg modelAggToCreate)
         {
-            try
-            {
-                return CreateAsync(modelAggToCreate).Result;
-            }
-            catch (Exception ex)
-            {
-                throw ex.InnerException ?? ex;
-            }
+            return base.Create(modelAggToCreate);
         }
         /// <summary>
         /// HTTP POST: /Trading/ModelAggs
@@ -158,16 +151,9 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         /// </summary>
         /// <param name="modelAggToCreate">The model aggreation to create</param>
         /// <returns>The newly created model aggregation</returns>
-        public async Task<ModelAgg> CreateAsync(ModelAgg modelAggToCreate)
+        public override async Task<ModelAgg> CreateAsync(ModelAgg modelAggToCreate)
         {
-            if (modelAggToCreate == null)
-            {
-                throw new ArgumentNullException("modelAggToCreate");
-            }
-
-            modelAggToCreate.CheckForMinimumDataForCreate();
-            var modelAggResponse = await PostJsonAsync("", modelAggToCreate);
-            return modelAggResponse.ToObject<ModelAgg>();
+            return await base.CreateAsync(modelAggToCreate);
         }
 
         /// <summary>
@@ -177,16 +163,9 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         /// </summary>
         /// <param name="modelAggToUpdate">The model aggregation to update</param>
         /// <returns>The newly updated model aggregation</returns>
-        public ModelAgg Update(ModelAgg modelAggToUpdate)
+        public override ModelAgg Update(ModelAgg modelAggToUpdate)
         {
-            try
-            {
-                return UpdateAsync(modelAggToUpdate).Result;
-            }
-            catch (Exception ex)
-            {
-                throw ex.InnerException ?? ex;
-            }
+            return base.Update(modelAggToUpdate);
         }
         /// <summary>
         /// HTTP PUT: /Trading/ModelAggs/{modelAggId}
@@ -195,16 +174,9 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         /// </summary>
         /// <param name="modelAggToUpdate">The model aggregation to update</param>
         /// <returns>The newly updated model aggregation</returns>
-        public async Task<ModelAgg> UpdateAsync(ModelAgg modelAggToUpdate)
+        public override async Task<ModelAgg> UpdateAsync(ModelAgg modelAggToUpdate)
         {
-            if (modelAggToUpdate == null)
-            {
-                throw new ArgumentNullException("modelAggToUpdate");
-            }
-
-            modelAggToUpdate.CheckForMinimumDataForUpdate();
-            var modelAggResponse = await PutJsonAsync(modelAggToUpdate.Id.ToString(), modelAggToUpdate);
-            return modelAggResponse.ToObject<ModelAgg>();
+            return await base.UpdateAsync(modelAggToUpdate);
         }
     }
 }

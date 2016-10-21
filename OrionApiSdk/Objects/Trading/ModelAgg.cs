@@ -1,12 +1,13 @@
 ﻿using Newtonsoft.Json;
 using OrionApiSdk.Objects.Abstract;
+using OrionApiSdk.Objects.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace OrionApiSdk.Objects.Trading
 {
-    public class ModelAgg : BaseSimpleEntity
+    public class ModelAgg : BaseSimpleEntity, IUpdatable, ICreatable
     {
         #region Properties
         #region Instance properties
@@ -102,6 +103,9 @@ namespace OrionApiSdk.Objects.Trading
         #endregion
 
         #region Private methods
+        /// <summary>
+        /// Validates that <see cref="BaseSimpleEntity.Name"/> is not null or whitespace
+        /// </summary>
         private void CheckName()
         {
             if (string.IsNullOrWhiteSpace(Name))
@@ -110,6 +114,11 @@ namespace OrionApiSdk.Objects.Trading
             }
         }
 
+        /// <summary>
+        /// Checks that the total <see cref="ModelAggDetail.WeightPercent"/> in <see cref="Details"/>
+        /// totals 100
+        /// </summary>
+        /// <returns>True iff the total is 100, otherwise false</returns>
         private bool DetailsWeightTotal100()
         {
             decimal totalWeight = Details.Sum(d => d.WeightPercent);

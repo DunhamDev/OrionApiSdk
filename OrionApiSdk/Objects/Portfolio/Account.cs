@@ -1,17 +1,16 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
+using OrionApiSdk.Objects.Abstract;
+using OrionApiSdk.Objects.Interfaces;
 
 namespace OrionApiSdk.Objects.Portfolio
 {
-    public class Account
+    public class Account : BaseSimpleEntity, IUpdatable, ICreatable
     {
-        [JsonProperty("id")]
-        public int Id { get; set; }
-        
+        #region Properties
+        #region Instance properties
         [JsonProperty("isActive")]
         public bool IsActive { get; set; }
-        
-        [JsonProperty("name")]
-        public string Name { get; set; }
         
         [JsonProperty("number")]
         public string Number { get; set; }
@@ -141,5 +140,21 @@ namespace OrionApiSdk.Objects.Portfolio
 
         [JsonProperty("riskScore")]
         public decimal? RiskScore { get; set; }
+        #endregion
+        #endregion
+
+        #region Methods
+        #region Public methods
+        public void CheckForMinimumDataForUpdate()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CheckForMinimumDataForCreate()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+        #endregion
     }
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Trading
 {
-    public class ModelsMethods : ApiMethodContainer
+    public class ModelsMethods : ApiMethodContainer<Model>
     {
         public ModelsMethods(AuthToken token) : base("Trading", "Models", token) { }
 
@@ -123,16 +123,9 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         /// </summary>
         /// <param name="modelToCreate">The model to create</param>
         /// <returns>The newly created model</returns>
-        public Model Create(Model modelToCreate)
+        public override Model Create(Model modelToCreate)
         {
-            try
-            {
-                return CreateAsync(modelToCreate).Result;
-            }
-            catch (Exception ex)
-            {
-                throw ex.InnerException ?? ex;
-            }
+            return base.Create(modelToCreate);
         }
         /// <summary>
         /// HTTP POST: /Trading/Models
@@ -141,16 +134,9 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         /// </summary>
         /// <param name="modelToCreate">The model to post</param>
         /// <returns>The newly created model</returns>
-        public async Task<Model> CreateAsync(Model modelToCreate)
+        public override async Task<Model> CreateAsync(Model modelToCreate)
         {
-            if (modelToCreate == null)
-            {
-                throw new ArgumentNullException("modelToCreate");
-            }
-
-            modelToCreate.CheckForMinimumDataForCreate();
-            var modelResponse = await PostJsonAsync("", modelToCreate);
-            return modelResponse.ToObject<Model>();
+            return await base.CreateAsync(modelToCreate);
         }
 
         /// <summary>
@@ -160,16 +146,9 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         /// </summary>
         /// <param name="modelToUpdate">The model to update</param>
         /// <returns>The newly updated model</returns>
-        public Model Update(Model modelToUpdate)
+        public override Model Update(Model modelToUpdate)
         {
-            try
-            {
-                return UpdateAsync(modelToUpdate).Result;
-            }
-            catch (Exception ex)
-            {
-                throw ex.InnerException ?? ex;
-            }
+            return base.Update(modelToUpdate);
         }
         /// <summary>
         /// HTTP PUT: /Trading/Models/{modelId}
@@ -178,16 +157,9 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         /// </summary>
         /// <param name="modelToUpdate">The model to update</param>
         /// <returns>The newly updated model</returns>
-        public async Task<Model> UpdateAsync(Model modelToUpdate)
+        public override async Task<Model> UpdateAsync(Model modelToUpdate)
         {
-            if (modelToUpdate == null)
-            {
-                throw new ArgumentNullException("modelToUpdate");
-            }
-
-            modelToUpdate.CheckForMinimumDataForUpdate();
-            var modelResponse = await PutJsonAsync(modelToUpdate.Id.ToString(), modelToUpdate);
-            return modelResponse.ToObject<Model>();
+            return await base.UpdateAsync(modelToUpdate);
         }
     }
 }

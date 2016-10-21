@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using OrionApiSdk.Objects.Abstract;
+using OrionApiSdk.Objects.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,10 @@ using System.Threading.Tasks;
 namespace OrionApiSdk.Objects.Portfolio
 {
 
-    public class RIA : BaseSimpleEntity
+    public class RIA : BaseSimpleEntity, IUpdatable, ICreatable
     {
+        #region Properties
+        #region Instance properties
         [JsonProperty("isActive")]
         public bool IsActive { get; set; }
         
@@ -112,6 +115,22 @@ namespace OrionApiSdk.Objects.Portfolio
         
         [JsonProperty("webAddress")]
         public string WebAddress { get; set; }
+        #endregion
+        #endregion
+
+        #region Methods
+        #region Public methods
+        public void CheckForMinimumDataForCreate()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CheckForMinimumDataForUpdate()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+        #endregion
     }
 
 }
