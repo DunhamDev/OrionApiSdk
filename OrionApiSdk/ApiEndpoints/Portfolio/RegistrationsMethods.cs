@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Portfolio
 {
-    public class RegistrationsMethods : ApiMethodContainer<Registration>
+    public class RegistrationsMethods : ApiMethodContainer<RegistrationVerbose>
     {
         /// <summary>
         /// Constructs a /Portfolio/Registrations endpoint instance
@@ -69,6 +69,31 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         {
             JToken registration = await GetJsonAsync(string.Format("{0}/Simple", registrationId));
             return registration.ToObject<RegistrationSimple>();
+        }
+
+        public List<RegistrationVerbose> GetVerbose(bool? isActive = null, int top = 5000, int skip = 0)
+        {
+            return GetVerboseAsync(isActive, top, skip).Result;
+        }
+        public async Task<List<RegistrationVerbose>> GetVerboseAsync(bool? isActive = null, int top = 5000, int skip = 0)
+        {
+            var registrations = await GetJsonAsync("Verbose", new Dictionary<string, object>
+            {
+                { "isActive", isActive },
+                { "$top", top },
+                { "$skip", skip },
+            });
+            return registrations.ToObject<List<RegistrationVerbose>>();
+        }
+
+        public RegistrationVerbose GetVerbose(int registrationId)
+        {
+            return GetVerboseAsync(registrationId).Result;
+        }
+        public async Task<RegistrationVerbose> GetVerboseAsync(int registrationId)
+        {
+            var registrationJson = await GetJsonAsync("Verbose/" + registrationId.ToString());
+            return registrationJson.ToObject<RegistrationVerbose>();
         }
         #endregion
 

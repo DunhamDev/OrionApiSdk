@@ -93,7 +93,9 @@
     <Compile Include="Objects\Portfolio\HouseholdMember.cs" />
     <Compile Include="Objects\Portfolio\HouseholdMemberAdditionalAddress.cs" />
     <Compile Include="Objects\Portfolio\Registration.cs" />
+    <Compile Include="Objects\Portfolio\RegistrationPortfolio.cs" />
     <Compile Include="Objects\Portfolio\RegistrationSimple.cs" />
+    <Compile Include="Objects\Portfolio\RegistrationVerbose.cs" />
     <Compile Include="Objects\Portfolio\RepresentativePortolfio.cs" />
     <Compile Include="Objects\Portfolio\TargetAllocation.cs" />
     <Compile Include="Objects\Reporting\Enums\OverTimeInterval.cs" />
