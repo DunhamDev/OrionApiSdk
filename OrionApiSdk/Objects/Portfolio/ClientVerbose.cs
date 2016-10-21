@@ -14,6 +14,12 @@ namespace OrionApiSdk.Objects.Portfolio
         [JsonProperty("billing")]
         public List<ClientBilling> Billing { get; set; }
 
+        [JsonProperty("recurringAdjustments")]
+        public List<BillRecurrentAdjustment> RecurringAdjustments { get; set; }
+
+        [JsonProperty("feePayingAccounts")]
+        public List<BillFeePayingAccount> FeePayingAccounts { get; set; }
+
         [JsonProperty("portfolio")]
         public ClientPortfolio Portfolio { get; set; }
 
