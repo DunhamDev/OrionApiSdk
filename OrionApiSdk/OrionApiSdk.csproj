@@ -78,6 +78,8 @@
     <Compile Include="Objects\Exceptions\UninitializedPropertyException.cs" />
     <Compile Include="Objects\Interfaces\ICreatable.cs" />
     <Compile Include="Objects\Interfaces\IUpdatable.cs" />
+    <Compile Include="Objects\Portfolio\AccountPortfolio.cs" />
+    <Compile Include="Objects\Portfolio\AccountVerbose.cs" />
     <Compile Include="Objects\Portfolio\AdditionalAccount.cs" />
     <Compile Include="Objects\Portfolio\AumOverTime.cs" />
     <Compile Include="Objects\Portfolio\BillFeePayingAccount.cs" />

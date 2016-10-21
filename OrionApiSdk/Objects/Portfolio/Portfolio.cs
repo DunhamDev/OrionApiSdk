@@ -113,7 +113,5 @@ namespace OrionApiSdk.Objects.Portfolio
         
         [JsonProperty("email")]
         public string Email { get; set; }
-        
-        
     }
 }
