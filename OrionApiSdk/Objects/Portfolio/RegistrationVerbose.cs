@@ -21,7 +21,10 @@ namespace OrionApiSdk.Objects.Portfolio
         public List<Note> Notes { get; set; }
 
         [JsonProperty("beneficiaries")]
-        public List<object> Beneficiaries { get; set; }
+        public List<RegistrationBeneficiary> Beneficiaries { get; set; }
+
+        [JsonProperty("suitability")]
+        public RegistrationSuitability Suitability { get; set; }
         #endregion
         #endregion
 

@@ -93,8 +93,10 @@
     <Compile Include="Objects\Portfolio\HouseholdMember.cs" />
     <Compile Include="Objects\Portfolio\HouseholdMemberAdditionalAddress.cs" />
     <Compile Include="Objects\Portfolio\Registration.cs" />
+    <Compile Include="Objects\Portfolio\RegistrationBeneficiary.cs" />
     <Compile Include="Objects\Portfolio\RegistrationPortfolio.cs" />
     <Compile Include="Objects\Portfolio\RegistrationSimple.cs" />
+    <Compile Include="Objects\Portfolio\RegistrationSuitability.cs" />
     <Compile Include="Objects\Portfolio\RegistrationVerbose.cs" />
     <Compile Include="Objects\Portfolio\RepresentativePortolfio.cs" />
     <Compile Include="Objects\Portfolio\TargetAllocation.cs" />
