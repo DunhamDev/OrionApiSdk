@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using OrionApiSdk.ApiEndpoints.Abstract;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Authorization;
 using OrionApiSdk.Objects.Security;

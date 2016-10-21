@@ -1,10 +1,9 @@
 ﻿using Newtonsoft.Json.Linq;
+using OrionApiSdk.ApiEndpoints.Abstract;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Trading;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Trading

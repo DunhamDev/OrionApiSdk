@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Net.Http.Headers;
 
-namespace OrionApiSdk.ApiEndpoints
+namespace OrionApiSdk.ApiEndpoints.Abstract
 {
     public abstract class ApiEndpointBase
     {

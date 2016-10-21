@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrionApiSdk.ApiEndpoints
+namespace OrionApiSdk.ApiEndpoints.Abstract
 {
     public abstract class ApiMethodContainer : ApiEndpointBase
     {

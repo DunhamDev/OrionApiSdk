@@ -61,8 +61,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiEndpoints\ApiEndpointBase.cs" />
-    <Compile Include="ApiEndpoints\ApiMethodContainer.cs" />
+    <Compile Include="ApiEndpoints\Abstract\ApiEndpointBase.cs" />
+    <Compile Include="ApiEndpoints\Abstract\ApiMethodContainer.cs" />
     <Compile Include="ApiEndpoints\Portfolio\AccountsMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\BrokerDealersMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\ClientsMethods.cs" />
@@ -73,6 +73,8 @@
     <Compile Include="ApiEndpoints\Trading\ModelsMethods.cs" />
     <Compile Include="ApiEndpoints\Trading\TradingEndpoint.cs" />
     <Compile Include="Common\ExtensionMethods\DateTimeExtensionMethods.cs" />
+    <Compile Include="Objects\Interfaces\ICreatable.cs" />
+    <Compile Include="Objects\Interfaces\IUpdatable.cs" />
     <Compile Include="Objects\Portfolio\AumOverTime.cs" />
     <Compile Include="Objects\Portfolio\Client.cs" />
     <Compile Include="Objects\Portfolio\Registration.cs" />

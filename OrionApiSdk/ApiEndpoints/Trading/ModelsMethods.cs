@@ -1,6 +1,7 @@
 ﻿using Newtonsoft;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using OrionApiSdk.ApiEndpoints.Abstract;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Trading;
 using System;
