@@ -10,7 +10,6 @@ namespace OrionApiSdk.Objects.Portfolio
     {
         #region Properties
         #region Instance properties
-        // TODO: Create remaining properties
         [JsonProperty("billing")]
         public List<ClientBilling> Billing { get; set; }
 
@@ -22,6 +21,15 @@ namespace OrionApiSdk.Objects.Portfolio
 
         [JsonProperty("householdMembers")]
         public List<HouseholdMember> HouseholdMembers { get; set; }
+
+        [JsonProperty("additionalAccounts")]
+        public List<AdditionalAccount> AdditionalAccounts { get; set; }
+
+        [JsonProperty("suitability")]
+        public ClientSuitability Suitability { get; set; }
+
+        [JsonProperty("targetAllocations")]
+        public List<TargetAllocation> TargetAllocations { get; set; }
 
         [JsonProperty("portfolio")]
         public ClientPortfolio Portfolio { get; set; }

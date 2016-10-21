@@ -77,6 +77,7 @@
     <Compile Include="Objects\Exceptions\UninitializedPropertyException.cs" />
     <Compile Include="Objects\Interfaces\ICreatable.cs" />
     <Compile Include="Objects\Interfaces\IUpdatable.cs" />
+    <Compile Include="Objects\Portfolio\AdditionalAccount.cs" />
     <Compile Include="Objects\Portfolio\AumOverTime.cs" />
     <Compile Include="Objects\Portfolio\BillFeePayingAccount.cs" />
     <Compile Include="Objects\Portfolio\BillRecurrentAdjustment.cs" />
@@ -84,12 +85,14 @@
     <Compile Include="Objects\Portfolio\Client.cs" />
     <Compile Include="Objects\Portfolio\ClientBilling.cs" />
     <Compile Include="Objects\Portfolio\ClientPortfolio.cs" />
+    <Compile Include="Objects\Portfolio\ClientSuitability.cs" />
     <Compile Include="Objects\Portfolio\ClientVerbose.cs" />
     <Compile Include="Objects\Portfolio\HouseholdMember.cs" />
     <Compile Include="Objects\Portfolio\HouseholdMemberAdditionalAddress.cs" />
     <Compile Include="Objects\Portfolio\Registration.cs" />
     <Compile Include="Objects\Portfolio\RegistrationSimple.cs" />
     <Compile Include="Objects\Portfolio\RepresentativePortolfio.cs" />
+    <Compile Include="Objects\Portfolio\TargetAllocation.cs" />
     <Compile Include="Objects\Reporting\Enums\OverTimeInterval.cs" />
     <Compile Include="Objects\Reporting\Enums\ReportAccountInclusionOption.cs" />
     <Compile Include="Objects\Portfolio\RIA.cs" />
