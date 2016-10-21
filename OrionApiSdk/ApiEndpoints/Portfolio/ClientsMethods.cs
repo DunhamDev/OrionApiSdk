@@ -135,6 +135,21 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             JToken client = await GetJsonAsync(string.Format("{0}/Simple", clientId));
             return client.ToObject<ClientSimple>();
         }
+
+        public List<ClientVerbose> GetVerbose(bool? isActive = null, int top = 5000, int skip = 0)
+        {
+            return GetVerboseAsync(isActive, top, skip).Result;
+        }
+        public async Task<List<ClientVerbose>> GetVerboseAsync(bool? isActive = null, int top = 5000, int skip = 0)
+        {
+            var clientsJson = await GetJsonAsync("Verbose", new Dictionary<string, object>
+            {
+                { "isActive", isActive },
+                { "$top", top },
+                { "$skip", skip },
+            });
+            return clientsJson.ToObject<List<ClientVerbose>>();
+        }
         #endregion
 
         #region Client values

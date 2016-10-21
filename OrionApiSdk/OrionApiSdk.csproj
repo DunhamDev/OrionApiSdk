@@ -79,9 +79,11 @@
     <Compile Include="Objects\Interfaces\IUpdatable.cs" />
     <Compile Include="Objects\Portfolio\AumOverTime.cs" />
     <Compile Include="Objects\Portfolio\Client.cs" />
+    <Compile Include="Objects\Portfolio\ClientPortfolio.cs" />
     <Compile Include="Objects\Portfolio\ClientVerbose.cs" />
     <Compile Include="Objects\Portfolio\Registration.cs" />
     <Compile Include="Objects\Portfolio\RegistrationSimple.cs" />
+    <Compile Include="Objects\Portfolio\RepresentativePortolfio.cs" />
     <Compile Include="Objects\Reporting\Enums\OverTimeInterval.cs" />
     <Compile Include="Objects\Reporting\Enums\ReportAccountInclusionOption.cs" />
     <Compile Include="Objects\Portfolio\RIA.cs" />

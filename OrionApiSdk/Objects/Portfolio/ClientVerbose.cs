@@ -12,7 +12,7 @@ namespace OrionApiSdk.Objects.Portfolio
         #region Instance properties
         // TODO: Create remaining properties
         [JsonProperty("portfolio")]
-        public Portfolio Portfolio { get; set; }
+        public ClientPortfolio Portfolio { get; set; }
 
         [JsonProperty("notes")]
         public List<Note> Notes { get; set; }
@@ -49,10 +49,6 @@ namespace OrionApiSdk.Objects.Portfolio
         #region Private methods
         private void CheckPortfolioProperties()
         {
-            if (Portfolio.RepresentativeId == null)
-            {
-                throw new UninitializedPropertyException("Portfolio.RepresentativeId");
-            }
             if (string.IsNullOrWhiteSpace(Portfolio.LastName))
             {
                 throw new EmptyStringException("Portfolio.LastName");

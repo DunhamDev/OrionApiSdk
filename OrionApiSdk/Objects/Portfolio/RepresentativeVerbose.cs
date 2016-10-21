@@ -8,7 +8,7 @@ namespace OrionApiSdk.Objects.Portfolio
     public class RepresentativeVerbose : BaseSimpleEntity
     {
         [JsonProperty("portfolio")]
-        public Portfolio Portfolio { get; set; }
+        public RepresentativePortolfio Portfolio { get; set; }
         
         [JsonProperty("notes")]
         public List<Note> Notes { get; set; }
