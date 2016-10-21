@@ -27,6 +27,7 @@ namespace OrionApiSdk.Owin.Providers.Orion
             _logger = logger;
         }
 
+        #region AuthenticateCoreAsync
         protected override async Task<AuthenticationTicket> AuthenticateCoreAsync()
         {
             AuthenticationProperties properties = null;
@@ -95,6 +96,7 @@ namespace OrionApiSdk.Owin.Providers.Orion
                 Options.UseTestApiEndpoint
             );
         }
+        #endregion
 
         #region ApplyResponseChallengeAsync
         protected override Task ApplyResponseChallengeAsync()
@@ -158,6 +160,7 @@ namespace OrionApiSdk.Owin.Providers.Orion
         }
         #endregion
 
+        #region InvokeAsync
         public override async Task<bool> InvokeAsync()
         {
             return await InvokeReplyPathAsync();
@@ -171,5 +174,6 @@ namespace OrionApiSdk.Owin.Providers.Orion
             }
             return false;
         }
+        #endregion
     }
 }
