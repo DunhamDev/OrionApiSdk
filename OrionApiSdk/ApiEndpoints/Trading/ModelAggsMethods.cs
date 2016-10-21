@@ -133,6 +133,7 @@ namespace OrionApiSdk.ApiEndpoints.Trading
             return modelAggsJson.ToObject<List<ModelAggSimple>>();
         }
 
+        #region Overrides
         /// <summary>
         /// HTTP POST: /Trading/ModelAggs
         /// Creates a model aggreagtion. Use <see cref="ModelAgg.CheckForMinimumDataForCreate"/> to verify
@@ -178,5 +179,6 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         {
             return await base.UpdateAsync(modelAggToUpdate);
         }
+        #endregion
     }
 }

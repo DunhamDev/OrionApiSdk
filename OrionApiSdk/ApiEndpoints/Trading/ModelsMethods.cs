@@ -116,6 +116,7 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         }
         #endregion
 
+        #region Overrides
         /// <summary>
         /// HTTP POST: /Trading/Models
         /// Creates a model. Use <see cref="Model.CheckForMinimumDataForCreate"/> to verify the necessary
@@ -161,5 +162,6 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         {
             return await base.UpdateAsync(modelToUpdate);
         }
+        #endregion
     }
 }
