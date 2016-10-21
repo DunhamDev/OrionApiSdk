@@ -136,10 +136,24 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return client.ToObject<ClientSimple>();
         }
 
+        /// <summary>
+        /// HTTP GET: /Portfolio/Clients/Verbose
+        /// </summary>
+        /// <param name="isActive"></param>
+        /// <param name="top"></param>
+        /// <param name="skip"></param>
+        /// <returns></returns>
         public List<ClientVerbose> GetVerbose(bool? isActive = null, int top = 5000, int skip = 0)
         {
             return GetVerboseAsync(isActive, top, skip).Result;
         }
+        /// <summary>
+        /// HTTP GET: /Portfolio/Clients/Verbose
+        /// </summary>
+        /// <param name="isActive"></param>
+        /// <param name="top"></param>
+        /// <param name="skip"></param>
+        /// <returns></returns>
         public async Task<List<ClientVerbose>> GetVerboseAsync(bool? isActive = null, int top = 5000, int skip = 0)
         {
             var clientsJson = await GetJsonAsync("Verbose", new Dictionary<string, object>
@@ -149,6 +163,26 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
                 { "$skip", skip },
             });
             return clientsJson.ToObject<List<ClientVerbose>>();
+        }
+
+        /// <summary>
+        /// HTTP GET: /Portfolio/Clients/Verbose/{clientId}
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <returns></returns>
+        public ClientVerbose GetVerbose(int clientId)
+        {
+            return GetVerboseAsync(clientId).Result;
+        }
+        /// <summary>
+        /// HTTP GET: /Portfolio/Clients/Verbose/{clientId}
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <returns></returns>
+        public async Task<ClientVerbose> GetVerboseAsync(int clientId)
+        {
+            var clientJson = await GetJsonAsync("Verbose/" + clientId.ToString());
+            return clientJson.ToObject<ClientVerbose>();
         }
         #endregion
 
