@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace OrionApiSdk.Common.ExtensionMethods
+namespace OrionApiSdk.Common.Extensions
 {
-    public static class DateTimeExtensionMethods
+    public static class DateTimeExtensions
     {
         public static string NullableDateToString(this DateTime? dateToConvert)
         {

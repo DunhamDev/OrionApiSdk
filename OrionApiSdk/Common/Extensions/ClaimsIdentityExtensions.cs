@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrionApiSdk.Common.ExtensionMethods
+namespace OrionApiSdk.Common.Extensions
 {
     public static class ClaimsIdentityExtensions
     {

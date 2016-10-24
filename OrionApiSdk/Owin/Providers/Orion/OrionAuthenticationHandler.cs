@@ -4,7 +4,7 @@ using Microsoft.Owin.Logging;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Infrastructure;
 using OrionApiSdk.ApiEndpoints.Security;
-using OrionApiSdk.Common.ExtensionMethods;
+using OrionApiSdk.Common.Extensions;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Authorization;
 using OrionApiSdk.Objects.Security;

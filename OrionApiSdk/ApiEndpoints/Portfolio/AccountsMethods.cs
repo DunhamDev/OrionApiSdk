@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using OrionApiSdk.ApiEndpoints.Abstract;
-using OrionApiSdk.Common.ExtensionMethods;
+using OrionApiSdk.Common.Extensions;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Portfolio;
 using System;
