@@ -4,6 +4,7 @@ using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Portfolio;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +22,10 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
         public async Task<List<Representative>> GetAsync(bool? isUsed = null, int top = 5000, int skip = 0)
         {
-            JToken reps = await GetJsonAsync("", new Dictionary<string, object> {
-                { "isUsed", isUsed },
-                { "$top", top },
-                { "$skip", skip  }
+            JToken reps = await GetJsonAsync("", new NameValueCollection {
+                { "isUsed", isUsed.ToString() },
+                { "$top", top.ToString() },
+                { "$skip", skip.ToString()  }
             });
             return reps.ToObject<List<Representative>>();
         }
@@ -45,8 +46,8 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
         public async Task<List<RepresentativeSimple>> GetSimpleAsync(bool? isUsed = null)
         {
-            JToken simpleReps = await GetJsonAsync("Simple", new Dictionary<string, object> {
-                { "isUsed", isUsed },
+            JToken simpleReps = await GetJsonAsync("Simple", new NameValueCollection {
+                { "isUsed", isUsed.ToString() },
             });
             return simpleReps.ToObject<List<RepresentativeSimple>>();
         }
@@ -57,7 +58,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
         public async Task<List<RepresentativeSimple>> SearchSimpleAsync(string search)
         {
-            JToken reps = await GetJsonAsync("Simple/Search", new Dictionary<string, object>
+            JToken reps = await GetJsonAsync("Simple/Search", new NameValueCollection
             {
                 { "search", search }
             });
@@ -70,11 +71,11 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
         public async Task<List<RepresentativeVerbose>> GetVerboseAsync(bool? isActive = null, int top = 5000, int skip = 0)
         {
-            JToken verboseReps = await GetJsonAsync("Verbose", new Dictionary<string, object>
+            JToken verboseReps = await GetJsonAsync("Verbose", new NameValueCollection
             {
-                { "isActive", isActive },
-                { "$top", top },
-                { "$skip", skip }
+                { "isActive", isActive.ToString() },
+                { "$top", top.ToString() },
+                { "$skip", skip.ToString() }
             });
             return verboseReps.ToObject<List<RepresentativeVerbose>>();
         }
@@ -96,10 +97,10 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
         public async Task<List<Account>> GetAccountsAsync(int repId, int top = 5000, int skip = 0)
         {
-            JToken accounts = await GetJsonAsync(string.Format("{0}/Accounts", repId), new Dictionary<string, object>
+            JToken accounts = await GetJsonAsync(string.Format("{0}/Accounts", repId), new NameValueCollection
             {
-                { "$top", top },
-                { "skip", skip }
+                { "$top", top.ToString() },
+                { "skip", skip.ToString() }
             });
             return accounts.ToObject<List<Account>>();
         }
@@ -111,10 +112,10 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
         public async Task<List<AccountSimple>> GetAccountValuesAsync(int repId, int top = 5000, int skip = 0)
         {
-            JToken simpleAccountsJson = await GetJsonAsync(string.Format("{0}/Accounts/Value", repId), new Dictionary<string, object>
+            JToken simpleAccountsJson = await GetJsonAsync(string.Format("{0}/Accounts/Value", repId), new NameValueCollection
             {
-                { "$top", top },
-                { "$skip", skip }
+                { "$top", top.ToString() },
+                { "$skip", skip.ToString() }
             });
             return simpleAccountsJson.ToObject<List<AccountSimple>>();
         }
@@ -125,10 +126,10 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
         public async Task<List<AccountSimple>> GetAccountValuesAsync(int repId, DateTime asOfDate, int top = 5000, int skip = 0)
         {
-            JToken simpleAccountsJson = await GetJsonAsync(string.Format("{0}/Accounts/Value/{1:MM-dd-yyyy}", repId, asOfDate), new Dictionary<string, object>
+            JToken simpleAccountsJson = await GetJsonAsync(string.Format("{0}/Accounts/Value/{1:MM-dd-yyyy}", repId, asOfDate), new NameValueCollection
             {
-                { "$top", top },
-                { "$skip", skip }
+                { "$top", top.ToString() },
+                { "$skip", skip.ToString() }
             });
             return simpleAccountsJson.ToObject<List<AccountSimple>>();
         }
@@ -139,10 +140,10 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
         public async Task<List<RepresentativeSimple>> GetValuesAsync(int top = 5000, int skip = 0)
         {
-            JToken repValuesJson = await GetJsonAsync("Value", new Dictionary<string, object>
+            JToken repValuesJson = await GetJsonAsync("Value", new NameValueCollection
             {
-                { "$top", top },
-                { "$skip", skip }
+                { "$top", top.ToString() },
+                { "$skip", skip.ToString() }
             });
             return repValuesJson.ToObject<List<RepresentativeSimple>>();
         }
@@ -153,10 +154,10 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
         public async Task<List<RepresentativeSimple>> GetValuesAsync(DateTime asOfDate, int top = 5000, int skip = 0)
         {
-            JToken repValues = await GetJsonAsync(string.Format("Value/{0:MM-dd-yyyy}", asOfDate), new Dictionary<string, object>
+            JToken repValues = await GetJsonAsync(string.Format("Value/{0:MM-dd-yyyy}", asOfDate), new NameValueCollection
             {
-                { "$top", top },
-                { "$skip", skip }
+                { "$top", top.ToString() },
+                { "$skip", skip.ToString() }
             });
             return repValues.ToObject<List<RepresentativeSimple>>();
         }
@@ -168,11 +169,11 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
         public async Task<List<ClientSimple>> SearchClientsAsync(int repId, string searchValue, int? top = null, int skip = 0)
         {
-            JToken clientsJson = await GetJsonAsync(string.Format("{0}/Clients/Simple/Search", repId), new Dictionary<string, object>
+            JToken clientsJson = await GetJsonAsync(string.Format("{0}/Clients/Simple/Search", repId), new NameValueCollection
             {
                 { "search", searchValue },
-                { "top", top },
-                { "skip", skip }
+                { "top", top.ToString() },
+                { "skip", skip.ToString() }
             });
             return clientsJson.ToObject<List<ClientSimple>>();
         }

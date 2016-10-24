@@ -4,6 +4,7 @@ using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Trading;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Trading
@@ -24,20 +25,20 @@ namespace OrionApiSdk.ApiEndpoints.Trading
             string modelType = null, string modelAggType = null, bool? canMaintainOnly = null, bool? withOrders = null, bool? forUser = null,
             int? representativeId = null, int top = 5000, int skip = 0)
         {
-            JToken modelAggregates = await GetJsonAsync("", new Dictionary<string, object>
+            JToken modelAggregates = await GetJsonAsync("", new NameValueCollection
             {
-                { "accountId", accountId },
-                { "subAdvisorId", subAdvisorId },
-                { "registrationId", registrationId },
-                { "excludeSelfDirected", excludeSelfDirected },
+                { "accountId", accountId.ToString() },
+                { "subAdvisorId", subAdvisorId.ToString() },
+                { "registrationId", registrationId.ToString() },
+                { "excludeSelfDirected", excludeSelfDirected.ToString() },
                 { "modelType", modelType },
                 { "modelAggType", modelAggType },
-                { "canMaintainOnly", canMaintainOnly },
-                { "withOrders", withOrders },
-                { "forUser", forUser },
-                { "representativeId", representativeId },
-                { "$top", top },
-                { "$skip", skip },
+                { "canMaintainOnly", canMaintainOnly.ToString() },
+                { "withOrders", withOrders.ToString() },
+                { "forUser", forUser.ToString() },
+                { "representativeId", representativeId.ToString() },
+                { "$top", top.ToString() },
+                { "$skip", skip.ToString() },
             });
             return modelAggregates.ToObject<List<ModelAgg>>();
         }
@@ -58,11 +59,11 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         }
         public async Task<List<ModelAggSimple>> GetSimpleAsync(bool? isUsed = null, bool? excludeSelfDirected = null, bool? withOrders = null)
         {
-            JToken simpleAggs = await GetJsonAsync("Simple", new Dictionary<string, object>
+            JToken simpleAggs = await GetJsonAsync("Simple", new NameValueCollection
             {
-                { "isUsed", isUsed },
-                { "excludeSelfDirected", excludeSelfDirected },
-                { "withOrders", withOrders },
+                { "isUsed", isUsed.ToString() },
+                { "excludeSelfDirected", excludeSelfDirected.ToString() },
+                { "withOrders", withOrders.ToString() },
             });
             return simpleAggs.ToObject<List<ModelAggSimple>>();
         }
@@ -74,12 +75,12 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         }
         public async Task<List<Objects.Portfolio.Account>> GetAccountsAsync(int modelAggId, bool? isActive = null, bool? isManaged = null, int top = 5000, int skip = 0)
         {
-            var accountsJson = await GetJsonAsync(string.Format("{0}/Accounts", modelAggId), new Dictionary<string, object>
+            var accountsJson = await GetJsonAsync(string.Format("{0}/Accounts", modelAggId), new NameValueCollection
             {
-                { "isActive", isActive },
-                { "isManaged", isManaged },
-                { "$top", top },
-                { "$skip", skip },
+                { "isActive", isActive.ToString() },
+                { "isManaged", isManaged.ToString() },
+                { "$top", top.ToString() },
+                { "$skip", skip.ToString() },
             });
 
             return accountsJson.ToObject<List<Objects.Portfolio.Account>>();
@@ -123,12 +124,12 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         }
         public async Task<List<ModelAggSimple>> GetSimpleSearchAsync(string search, int top = 5000, int skip = 0, bool? activeOnly = null)
         {
-            var modelAggsJson = await GetJsonAsync("Search", new Dictionary<string, object>
+            var modelAggsJson = await GetJsonAsync("Search", new NameValueCollection
             {
                 { "search", search },
-                { "top", top },
-                { "skip", skip },
-                { "activeOnly", activeOnly },
+                { "top", top.ToString() },
+                { "skip", skip.ToString() },
+                { "activeOnly", activeOnly.ToString() },
             });
             return modelAggsJson.ToObject<List<ModelAggSimple>>();
         }

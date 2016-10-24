@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Net.Http.Headers;
+using System.Collections.Specialized;
 
 namespace OrionApiSdk.ApiEndpoints.Abstract
 {
@@ -88,7 +89,7 @@ namespace OrionApiSdk.ApiEndpoints.Abstract
             UseTestApi = false;
         }
 
-        protected async Task<JToken> GetJsonAsync(string endpointMethod, Dictionary<string, object> endpointParameters = null)
+        protected async Task<JToken> GetJsonAsync(string endpointMethod, NameValueCollection endpointParameters = null)
         {
             using (HttpClient httpClient = BuildHttpClient())
             {
@@ -112,7 +113,7 @@ namespace OrionApiSdk.ApiEndpoints.Abstract
             }
         }
 
-        protected async Task<JToken> PostJsonAsync(string endpointMethod, object body, Dictionary<string, object> endpointParameters = null)
+        protected async Task<JToken> PostJsonAsync(string endpointMethod, object body, NameValueCollection endpointParameters = null)
         {
             using (HttpClient httpClient = BuildHttpClient())
             {
@@ -158,7 +159,7 @@ namespace OrionApiSdk.ApiEndpoints.Abstract
             }
         }
 
-        private string EndpointUri(string endpointMethod, Dictionary<string, object> endpointParameters)
+        private string EndpointUri(string endpointMethod, NameValueCollection endpointParameters)
         {
             string uri = ApiUrl + EndpointName;
             if (!string.IsNullOrWhiteSpace(endpointMethod))
@@ -170,7 +171,7 @@ namespace OrionApiSdk.ApiEndpoints.Abstract
             return uriBuilder.ToString();
         }
 
-        private string GenerateQueryString(Dictionary<string, object> endpointParameters)
+        private string GenerateQueryString(NameValueCollection endpointParameters)
         {
             if (endpointParameters == null)
             {
@@ -178,11 +179,14 @@ namespace OrionApiSdk.ApiEndpoints.Abstract
             }
 
             var endpointQuery = HttpUtility.ParseQueryString("");
-            foreach (var pair in endpointParameters)
+            foreach (string key in endpointParameters.AllKeys)
             {
-                if (pair.Value != null)
+                foreach (string value in endpointParameters.GetValues(key))
                 {
-                    endpointQuery.Add(pair.Key, pair.Value.ToString());
+                    if (!string.IsNullOrEmpty(value))
+                    {
+                        endpointQuery.Add(key, value);
+                    }
                 }
             }
             return endpointQuery.ToString();

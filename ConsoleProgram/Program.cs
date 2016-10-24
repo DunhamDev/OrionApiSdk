@@ -19,12 +19,7 @@ namespace ConsoleProgram
         {
             Token = GetAuthToken();
             Api = new OrionApi(Token);
-            ModelAgg agg = new ModelAgg
-            {
-                Name = "80% AAP Core Equity / 20% AAP Core Fixed Income",
-                Details = new List<ModelAggDetail>(),
-            };
-            agg = Api.Trading.ModelAggs.Create(agg);
+            var accounts = Api.Portfolio.Accounts.GetSimple();
         }
 
         private static AuthToken GetAuthToken()

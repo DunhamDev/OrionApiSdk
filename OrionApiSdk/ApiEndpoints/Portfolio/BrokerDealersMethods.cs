@@ -4,6 +4,7 @@ using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Portfolio;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Portfolio
@@ -37,10 +38,10 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         /// <returns>A list of Broker-Dealers</returns>
         public async Task<List<BrokerDealer>> GetAsync(int top = 500, int skip = 0)
         {
-            JToken dealers = await GetJsonAsync("", new Dictionary<string, object>
+            JToken dealers = await GetJsonAsync("", new NameValueCollection
             {
-                { "$top", top },
-                { "$skip", skip }
+                { "$top", top.ToString() },
+                { "$skip", skip.ToString() }
             });
             return dealers.ToObject<List<BrokerDealer>>();
         }
@@ -85,9 +86,9 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         /// <returns>The list of Broker-Dealers</returns>
         public async Task<List<BrokerDealerSimple>> GetSimpleAsync(bool? hasValue = null)
         {
-            JToken brokerDealers = await GetJsonAsync("", new Dictionary<string, object>
+            JToken brokerDealers = await GetJsonAsync("", new NameValueCollection
             {
-                { "hasValue", hasValue }
+                { "hasValue", hasValue.ToString() }
             });
             return brokerDealers.ToObject<List<BrokerDealerSimple>>();
         }
@@ -112,9 +113,9 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         /// <returns>A list of Broker-Dealers matching the search</returns>
         public async Task<List<BrokerDealerSimple>> GetSimpleSearchAsync(string startsWith)
         {
-            JToken dealers = await GetJsonAsync("Simple/Search", new Dictionary<string, object>
+            JToken dealers = await GetJsonAsync("Simple/Search", new NameValueCollection
             {
-                { "search", startsWith }
+                { "search", startsWith.ToString() }
             });
             return dealers.ToObject<List<BrokerDealerSimple>>();
         }
@@ -139,9 +140,9 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         /// <returns>The list of Broker-Dealer values</returns>
         public async Task<List<BrokerDealerSimple>> GetValueAsync(bool? hasValue = null)
         {
-            JToken dealerValues = await GetJsonAsync("Value", new Dictionary<string, object>
+            JToken dealerValues = await GetJsonAsync("Value", new NameValueCollection
             {
-                { "hasValue", hasValue }
+                { "hasValue", hasValue.ToString() }
             });
             return dealerValues.ToObject<List<BrokerDealerSimple>>();
         }
@@ -166,9 +167,9 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         /// <returns>The list of Broker-Dealer values as of the given date</returns>
         public async Task<List<BrokerDealerSimple>> GetValueAsync(DateTime asOfDate, bool? hasValue = null)
         {
-            JToken dealerValues = await GetJsonAsync(string.Format("Value/{0:MM-dd-yyyy}", asOfDate), new Dictionary<string, object>
+            JToken dealerValues = await GetJsonAsync(string.Format("Value/{0:MM-dd-yyyy}", asOfDate), new NameValueCollection
             {
-                { "hasValue", hasValue }
+                { "hasValue", hasValue.ToString() }
             });
             return dealerValues.ToObject<List<BrokerDealerSimple>>();
         }

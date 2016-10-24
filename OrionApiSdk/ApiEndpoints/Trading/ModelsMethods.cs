@@ -6,6 +6,7 @@ using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Trading;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Trading
@@ -23,14 +24,14 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         public async Task<List<Model>> GetAsync(bool? isUsed = null, bool? excludeSelfDirected = null, bool? canMaintainOnly = null, int? representativeId = null,
             int top = 5000, int skip = 0)
         {
-            JToken models = await GetJsonAsync("", new Dictionary<string, object>
+            JToken models = await GetJsonAsync("", new NameValueCollection
             {
-                { "isUsed", isUsed },
-                { "excludeSelfDirected", excludeSelfDirected },
-                { "canMaintainOnly", canMaintainOnly },
-                { "representativeId", representativeId },
-                { "$skip", skip },
-                { "$top", top }
+                { "isUsed", isUsed.ToString() },
+                { "excludeSelfDirected", excludeSelfDirected.ToString() },
+                { "canMaintainOnly", canMaintainOnly.ToString() },
+                { "representativeId", representativeId.ToString() },
+                { "$skip", skip.ToString() },
+                { "$top", top.ToString() }
             });
             return models.ToObject<List<Model>>();
         }
@@ -41,9 +42,9 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         }
         public async Task<Model> GetAsync(int modelId, bool? includeAccounts = null)
         {
-            JToken model = await GetJsonAsync(modelId.ToString(), new Dictionary<string, object>
+            JToken model = await GetJsonAsync(modelId.ToString(), new NameValueCollection
             {
-                { "includeAccounts", includeAccounts }
+                { "includeAccounts", includeAccounts.ToString() }
             });
             return model.ToObject<Model>();
         }
@@ -54,10 +55,10 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         }
         public async Task<List<ModelSimple>> GetSimpleAsync(bool? isUsed = null, bool? excludeSelfDirected = null)
         {
-            JToken models = await GetJsonAsync("Simple", new Dictionary<string, object>
+            JToken models = await GetJsonAsync("Simple", new NameValueCollection
             {
-                { "isUsed", isUsed },
-                { "exludeSelfDirected", excludeSelfDirected }
+                { "isUsed", isUsed.ToString() },
+                { "exludeSelfDirected", excludeSelfDirected.ToString() }
             });
             return models.ToObject<List<ModelSimple>>();
         }
@@ -70,13 +71,13 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         }
         public async Task<List<Model>> GetValuesAsync(bool? isUsed = null, bool? resetCache = null, bool? excludeSelfDirected = null, int top = 500, int skip = 0)
         {
-            JToken modelValues = await GetJsonAsync("Value", new Dictionary<string, object>
+            JToken modelValues = await GetJsonAsync("Value", new NameValueCollection
             {
-                { "isUsed", isUsed },
-                { "resetCache", resetCache },
-                { "excludeSelfDirected", excludeSelfDirected },
-                { "$top", top },
-                { "$skip", skip }
+                { "isUsed", isUsed.ToString() },
+                { "resetCache", resetCache.ToString() },
+                { "excludeSelfDirected", excludeSelfDirected.ToString() },
+                { "$top", top.ToString() },
+                { "$skip", skip.ToString() }
             });
             return modelValues.ToObject<List<Model>>();
         }
@@ -87,13 +88,13 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         }
         public async Task<List<Model>> GetValuesAsync(DateTime asOfDate, bool? isUsed = null, bool? resetCache = null, bool? excludeSelfDirected = null, int top = 500, int skip = 0)
         {
-            JToken modelValues = await GetJsonAsync(string.Format("Value/{0:MM-dd-yyyy}", asOfDate), new Dictionary<string, object>
+            JToken modelValues = await GetJsonAsync(string.Format("Value/{0:MM-dd-yyyy}", asOfDate), new NameValueCollection
             {
-                { "isUsed", isUsed },
-                { "resetCache", resetCache },
-                { "excludeSelfDirected", excludeSelfDirected },
-                { "$top", top },
-                { "$skip", skip }
+                { "isUsed", isUsed.ToString() },
+                { "resetCache", resetCache.ToString() },
+                { "excludeSelfDirected", excludeSelfDirected.ToString() },
+                { "$top", top.ToString() },
+                { "$skip", skip.ToString() }
             });
             return modelValues.ToObject<List<Model>>();
         }
@@ -106,11 +107,11 @@ namespace OrionApiSdk.ApiEndpoints.Trading
         }
         public async Task<List<ModelSimple>> GetSimpleSearchAsync(string search, int top = 5000, int skip = 0)
         {
-            JToken models = await GetJsonAsync("Simple/Search", new Dictionary<string, object>
+            JToken models = await GetJsonAsync("Simple/Search", new NameValueCollection
             {
                 { "search", search },
-                { "$skip", skip },
-                { "$top", top }
+                { "$skip", skip.ToString() },
+                { "$top", top.ToString() }
             });
             return models.ToObject<List<ModelSimple>>();
         }
