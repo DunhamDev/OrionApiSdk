@@ -4,6 +4,7 @@ using Microsoft.Owin.Logging;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Infrastructure;
 using OrionApiSdk.ApiEndpoints.Security;
+using OrionApiSdk.Common.ExtensionMethods;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Authorization;
 using OrionApiSdk.Objects.Security;
@@ -52,7 +53,7 @@ namespace OrionApiSdk.Owin.Providers.Orion
                 OAuthToken accessToken = await GetOAuthTokenFromTemporaryToken(temporaryToken);
                 OrionApi api = new OrionApi(accessToken as AuthToken);
                 UserProfile user = await api.Authorization.UserAsync();
-                
+                identity.BuildIdentityFromOrionProfile(Options.AuthenticationType, user);
             }
             catch (Exception ex)
             {
