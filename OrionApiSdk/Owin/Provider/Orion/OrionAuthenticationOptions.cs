@@ -2,7 +2,7 @@
 using Microsoft.Owin.Security;
 using OrionApiSdk.Common;
 
-namespace OrionApiSdk.Owin.Providers.Orion
+namespace OrionApiSdk.Owin.Provider.Orion
 {
     public class OrionAuthenticationOptions : AuthenticationOptions
     {

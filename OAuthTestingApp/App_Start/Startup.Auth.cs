@@ -6,7 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using OAuthTestingApp.Models;
-using OrionApiSdk.Owin.Providers.Orion;
+using OrionApiSdk.Owin.Provider.Orion;
 
 namespace OAuthTestingApp
 {

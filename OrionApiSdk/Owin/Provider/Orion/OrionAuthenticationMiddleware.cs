@@ -6,7 +6,7 @@ using Microsoft.Owin.Security.DataProtection;
 using Microsoft.Owin.Security.Infrastructure;
 using Owin;
 
-namespace OrionApiSdk.Owin.Providers.Orion
+namespace OrionApiSdk.Owin.Provider.Orion
 {
     public class OrionAuthenticationMiddleware : AuthenticationMiddleware<OrionAuthenticationOptions>
     {

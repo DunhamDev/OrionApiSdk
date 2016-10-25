@@ -3,6 +3,7 @@ using Microsoft.Owin.Infrastructure;
 using Microsoft.Owin.Logging;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Infrastructure;
+using Microsoft.Owin.Security.Provider;
 using OrionApiSdk.ApiEndpoints.Security;
 using OrionApiSdk.Common.Extensions;
 using OrionApiSdk.Objects;
@@ -13,7 +14,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace OrionApiSdk.Owin.Providers.Orion
+namespace OrionApiSdk.Owin.Provider.Orion
 {
     public class OrionAuthenticationHandler : AuthenticationHandler<OrionAuthenticationOptions>
     {
@@ -175,9 +176,58 @@ namespace OrionApiSdk.Owin.Providers.Orion
         {
             if (Options.CallbackPath.HasValue && Options.CallbackPath == Request.Path)
             {
-                AuthenticationTicket ticket = await AuthenticateAsync();
+                AuthenticationTicket authTicket = await AuthenticateAsync();
+                if (authTicket == null)
+                {
+                    _logger.WriteWarning("Invalid return state, unable to redirect");
+                    Response.StatusCode = 500;
+                    return true;
+                }
+
+                OrionReturnEndpointContext endpointContext = GetReturnEndpointContext(authTicket);
+                SignInIdentity(endpointContext);
+                RedirectUser(endpointContext);
+
+                return endpointContext.IsRequestCompleted;
             }
             return false;
+        }
+        
+        private OrionReturnEndpointContext GetReturnEndpointContext(AuthenticationTicket authTicket)
+        {
+            OrionReturnEndpointContext endpointContext = new OrionReturnEndpointContext(Context, authTicket);
+            endpointContext.SignInAsAuthenticationType = Options.SignInAsAutenticationType;
+            endpointContext.RedirectUri = authTicket.Properties.RedirectUri;
+
+            return endpointContext;
+        }
+
+        private void SignInIdentity(OrionReturnEndpointContext endpointContext)
+        {
+            if (endpointContext.SignInAsAuthenticationType != null &&
+                    endpointContext.Identity != null)
+            {
+                ClaimsIdentity grantIdentity = endpointContext.Identity;
+                if (!string.Equals(grantIdentity.AuthenticationType, endpointContext.SignInAsAuthenticationType, StringComparison.Ordinal))
+                {
+                    grantIdentity = new ClaimsIdentity(grantIdentity.Claims, endpointContext.SignInAsAuthenticationType, grantIdentity.NameClaimType, grantIdentity.RoleClaimType);
+                }
+                Context.Authentication.SignIn(endpointContext.Properties, grantIdentity);
+            }
+        }
+
+        private void RedirectUser(OrionReturnEndpointContext endpointContext)
+        {
+            if (!endpointContext.IsRequestCompleted && endpointContext.RedirectUri != null)
+            {
+                string redirectUri = endpointContext.RedirectUri;
+                if (endpointContext.Identity == null)
+                {
+                    redirectUri = WebUtilities.AddQueryString(redirectUri, "error", "access_denied");
+                }
+                Response.Redirect(redirectUri);
+                endpointContext.RequestCompleted();
+            }
         }
         #endregion
     }

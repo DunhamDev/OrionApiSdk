@@ -1,6 +1,6 @@
 ﻿using Owin;
 
-namespace OrionApiSdk.Owin.Providers.Orion
+namespace OrionApiSdk.Owin.Provider.Orion
 {
     public static class OrionAuthenticationExtensions
     {
