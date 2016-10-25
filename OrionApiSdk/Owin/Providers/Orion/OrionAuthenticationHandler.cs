@@ -54,7 +54,10 @@ namespace OrionApiSdk.Owin.Providers.Orion
                 OrionApi api = new OrionApi(accessToken as AuthToken);
                 UserDetails user = await api.Authorization.UserAsync();
                 UserInfoDetails userDetails = await api.Security.GetUsersAsync(user.UserId);
-                identity.BuildIdentityFromOrionProfile(Options.AuthenticationType, userDetails);
+                identity.AddClaims(userDetails.GetUserClaims());
+                identity.AddClaim(new Claim("urn:" + Options.AuthenticationType.ToLower() + ":refresh_token", accessToken.RefreshToken, ClaimValueTypes.String));
+
+                return new AuthenticationTicket(identity, properties);
             }
             catch (Exception ex)
             {

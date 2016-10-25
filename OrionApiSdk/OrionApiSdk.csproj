@@ -73,8 +73,8 @@
     <Compile Include="ApiEndpoints\Trading\ModelAggsMethods.cs" />
     <Compile Include="ApiEndpoints\Trading\ModelsMethods.cs" />
     <Compile Include="ApiEndpoints\Trading\TradingEndpoint.cs" />
-    <Compile Include="Common\Extensions\ClaimsIdentityExtensions.cs" />
     <Compile Include="Common\Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Common\OrionConstants.cs" />
     <Compile Include="Objects\Exceptions\EmptyStringException.cs" />
     <Compile Include="Objects\Exceptions\UninitializedPropertyException.cs" />
     <Compile Include="Objects\Interfaces\ICreatable.cs" />

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using OrionApiSdk.Common;
 
 namespace OrionApiSdk.Owin.Providers.Orion
 {
@@ -25,7 +26,7 @@ namespace OrionApiSdk.Owin.Providers.Orion
             ClientSecret = clientSecret;
             CallbackPath = new PathString("/signin-orion");
             UseTestApiEndpoint = useTestApiEndpoint;
-            Description.Caption = "Orion";
+            Description.Caption = OrionConstants.ORION_PROVIDER_NAME;
             AuthenticationMode = AuthenticationMode.Passive;
         }
     }

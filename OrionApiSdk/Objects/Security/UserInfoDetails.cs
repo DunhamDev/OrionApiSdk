@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
+using OrionApiSdk.Common;
 using OrionApiSdk.Common.Converters;
 using OrionApiSdk.Objects.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,6 +13,8 @@ namespace OrionApiSdk.Objects.Security
 {
     public class UserInfoDetails : BaseUser
     {
+        #region Properties
+        #region Instance properties
         /// <summary>
         /// The unique user identifier
         /// </summary>
@@ -83,5 +87,45 @@ namespace OrionApiSdk.Objects.Security
 
         [JsonProperty("profiles")]
         public List<Profile> Profiles { get; set; }
+        #endregion
+        #endregion
+
+        #region Methods
+        #region Public methods
+        public IEnumerable<Claim> GetUserClaims()
+        {
+            List<Claim> claims = new List<Claim>();
+            AddGuaranteedClaims(claims);
+            AddNullableClaims(claims);
+            return claims;
+        }
+
+        private void AddGuaranteedClaims(List<Claim> claims)
+        {
+            claims.Add(new Claim(ClaimTypes.NameIdentifier, Id.ToString(), ClaimValueTypes.Integer, OrionConstants.ORION_PROVIDER_NAME));
+            claims.Add(new Claim(ClaimTypes.Name, UserId, ClaimValueTypes.String, OrionConstants.ORION_PROVIDER_NAME));
+        }
+
+        private void AddNullableClaims(List<Claim> claims)
+        {
+            if (!string.IsNullOrWhiteSpace(FirstName))
+            {
+                claims.Add(new Claim(ClaimTypes.GivenName, FirstName, ClaimValueTypes.String, OrionConstants.ORION_PROVIDER_NAME));
+            }
+            if (!string.IsNullOrWhiteSpace(LastName))
+            {
+                claims.Add(new Claim(ClaimTypes.Surname, LastName, ClaimValueTypes.String, OrionConstants.ORION_PROVIDER_NAME));
+            }
+            if (!string.IsNullOrWhiteSpace(Email))
+            {
+                claims.Add(new Claim(ClaimTypes.Email, Email, ClaimValueTypes.String, OrionConstants.ORION_PROVIDER_NAME));
+            }
+            if (!string.IsNullOrWhiteSpace(MobilePhone))
+            {
+                claims.Add(new Claim(ClaimTypes.MobilePhone, MobilePhone, ClaimValueTypes.String, OrionConstants.ORION_PROVIDER_NAME));
+            }
+        }
+        #endregion
+        #endregion
     }
 }
