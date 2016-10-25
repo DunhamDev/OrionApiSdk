@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace OrionApiSdk.Objects.Authorization
 {
 
-    public class UserProfile : BaseUser
+    public class UserDetails : BaseUser
     {
         [JsonProperty("entity")]
         public LoginEntity Entity { get; set; }
@@ -53,6 +53,15 @@ namespace OrionApiSdk.Objects.Authorization
 
         [JsonProperty("masterGroup")]
         public string MasterGroup { get; set; }
+
+        [JsonProperty("mobilePhone")]
+        public string MobilePhone { get; set; }
+
+        [JsonProperty("businessPhone")]
+        public string BusinessPhone { get; set; }
+
+        [JsonProperty("businessPhoneExtension")]
+        public string BurinsessPhoneExtension { get; set; }
     }
 
 }
