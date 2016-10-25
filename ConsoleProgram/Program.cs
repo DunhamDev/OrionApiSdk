@@ -33,7 +33,7 @@ namespace ConsoleProgram
             return OrionApi.GetUserAuthToken(username, password);
         }
 
-        public static UserDetails GetUser()
+        public static UserProfile GetUser()
         {
             return Api.Authorization.User();
         }

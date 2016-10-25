@@ -123,7 +123,7 @@ namespace OrionApiSdk
         /// <returns>True iff the access token is valid, otherwise false</returns>
         public async Task<bool> IsAuthTokenValidAsync()
         {
-            UserDetails user = await Authorization.UserAsync();
+            UserProfile user = await Authorization.UserAsync();
             return user != null;
         }
     }

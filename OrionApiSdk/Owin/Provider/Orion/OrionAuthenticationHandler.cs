@@ -53,10 +53,10 @@ namespace OrionApiSdk.Owin.Provider.Orion
 
                 OAuthToken accessToken = await GetOAuthTokenFromTemporaryToken(temporaryToken);
                 OrionApi api = new OrionApi(accessToken as AuthToken);
-                UserDetails user = await api.Authorization.UserAsync();
-                UserInfoDetails userDetails = await api.Security.GetUsersAsync(user.UserId);
+                UserProfile userProfile = await api.Authorization.UserAsync();
+                UserInfoDetails userDetails = await api.Security.GetUsersAsync(userProfile.UserId);
                 identity.AddClaims(userDetails.GetUserClaims());
-                identity.AddClaim(new Claim("urn:" + Options.AuthenticationType.ToLower() + ":refresh_token", accessToken.RefreshToken, ClaimValueTypes.String));
+                IncludeOrionSpecificClaims(identity, accessToken, userProfile);
 
                 return new AuthenticationTicket(identity, properties);
             }
@@ -68,6 +68,7 @@ namespace OrionApiSdk.Owin.Provider.Orion
 
             throw new NotImplementedException();
         }
+
         private string GetChallengeTemporaryToken()
         {
             string temporaryToken = null;
@@ -101,6 +102,14 @@ namespace OrionApiSdk.Owin.Provider.Orion
                 Options.ClientSecret,
                 Options.UseTestApiEndpoint
             );
+        }
+        private void IncludeOrionSpecificClaims(ClaimsIdentity identity, OAuthToken accessToken, UserProfile userProfile)
+        {
+            string claimTypePrefix = string.Format("urn:{0}:", Options.AuthenticationType.ToLower());
+            identity.AddClaim(new Claim(claimTypePrefix + "access_token", accessToken.AccessToken, ClaimValueTypes.String));
+            identity.AddClaim(new Claim(claimTypePrefix + "refresh_token", accessToken.RefreshToken, ClaimValueTypes.String));
+            identity.AddClaim(new Claim(claimTypePrefix + "loginEntityId", ((int)userProfile.Entity).ToString(), ClaimValueTypes.Integer));
+            identity.AddClaim(new Claim(claimTypePrefix + "loginEntityName", userProfile.Entity.ToString(), ClaimValueTypes.String));
         }
         #endregion
 

@@ -21,7 +21,7 @@ namespace OrionApiSdk.ApiEndpoints.Authorization
         /// Gets the user's profile information
         /// </summary>
         /// <returns>The user's profile</returns>
-        public UserDetails User()
+        public UserProfile User()
         {
             return UserAsync().Result;
         }
@@ -30,10 +30,10 @@ namespace OrionApiSdk.ApiEndpoints.Authorization
         /// Gets the user's profile information
         /// </summary>
         /// <returns>The user's profile</returns>
-        public async Task<UserDetails> UserAsync()
+        public async Task<UserProfile> UserAsync()
         {
             JToken userJson = await GetJsonAsync("User");
-            return userJson.ToObject<UserDetails>();
+            return userJson.ToObject<UserProfile>();
         }
     }
 }

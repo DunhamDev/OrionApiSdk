@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace OrionApiSdk.Objects.Authorization
 {
 
-    public class UserDetails : BaseUser
+    public class UserProfile : BaseUser
     {
         /// <summary>
         /// The unique identifier for the user
