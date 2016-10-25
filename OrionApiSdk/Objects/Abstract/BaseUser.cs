@@ -9,17 +9,23 @@ namespace OrionApiSdk.Objects.Abstract
 {
     public abstract class BaseUser
     {
+        /// <summary>
+        /// User's given first name
+        /// </summary>
         [JsonProperty("firstName")]
         public string FirstName { get; set; }
 
+        /// <summary>
+        /// User's given last name
+        /// </summary>
         [JsonProperty("lastName")]
         public string LastName { get; set; }
 
+        /// <summary>
+        /// User's given email address
+        /// </summary>
         [JsonProperty("email")]
         public string Email { get; set; }
-
-        [JsonProperty("userId")]
-        public string UserId { get; set; }
 
         [JsonProperty("entityName")]
         public string EntityName { get; set; }

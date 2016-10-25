@@ -12,12 +12,24 @@ namespace OrionApiSdk.Objects.Authorization
 
     public class UserDetails : BaseUser
     {
+        /// <summary>
+        /// The unique identifier for the user
+        /// </summary>
+        [JsonProperty("userId")]
+        public int UserId { get; set; }
+
         [JsonProperty("entity")]
         public LoginEntity Entity { get; set; }
 
+        /// <summary>
+        /// Unknown use at this time, use <see cref="LoginUserId"/> 
+        /// </summary>
         [JsonProperty("userName")]
         public string Username { get; set; }
 
+        /// <summary>
+        /// Identification used for logging in (effectively a username)
+        /// </summary>
         [JsonProperty("loginUserId")]
         public string LoginUserId { get; set; }
 
@@ -42,6 +54,9 @@ namespace OrionApiSdk.Objects.Authorization
         [JsonProperty("userGuid")]
         public Guid UserGuid { get; set; }
 
+        /// <summary>
+        /// Determines whether the user has Two-Factor authentication enabled
+        /// </summary>
         [JsonProperty("twoFactor")]
         public bool TwoFactor { get; set; }
 
@@ -54,14 +69,42 @@ namespace OrionApiSdk.Objects.Authorization
         [JsonProperty("masterGroup")]
         public string MasterGroup { get; set; }
 
+        /// <summary>
+        /// User's mobile phone number
+        /// </summary>
         [JsonProperty("mobilePhone")]
         public string MobilePhone { get; set; }
 
+        /// <summary>
+        /// User's business phone number
+        /// </summary>
         [JsonProperty("businessPhone")]
         public string BusinessPhone { get; set; }
 
+        /// <summary>
+        /// User's business phone extension
+        /// </summary>
         [JsonProperty("businessPhoneExtension")]
-        public string BurinsessPhoneExtension { get; set; }
+        public string BusinessPhoneExtension { get; set; }
+
+        /// <summary>
+        /// Contactenates the <see cref="BusinessPhone"/> and <see cref="BusinessPhoneExtension"/> 
+        /// properties, as appropriate
+        /// </summary>
+        public string FullBusinessPhone
+        {
+            get
+            {
+                string phoneNum = BusinessPhone;
+                if (!string.IsNullOrWhiteSpace(BusinessPhoneExtension) &&
+                    !string.IsNullOrWhiteSpace(phoneNum))
+                {
+                    phoneNum += BusinessPhoneExtension;
+                }
+                return phoneNum;
+            }
+        }
     }
+}
 
 }

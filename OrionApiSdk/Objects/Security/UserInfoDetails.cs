@@ -11,8 +11,17 @@ namespace OrionApiSdk.Objects.Security
 {
     public class UserInfoDetails : BaseUser
     {
+        /// <summary>
+        /// The unique user identifier
+        /// </summary>
         [JsonProperty("id")]
         public int Id { get; set; }
+
+        /// <summary>
+        /// Identification used for logging in (effectively a username)
+        /// </summary>
+        [JsonProperty("userId")]
+        public string UserId { get; set; }
 
         [JsonProperty("isActive")]
         public bool IsActive { get; set; }
@@ -44,6 +53,24 @@ namespace OrionApiSdk.Objects.Security
 
         [JsonProperty("businessPhoneExtension")]
         public string BusinessPhoneExtension { get; set; }
+
+        /// <summary>
+        /// Contactenates the <see cref="BusinessPhone"/> and <see cref="BusinessPhoneExtension"/> 
+        /// properties, as appropriate
+        /// </summary>
+        public string FullBusinessPhone
+        {
+            get
+            {
+                string phoneNum = BusinessPhone;
+                if (!string.IsNullOrWhiteSpace(BusinessPhoneExtension) &&
+                    !string.IsNullOrWhiteSpace(phoneNum))
+                {
+                    phoneNum += BusinessPhoneExtension;
+                }
+                return phoneNum;
+            }
+        }
 
         [JsonProperty("company")]
         public string Company { get; set; }
