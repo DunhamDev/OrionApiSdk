@@ -1,4 +1,5 @@
 ﻿using OrionApiSdk.Objects.Authorization;
+using OrionApiSdk.Objects.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,11 @@ namespace OrionApiSdk.Common.Extensions
     {
         private const string W3_CLAIM_STRING_TYPE = "http://www.w3.org/2001/XMLSchema#string";
 
-        public static void BuildIdentityFromOrionProfile(this ClaimsIdentity identity, string oauthProvider, UserDetails orionProfile)
+        public static void BuildIdentityFromOrionProfile(this ClaimsIdentity identity, string oauthProvider, UserInfoDetails orionProfile)
         {
             #region Guaranteed fields
-            identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, orionProfile.UserId, W3_CLAIM_STRING_TYPE, oauthProvider));
-            identity.AddClaim(new Claim(ClaimTypes.Name, orionProfile.LoginUserId, W3_CLAIM_STRING_TYPE, oauthProvider));
+            identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, orionProfile.Id.ToString(), W3_CLAIM_STRING_TYPE, oauthProvider));
+            identity.AddClaim(new Claim(ClaimTypes.Name, orionProfile.UserId, W3_CLAIM_STRING_TYPE, oauthProvider));
             #endregion
 
             #region Nullable fields
