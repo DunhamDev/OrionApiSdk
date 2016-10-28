@@ -96,11 +96,11 @@ namespace OrionApiSdk.ApiEndpoints.Abstract
                 var response = await httpClient.GetAsync(EndpointUri(endpointMethod, endpointParameters));
 
                 // Throws exception in the event there was a non-success status
-                response.EnsureSuccessStatusCode();
+                await CheckHttpRequestResponse(response);
                 return await ParseJsonResponseAsync(response);
             }
         }
-
+        
         protected async Task<JToken> PutJsonAsync(string endpointMethod, object body)
         {
             using (HttpClient httpClient = BuildHttpClient())
@@ -108,7 +108,7 @@ namespace OrionApiSdk.ApiEndpoints.Abstract
                 var putContent = new StringContent(JsonConvert.SerializeObject(body));
                 var response = await httpClient.PutAsync(EndpointUri(endpointMethod, null), putContent);
 
-                response.EnsureSuccessStatusCode();
+                await CheckHttpRequestResponse(response);
                 return await ParseJsonResponseAsync(response);
             }
         }
@@ -128,7 +128,7 @@ namespace OrionApiSdk.ApiEndpoints.Abstract
                 }
                 var response = await httpClient.PostAsync(EndpointUri(endpointMethod, endpointParameters), postContent);
 
-                response.EnsureSuccessStatusCode();
+                await CheckHttpRequestResponse(response);
                 return await ParseJsonResponseAsync(response);
             }
         }
@@ -196,6 +196,16 @@ namespace OrionApiSdk.ApiEndpoints.Abstract
         {
             string jsonStr = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<JToken>(jsonStr);
+        }
+
+        private static async Task CheckHttpRequestResponse(HttpResponseMessage response)
+        {
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException(
+                    string.Format("HTTP Status Code: {0}\n{1}", response.StatusCode, await response.Content.ReadAsStringAsync())
+                );
+            }
         }
         #endregion
         #endregion

@@ -7,6 +7,7 @@ using OrionApiSdk.Objects.Security;
 using OrionApiSdk.Objects.Trading;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ConsoleProgram
 {
@@ -19,7 +20,12 @@ namespace ConsoleProgram
         {
             Token = GetAuthToken();
             Api = new OrionApi(Token);
-            var accounts = Api.Portfolio.Accounts.GetSimple();
+            var models = Api.Trading.Models.Get().OrderBy(m => m.Name).ToList();
+            Console.WriteLine("Found {0} models", models.Count);
+            foreach (var m in models)
+            {
+                Console.WriteLine("   " + m.Name);
+            }
         }
 
         private static AuthToken GetAuthToken()

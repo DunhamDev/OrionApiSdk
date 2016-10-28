@@ -65,10 +65,10 @@ namespace OrionApiSdk.Objects.Trading
         public string SubAdvisor { get; set; }
         
         [JsonProperty("modelNum")]
-        public int ModelNum { get; set; }
+        public int? ModelNum { get; set; }
         
         [JsonProperty("percEquity")]
-        public int PercEquity { get; set; }
+        public int? PercEquity { get; set; }
         
         [JsonProperty("modelType")]
         public string ModelType { get; set; }
