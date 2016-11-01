@@ -57,10 +57,10 @@ namespace OrionApiSdk.ApiEndpoints.Global
         public List<Product> Get(int top = 5000, int skip = 0, string searchTicker = null, string exactTicker = null,
             string exactCusip = null, string searchCusip = null, string exactDownloadSymbol = null, string searchDownloadSymbol = null,
             string exactSymbol = null, string searchSymbol = null, string searchName = null, string searchId = null,
-            ProductType? productType = null, int? fundFamilyId = null)
+            int? fundFamilyId = null, params ProductType[] productTypes)
         {
             return GetAsync(top, skip, searchTicker, exactTicker, exactCusip, searchCusip, exactDownloadSymbol,
-                searchDownloadSymbol, exactSymbol, searchSymbol, searchName, searchId, productType, fundFamilyId).Result;
+                searchDownloadSymbol, exactSymbol, searchSymbol, searchName, searchId, fundFamilyId, productTypes).Result;
         }
         /// <summary>
         /// HTTP GET: /Global/Products
@@ -83,12 +83,11 @@ namespace OrionApiSdk.ApiEndpoints.Global
         public async Task<List<Product>> GetAsync(int top = 5000, int skip = 0, string searchTicker = null, string exactTicker = null,
             string exactCusip = null, string searchCusip = null, string exactDownloadSymbol = null, string searchDownloadSymbol = null,
             string exactSymbol = null, string searchSymbol = null, string searchName = null, string searchId = null,
-            ProductType? productType = null, int? fundFamilyId = null)
+            int? fundFamilyId = null, params ProductType[] productTypes)
         {
-            var productsListJson = await GetJsonAsync("", new NameValueCollection
+            #region Build query string
+            var queryString = new NameValueCollection
             {
-                { "$top", top.ToString() },
-                { "$skip", skip.ToString() },
                 { "searchTicker", searchTicker },
                 { "exactTicker", exactTicker },
                 { "exactCusip", exactCusip },
@@ -99,9 +98,17 @@ namespace OrionApiSdk.ApiEndpoints.Global
                 { "searchSymbol", searchSymbol },
                 { "searchName", searchName },
                 { "searchId", searchId },
-                { "productType", productType.ToString() },
                 { "fundFamilyId", fundFamilyId.ToString() },
-            });
+            };
+            foreach (ProductType typeFilter in productTypes)
+            {
+                queryString.Add("productType", typeFilter.ToString());
+            }
+            queryString.Add("$top", top.ToString());
+            queryString.Add("$skip", skip.ToString());
+            #endregion
+
+            var productsListJson = await GetJsonAsync("", queryString);
             return productsListJson.ToObject<List<Product>>();
         }
     }
