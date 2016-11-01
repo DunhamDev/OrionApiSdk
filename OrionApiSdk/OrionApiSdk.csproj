@@ -65,6 +65,8 @@
     <Compile Include="ApiEndpoints\Abstract\ApiEndpointBase.cs" />
     <Compile Include="ApiEndpoints\Abstract\ApiMethodContainer.cs" />
     <Compile Include="ApiEndpoints\Abstract\ApiMethodContainerForVeboseObject.cs" />
+    <Compile Include="ApiEndpoints\Global\GlobalEndpoint.cs" />
+    <Compile Include="ApiEndpoints\Global\ProductsMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\AccountsMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\BrokerDealersMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\ClientsMethods.cs" />
@@ -78,6 +80,8 @@
     <Compile Include="Common\OrionConstants.cs" />
     <Compile Include="Objects\Exceptions\EmptyStringException.cs" />
     <Compile Include="Objects\Exceptions\UninitializedPropertyException.cs" />
+    <Compile Include="Objects\Global\Enums\ProductType.cs" />
+    <Compile Include="Objects\Global\Product.cs" />
     <Compile Include="Objects\Interfaces\ICreatable.cs" />
     <Compile Include="Objects\Interfaces\IUpdatable.cs" />
     <Compile Include="Objects\Portfolio\AccountPortfolio.cs" />

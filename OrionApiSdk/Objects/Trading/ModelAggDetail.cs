@@ -17,7 +17,7 @@ namespace OrionApiSdk.Objects.Trading
         public string ManagementStyle { get; set; }
         
         [JsonProperty("managementStyleId")]
-        public int ManagementStyleId { get; set; }
+        public int? ManagementStyleId { get; set; }
     }
 
 }
