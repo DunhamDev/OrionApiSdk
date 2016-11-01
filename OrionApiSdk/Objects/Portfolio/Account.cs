@@ -5,7 +5,7 @@ using OrionApiSdk.Objects.Interfaces;
 
 namespace OrionApiSdk.Objects.Portfolio
 {
-    public class Account : BaseSimpleEntity, IUpdatable, ICreatable
+    public class Account : BaseSimpleEntity
     {
         #region Properties
         #region Instance properties
@@ -140,20 +140,6 @@ namespace OrionApiSdk.Objects.Portfolio
 
         [JsonProperty("riskScore")]
         public decimal? RiskScore { get; set; }
-        #endregion
-        #endregion
-
-        #region Methods
-        #region Public methods
-        public void CheckNecessaryDataForUpdate()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CheckNecessaryDataForCreate()
-        {
-            throw new NotImplementedException();
-        }
         #endregion
         #endregion
     }
