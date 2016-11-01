@@ -36,14 +36,7 @@ namespace OrionApiSdk.Objects.Portfolio
             {
                 throw new UninitializedPropertyException("Portfolio");
             }
-            if (string.IsNullOrWhiteSpace(Portfolio.LastName))
-            {
-                throw new EmptyStringException("Portfolio.LastName");
-            }
-            if (string.IsNullOrWhiteSpace(Portfolio.Name))
-            {
-                throw new EmptyStringException("Portfolio.Name");
-            }
+            CheckPortfolioProperties();
             if (Portfolio.ClientId == 0)
             {
                 throw new UninitializedPropertyException("Portfolio.ClientId");
@@ -54,9 +47,24 @@ namespace OrionApiSdk.Objects.Portfolio
             }
         }
 
+        private void CheckPortfolioProperties()
+        {
+            if (string.IsNullOrWhiteSpace(Portfolio.LastName))
+            {
+                throw new EmptyStringException("Portfolio.LastName");
+            }
+            if (string.IsNullOrWhiteSpace(Portfolio.Name))
+            {
+                throw new EmptyStringException("Portfolio.Name");
+            }
+        }
+
         public void CheckNecessaryDataForUpdate()
         {
-            throw new NotImplementedException();
+            if (Portfolio != null)
+            {
+                CheckPortfolioProperties();
+            }
         }
         #endregion
         #endregion

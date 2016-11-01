@@ -73,18 +73,23 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             return registration.ToObject<RegistrationSimple>();
         }
 
-        public List<RegistrationVerbose> GetVerbose(bool? isActive = null, int top = 5000, int skip = 0)
+        public List<RegistrationVerbose> GetVerbose(bool? isActive = null, int top = 5000, int skip = 0, params RegistrationPropertyExpand[] expand)
         {
-            return GetVerboseAsync(isActive, top, skip).Result;
+            return GetVerboseAsync(isActive, top, skip, expand).Result;
         }
-        public async Task<List<RegistrationVerbose>> GetVerboseAsync(bool? isActive = null, int top = 5000, int skip = 0)
+        public async Task<List<RegistrationVerbose>> GetVerboseAsync(bool? isActive = null, int top = 5000, int skip = 0, params RegistrationPropertyExpand[] expand)
         {
-            var registrations = await GetJsonAsync("Verbose", new NameValueCollection
+            var queryString = new NameValueCollection
             {
                 { "isActive", isActive.ToString() },
-                { "$top", top.ToString() },
-                { "$skip", skip.ToString() },
-            });
+            };
+            foreach (var expandProperty in expand)
+            {
+                queryString.Add("expand", expandProperty.ToString());
+            }
+            queryString.Add("$top", top.ToString());
+            queryString.Add("$skip", skip.ToString());
+            var registrations = await GetJsonAsync("Verbose", queryString);
             return registrations.ToObject<List<RegistrationVerbose>>();
         }
 
@@ -94,12 +99,12 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
         public async Task<RegistrationVerbose> GetVerboseAsync(int registrationId, params RegistrationPropertyExpand[] expand)
         {
-            NameValueCollection expandParams = new NameValueCollection();
-            //if (expand.Length == 0)
-            //{
-            //    expandParams.Add("expand", RegistrationPropertyExpand.Portfolio);
-            //}
-            var registrationJson = await GetJsonAsync("Verbose/" + registrationId.ToString(), expandParams);
+            NameValueCollection queryString = new NameValueCollection();
+            foreach (var expandProperty in expand)
+            {
+                queryString.Add("expand", expandProperty.ToString());
+            }
+            var registrationJson = await GetJsonAsync("Verbose/" + registrationId.ToString(), queryString);
             return registrationJson.ToObject<RegistrationVerbose>();
         }
         #endregion
