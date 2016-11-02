@@ -20,12 +20,15 @@ namespace ConsoleProgram
         {
             Token = GetAuthToken();
             Api = new OrionApi(Token);
-            var models = Api.Trading.Models.Get().OrderBy(m => m.Name).ToList();
-            Console.WriteLine("Found {0} models", models.Count);
-            foreach (var m in models)
+            var toCreate = new AccountVerbose
             {
-                Console.WriteLine("   " + m.Name);
-            }
+                Name = "Billy Wolfington",
+                Portfolio = new AccountPortfolio
+                {
+                    AccountStatusId = 5,
+                }
+            };
+            var account = Api.Portfolio.Accounts.Create(toCreate);
         }
 
         private static AuthToken GetAuthToken()

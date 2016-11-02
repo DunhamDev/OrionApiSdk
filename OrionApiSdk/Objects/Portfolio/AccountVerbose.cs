@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using OrionApiSdk.Objects.Abstract;
 using OrionApiSdk.Objects.Billing;
+using OrionApiSdk.Objects.Exceptions;
 using OrionApiSdk.Objects.Interfaces;
 using OrionApiSdk.Objects.Trading;
 using System;
@@ -64,14 +65,41 @@ namespace OrionApiSdk.Objects.Portfolio
         [JsonProperty("compositeExclusions")]
         public List<CompositeAccountExclude> CompositeExclusions { get; set; }
 
+        #region Methods
+        #region Public methods
         public void CheckNecessaryDataForCreate()
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(Name))
+            {
+                throw new EmptyStringException("Name");
+            }
+            if (Portfolio == null)
+            {
+                throw new UninitializedPropertyException("Portfolio");
+            }
+            if (Portfolio.AccountStatusId == 0)
+            {
+                throw new UninitializedPropertyException("Portfolio.AccountStatusId");
+            }
+            if (Portfolio.FundFamilyId == 0)
+            {
+                throw new UninitializedPropertyException("Portfolio.FundFamilyId");
+            }
+            if (Portfolio.CustodianId == 0)
+            {
+                throw new UninitializedPropertyException("Portfolio.CustodianId");
+            }
+            if (Portfolio.RegistrationId == 0)
+            {
+                throw new UninitializedPropertyException("Portfolio.RegistrationId");
+            }
         }
 
         public void CheckNecessaryDataForUpdate()
         {
-            throw new NotImplementedException();
+            
         }
+        #endregion
+        #endregion
     }
 }

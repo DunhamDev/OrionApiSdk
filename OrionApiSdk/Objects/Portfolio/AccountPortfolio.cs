@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.Objects.Portfolio
 {
-    public class AccountPortfolio : Portfolio, ICreatable, IUpdatable
+    public class AccountPortfolio : Portfolio
     {
         #region Properties
         #region Instance properties
@@ -107,20 +107,6 @@ namespace OrionApiSdk.Objects.Portfolio
 
         [JsonProperty("SubAdvisorId")]
         public int? SubAdvisorId { get; set; }
-        #endregion
-        #endregion
-
-        #region Methods
-        #region Public methods
-        public void CheckNecessaryDataForCreate()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CheckNecessaryDataForUpdate()
-        {
-            throw new NotImplementedException();
-        }
         #endregion
         #endregion
     }
