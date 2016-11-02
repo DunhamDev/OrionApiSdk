@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Portfolio
 {
-    public class RegistrationsMethods : ApiMethodContainer<RegistrationVerbose>
+    public class RegistrationsMethods : ApiMethodContainerForVeboseObject<RegistrationVerbose>
     {
         /// <summary>
         /// Constructs a /Portfolio/Registrations endpoint instance

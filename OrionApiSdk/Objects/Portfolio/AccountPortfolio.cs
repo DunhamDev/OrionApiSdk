@@ -11,7 +11,7 @@ namespace OrionApiSdk.Objects.Portfolio
     public class AccountPortfolio : Portfolio
     {
         #region Properties
-        #region Instance properties
+        #region Public properties
         [JsonProperty("accountHistoryId")]
         public int? AccountHistoryId { get; set; }
 

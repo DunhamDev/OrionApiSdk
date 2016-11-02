@@ -36,7 +36,7 @@ namespace OrionApiSdk.Objects.Portfolio
             {
                 throw new UninitializedPropertyException("Portfolio");
             }
-            CheckPortfolioProperties();
+            CheckRequiredPortfolioProperties();
             if (Portfolio.ClientId == 0)
             {
                 throw new UninitializedPropertyException("Portfolio.ClientId");
@@ -47,7 +47,7 @@ namespace OrionApiSdk.Objects.Portfolio
             }
         }
 
-        private void CheckPortfolioProperties()
+        private void CheckRequiredPortfolioProperties()
         {
             if (string.IsNullOrWhiteSpace(Portfolio.LastName))
             {
@@ -63,7 +63,7 @@ namespace OrionApiSdk.Objects.Portfolio
         {
             if (Portfolio != null)
             {
-                CheckPortfolioProperties();
+                CheckRequiredPortfolioProperties();
             }
         }
         #endregion

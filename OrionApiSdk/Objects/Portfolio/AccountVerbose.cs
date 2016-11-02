@@ -93,6 +93,10 @@ namespace OrionApiSdk.Objects.Portfolio
             {
                 throw new UninitializedPropertyException("Portfolio.RegistrationId");
             }
+            if (Portfolio.AccountStartDate == new DateTime())
+            {
+                throw new UninitializedPropertyException("Portfolio.AccountStartDate");
+            }
         }
 
         public void CheckNecessaryDataForUpdate()
