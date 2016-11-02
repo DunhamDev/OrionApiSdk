@@ -98,11 +98,16 @@
     <Compile Include="Objects\Portfolio\BillFeePayingAccount.cs" />
     <Compile Include="Objects\Portfolio\BillRecurrentAdjustment.cs" />
     <Compile Include="Objects\Portfolio\BillRelatedClient.cs" />
+    <Compile Include="Objects\Portfolio\BrokerDealerAdditionalContact.cs" />
+    <Compile Include="Objects\Portfolio\BrokerDealerPortfolio.cs" />
+    <Compile Include="Objects\Portfolio\BrokerDealerReportImage.cs" />
+    <Compile Include="Objects\Portfolio\BrokerDealerVerbose.cs" />
     <Compile Include="Objects\Portfolio\Client.cs" />
     <Compile Include="Objects\Portfolio\ClientBilling.cs" />
     <Compile Include="Objects\Portfolio\ClientPortfolio.cs" />
     <Compile Include="Objects\Portfolio\ClientSuitability.cs" />
     <Compile Include="Objects\Portfolio\ClientVerbose.cs" />
+    <Compile Include="Objects\Portfolio\Enums\BrokerDealerPropertyExpand.cs" />
     <Compile Include="Objects\Portfolio\Enums\RegistrationPropertyExpand.cs" />
     <Compile Include="Objects\Portfolio\GeneralAccount.cs" />
     <Compile Include="Objects\Portfolio\HouseholdMember.cs" />
@@ -114,6 +119,7 @@
     <Compile Include="Objects\Portfolio\RegistrationSimple.cs" />
     <Compile Include="Objects\Portfolio\RegistrationSuitability.cs" />
     <Compile Include="Objects\Portfolio\RegistrationVerbose.cs" />
+    <Compile Include="Objects\Portfolio\ReportImage.cs" />
     <Compile Include="Objects\Portfolio\RepresentativePortolfio.cs" />
     <Compile Include="Objects\Portfolio\Systematic.cs" />
     <Compile Include="Objects\Portfolio\TargetAllocation.cs" />
@@ -142,7 +148,7 @@
     <Compile Include="Objects\Portfolio\Portfolio.cs" />
     <Compile Include="Objects\Portfolio\RepNasd.cs" />
     <Compile Include="Objects\Portfolio\RepOnHold.cs" />
-    <Compile Include="Objects\Portfolio\ReportImage.cs" />
+    <Compile Include="Objects\Portfolio\RepresentativeReportImage.cs" />
     <Compile Include="Objects\Portfolio\Representative.cs" />
     <Compile Include="Objects\Portfolio\RepresentativeSimple.cs" />
     <Compile Include="Objects\Portfolio\RepresentativeVerbose.cs" />

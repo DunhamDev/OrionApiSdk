@@ -25,7 +25,7 @@ namespace OrionApiSdk.Objects.Portfolio
         public List<BillRepresentativePlatform> BillRepresentativePlatforms { get; set; }
         
         [JsonProperty("reportImage")]
-        public ReportImage ReportImage { get; set; }
+        public RepresentativeReportImage ReportImage { get; set; }
         
         [JsonProperty("userDefinedFields")]
         public List<object> UserDefinedFields { get; set; }

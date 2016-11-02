@@ -85,7 +85,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             };
             foreach (var expandProperty in expand)
             {
-                queryString.Add("expand", expandProperty.ToString());
+                queryString.Add("expand", ((int)expandProperty).ToString());
             }
             queryString.Add("$top", top.ToString());
             queryString.Add("$skip", skip.ToString());
@@ -102,7 +102,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
             NameValueCollection queryString = new NameValueCollection();
             foreach (var expandProperty in expand)
             {
-                queryString.Add("expand", expandProperty.ToString());
+                queryString.Add("expand", ((int)expandProperty).ToString());
             }
             var registrationJson = await GetJsonAsync("Verbose/" + registrationId.ToString(), queryString);
             return registrationJson.ToObject<RegistrationVerbose>();
