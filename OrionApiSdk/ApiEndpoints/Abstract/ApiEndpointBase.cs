@@ -100,7 +100,7 @@ namespace OrionApiSdk.ApiEndpoints.Abstract
                 return await ParseJsonResponseAsync(response);
             }
         }
-        
+
         protected async Task<JToken> PutJsonAsync(string endpointMethod, object body)
         {
             using (HttpClient httpClient = BuildHttpClient())
@@ -202,8 +202,14 @@ namespace OrionApiSdk.ApiEndpoints.Abstract
         {
             if (!response.IsSuccessStatusCode)
             {
+                if (response.Headers.Contains("X-OAS-CorrelationId"))
+                {
+                    throw new HttpRequestException(
+                        string.Format("HTTP Status Code: {0}\nCorrelation ID: {1}\nContent: {2}", response.StatusCode, string.Join(",", response.Headers.GetValues("X-OAS-CorrelationId")), await response.Content.ReadAsStringAsync())
+                    );
+                }
                 throw new HttpRequestException(
-                    string.Format("HTTP Status Code: {0}\n{1}", response.StatusCode, await response.Content.ReadAsStringAsync())
+                    string.Format("HTTP Status Code: {0}\nContent: {1}", response.StatusCode, await response.Content.ReadAsStringAsync())
                 );
             }
         }

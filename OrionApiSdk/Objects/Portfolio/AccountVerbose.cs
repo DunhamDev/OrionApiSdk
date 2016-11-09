@@ -77,6 +77,25 @@ namespace OrionApiSdk.Objects.Portfolio
             {
                 throw new UninitializedPropertyException("Portfolio");
             }
+            CheckPortfolioPropertiesForCreateAndUpdate();
+            if (Portfolio.AccountStartDate == new DateTime())
+            {
+                throw new UninitializedPropertyException("Portfolio.AccountStartDate");
+            }
+        }
+
+        public void CheckNecessaryDataForUpdate()
+        {
+            if (Portfolio != null)
+            {
+                CheckPortfolioPropertiesForCreateAndUpdate();
+            }
+        }
+        #endregion
+
+        #region Private methods
+        private void CheckPortfolioPropertiesForCreateAndUpdate()
+        {
             if (Portfolio.AccountStatusId == 0)
             {
                 throw new UninitializedPropertyException("Portfolio.AccountStatusId");
@@ -93,15 +112,6 @@ namespace OrionApiSdk.Objects.Portfolio
             {
                 throw new UninitializedPropertyException("Portfolio.RegistrationId");
             }
-            if (Portfolio.AccountStartDate == new DateTime())
-            {
-                throw new UninitializedPropertyException("Portfolio.AccountStartDate");
-            }
-        }
-
-        public void CheckNecessaryDataForUpdate()
-        {
-            
         }
         #endregion
         #endregion

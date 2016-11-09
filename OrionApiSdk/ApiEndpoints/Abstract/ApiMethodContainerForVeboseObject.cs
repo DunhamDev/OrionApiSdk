@@ -54,7 +54,7 @@ namespace OrionApiSdk.ApiEndpoints.Abstract
             }
 
             toUpdate.CheckNecessaryDataForUpdate();
-            var responseObject = await PostJsonAsync("Verbose/" + toUpdate.Id.ToString(), toUpdate);
+            var responseObject = await PutJsonAsync("Verbose/" + toUpdate.Id.ToString(), toUpdate);
             return responseObject.ToObject<TObject>();
         }
     }

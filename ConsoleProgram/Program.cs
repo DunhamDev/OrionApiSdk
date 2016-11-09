@@ -20,21 +20,21 @@ namespace ConsoleProgram
         {
             Token = GetAuthToken();
             Api = new OrionApi(Token);
-            var toCreate = new AccountVerbose
+            var toUpdate = new AccountVerbose
             {
-                Name = "Billy Wolfington via SDK",
+                Id = 21,
                 Portfolio = new AccountPortfolio
                 {
-                    Name = "Billy Wolfington via SDK",
-                    LastName = "Wolfington via SDK",
+                    ClientId = 2,
                     RegistrationId = 15,
-                    CustodianId = 39,
+                    RegistrationName = "Billy Wolfington after PUT",
                     FundFamilyId = 1022,
                     AccountStatusId = 5,
-                    AccountStartDate = DateTime.Now
+                    CustodianId = 39,
+                    AccountStartDate = DateTime.Now.Date,
                 }
             };
-            var account = Api.Portfolio.Accounts.Create(toCreate);
+            var account = Api.Portfolio.Accounts.Update(toUpdate);
             Console.WriteLine(account.Id);
         }
 
