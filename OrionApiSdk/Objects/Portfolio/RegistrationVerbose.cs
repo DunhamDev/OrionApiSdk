@@ -47,6 +47,16 @@ namespace OrionApiSdk.Objects.Portfolio
             }
         }
 
+        public void CheckNecessaryDataForUpdate()
+        {
+            if (Portfolio != null)
+            {
+                CheckRequiredPortfolioProperties();
+            }
+        }
+        #endregion
+
+        #region Private methods
         private void CheckRequiredPortfolioProperties()
         {
             if (string.IsNullOrWhiteSpace(Portfolio.LastName))
@@ -56,14 +66,6 @@ namespace OrionApiSdk.Objects.Portfolio
             if (string.IsNullOrWhiteSpace(Portfolio.Name))
             {
                 throw new EmptyStringException("Portfolio.Name");
-            }
-        }
-
-        public void CheckNecessaryDataForUpdate()
-        {
-            if (Portfolio != null)
-            {
-                CheckRequiredPortfolioProperties();
             }
         }
         #endregion

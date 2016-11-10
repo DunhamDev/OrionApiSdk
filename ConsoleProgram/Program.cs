@@ -20,22 +20,18 @@ namespace ConsoleProgram
         {
             Token = GetAuthToken();
             Api = new OrionApi(Token);
-            var toUpdate = new AccountVerbose
+            var toUpdate = new RegistrationVerbose
             {
-                Id = 21,
-                Portfolio = new AccountPortfolio
+                Id = 15,
+                Portfolio = new RegistrationPortfolio
                 {
-                    ClientId = 2,
-                    RegistrationId = 15,
-                    RegistrationName = "Billy Wolfington after PUT",
-                    FundFamilyId = 1022,
-                    AccountStatusId = 5,
-                    CustodianId = 39,
-                    AccountStartDate = DateTime.Now.Date,
-                }
+                    Name = "Billy Wolfington PUT test",
+                    LastName = "Wolfington PUT test",
+                    FirstName = "Billy",
+                    SSN_TaxID = "333-22-4444",
+
+                },
             };
-            var account = Api.Portfolio.Accounts.Update(toUpdate);
-            Console.WriteLine(account.Id);
         }
 
         private static AuthToken GetAuthToken()
