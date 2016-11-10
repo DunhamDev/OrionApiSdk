@@ -65,6 +65,8 @@
     <Compile Include="ApiEndpoints\Abstract\ApiEndpointBase.cs" />
     <Compile Include="ApiEndpoints\Abstract\ApiMethodContainer.cs" />
     <Compile Include="ApiEndpoints\Abstract\ApiMethodContainerForVeboseObject.cs" />
+    <Compile Include="ApiEndpoints\Billing\BillingEndpoint.cs" />
+    <Compile Include="ApiEndpoints\Billing\SchedulesMethods.cs" />
     <Compile Include="ApiEndpoints\Global\GlobalEndpoint.cs" />
     <Compile Include="ApiEndpoints\Global\ProductsMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\AccountsMethods.cs" />
@@ -79,7 +81,10 @@
     <Compile Include="Common\Extensions\DateTimeExtensions.cs" />
     <Compile Include="Common\OrionConstants.cs" />
     <Compile Include="Objects\Billing\AccountReferral.cs" />
+    <Compile Include="Objects\Billing\BillSchedule.cs" />
+    <Compile Include="Objects\Billing\BillScheduleDetail.cs" />
     <Compile Include="Objects\Billing\CompositeAccountExclude.cs" />
+    <Compile Include="Objects\Billing\Enums\BillSchedule.cs" />
     <Compile Include="Objects\Exceptions\EmptyStringException.cs" />
     <Compile Include="Objects\Exceptions\UninitializedPropertyException.cs" />
     <Compile Include="Objects\Global\Enums\ProductType.cs" />

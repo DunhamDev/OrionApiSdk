@@ -1,4 +1,5 @@
 ﻿using OrionApiSdk.ApiEndpoints.Authorization;
+using OrionApiSdk.ApiEndpoints.Billing;
 using OrionApiSdk.ApiEndpoints.Portfolio;
 using OrionApiSdk.ApiEndpoints.Security;
 using OrionApiSdk.ApiEndpoints.Trading;
@@ -20,7 +21,7 @@ namespace OrionApiSdk
         public AuthToken AuthToken { get; private set; }
 
         /// <summary>
-        /// Endpoint object behind <see cref="Authorization"/> 
+        /// Endpoint object behind <see cref="Authorization"/>
         /// </summary>
         private AuthorizationEndpoint _authorizationEndpoint;
         /// <summary>
@@ -35,7 +36,23 @@ namespace OrionApiSdk
         }
 
         /// <summary>
-        /// Endpoint object behind <see cref="Portfolio"/> 
+        /// Endpoint object behind <see cref="Billing"/>
+        /// </summary>
+        private BillingEndpoint _billingEndpoint;
+        /// <summary>
+        /// /Billing endpoint methods
+        /// </summary>
+        public BillingEndpoint Billing
+        {
+            get
+            {
+                return _billingEndpoint ??
+                    (_billingEndpoint = new BillingEndpoint(AuthToken));
+            }
+        }
+
+        /// <summary>
+        /// Endpoint object behind <see cref="Portfolio"/>
         /// </summary>
         private PortfolioEndpoint _portfolioEndpoint;
         /// <summary>
@@ -50,7 +67,7 @@ namespace OrionApiSdk
         }
 
         /// <summary>
-        /// Endpoint object behind <see cref="Security"/> 
+        /// Endpoint object behind <see cref="Security"/>
         /// </summary>
         private SecurityEndpoint _securityEndpoint;
         /// <summary>
@@ -65,7 +82,7 @@ namespace OrionApiSdk
         }
 
         /// <summary>
-        /// Endpoint object behind <see cref="Trading"/> 
+        /// Endpoint object behind <see cref="Trading"/>
         /// </summary>
         private TradingEndpoint _tradingEndpoint;
         /// <summary>
