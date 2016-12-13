@@ -58,7 +58,7 @@ namespace OrionApiSdk.Owin.Provider.Orion
                 UserProfile userProfile = await api.Authorization.UserAsync();
                 UserInfoDetails userDetails = await api.Security.GetUsersAsync(userProfile.UserId);
                 identity.AddClaims(userDetails.GetUserClaims());
-                IncludeOrionSpecificClaims(identity, accessToken, userProfile);
+                IncludeOrionSpecificClaims(identity, accessToken, userDetails);
 
                 return new AuthenticationTicket(identity, properties);
             }
