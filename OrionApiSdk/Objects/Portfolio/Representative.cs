@@ -106,7 +106,7 @@ namespace OrionApiSdk.Objects.Portfolio
         public Guid? ImportKey { get; set; }
 
         [JsonProperty("payee")]
-        public int Payee { get; set; }
+        public int? Payee { get; set; }
 
         [JsonProperty("planAdministrator")]
         public int? PlanAdministrator { get; set; }
