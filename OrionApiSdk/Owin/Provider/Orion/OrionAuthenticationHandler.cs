@@ -8,9 +8,11 @@ using OrionApiSdk.ApiEndpoints.Security;
 using OrionApiSdk.Common.Extensions;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Authorization;
+using OrionApiSdk.Objects.Enums;
 using OrionApiSdk.Objects.Security;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -103,13 +105,21 @@ namespace OrionApiSdk.Owin.Provider.Orion
                 Options.UseTestApiEndpoint
             );
         }
-        private void IncludeOrionSpecificClaims(ClaimsIdentity identity, OAuthToken accessToken, UserProfile userProfile)
+        private void IncludeOrionSpecificClaims(ClaimsIdentity identity, OAuthToken accessToken, UserInfoDetails userProfile)
         {
             string claimTypePrefix = string.Format("urn:{0}:", Options.AuthenticationType.ToLower());
             identity.AddClaim(new Claim(claimTypePrefix + "access_token", accessToken.AccessToken, ClaimValueTypes.String));
             identity.AddClaim(new Claim(claimTypePrefix + "refresh_token", accessToken.RefreshToken, ClaimValueTypes.String));
-            identity.AddClaim(new Claim(claimTypePrefix + "loginEntityId", ((int)userProfile.Entity).ToString(), ClaimValueTypes.Integer));
-            identity.AddClaim(new Claim(claimTypePrefix + "loginEntityName", userProfile.Entity.ToString(), ClaimValueTypes.String));
+
+            var profileLoginEntities = userProfile.Profiles.Select(p => p.LoginEntity).Distinct();
+            if (profileLoginEntities.Count() != 1)
+            {
+                throw new IndexOutOfRangeException("More than 1 LoginEntity found across user profiles");
+            }
+
+            LoginEntity userLoginEntity = profileLoginEntities.FirstOrDefault();
+            identity.AddClaim(new Claim(claimTypePrefix + "loginEntityId", ((int)userLoginEntity).ToString(), ClaimValueTypes.Integer));
+            identity.AddClaim(new Claim(claimTypePrefix + "loginEntityName", userLoginEntity.ToString(), ClaimValueTypes.String));
         }
         #endregion
 
@@ -201,7 +211,7 @@ namespace OrionApiSdk.Owin.Provider.Orion
             }
             return false;
         }
-        
+
         private OrionReturnEndpointContext GetReturnEndpointContext(AuthenticationTicket authTicket)
         {
             OrionReturnEndpointContext endpointContext = new OrionReturnEndpointContext(Context, authTicket);

@@ -59,7 +59,7 @@ namespace OrionApiSdk.Objects.Security
         public string BusinessPhoneExtension { get; set; }
 
         /// <summary>
-        /// Contactenates the <see cref="BusinessPhone"/> and <see cref="BusinessPhoneExtension"/> 
+        /// Contactenates the <see cref="BusinessPhone"/> and <see cref="BusinessPhoneExtension"/>
         /// properties, as appropriate
         /// </summary>
         public string FullBusinessPhone
@@ -92,7 +92,7 @@ namespace OrionApiSdk.Objects.Security
 
         #region Methods
         #region Public methods
-        public IEnumerable<Claim> GetUserClaims()
+        internal IEnumerable<Claim> GetUserClaims()
         {
             List<Claim> claims = new List<Claim>();
             AddGuaranteedClaims(claims);
