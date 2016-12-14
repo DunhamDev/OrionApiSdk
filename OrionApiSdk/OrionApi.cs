@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk
 {
-    public class OrionApi
+    public class OrionApi : IOrionApi
     {
         /// <summary>
         /// The access token for the user making the API requests
@@ -23,11 +23,11 @@ namespace OrionApiSdk
         /// <summary>
         /// Endpoint object behind <see cref="Authorization"/>
         /// </summary>
-        private AuthorizationEndpoint _authorizationEndpoint;
+        private IAuthorizationEndpoint _authorizationEndpoint;
         /// <summary>
         /// /Authorization endpoint methods
         /// </summary>
-        public AuthorizationEndpoint Authorization
+        public IAuthorizationEndpoint Authorization
         {
             get
             {

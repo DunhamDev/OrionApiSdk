@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Authorization
 {
-    public class AuthorizationEndpoint : ApiEndpointBase
+    public class AuthorizationEndpoint : ApiEndpointBase, IAuthorizationEndpoint
     {
         /// <summary>
         /// Constructs an /Authorization endpoint instance

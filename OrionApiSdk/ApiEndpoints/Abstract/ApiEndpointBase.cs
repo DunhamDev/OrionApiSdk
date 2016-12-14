@@ -13,7 +13,7 @@ using System.Collections.Specialized;
 
 namespace OrionApiSdk.ApiEndpoints.Abstract
 {
-    public abstract class ApiEndpointBase
+    public abstract class ApiEndpointBase : IApiEndpoint
     {
         #region Properties
         #region Static properties

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Abstract
 {
-    public abstract class ApiMethodContainerForVeboseObject<TObject> : ApiMethodContainer<TObject>
+    public abstract class ApiMethodContainerForVeboseObject<TObject> : ApiMethodContainer<TObject>, IApiMethodContainer<TObject>
         where TObject : BaseSimpleEntity, ICreatable, IUpdatable
     {
         internal ApiMethodContainerForVeboseObject(string apiEndpointName, string apiEndpointContainerMethod, AuthToken token)

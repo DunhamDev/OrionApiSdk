@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Abstract
 {
-    public abstract class ApiMethodContainer : ApiEndpointBase
+    public abstract class ApiMethodContainer : ApiEndpointBase, IApiMethodContainer
     {
         internal ApiMethodContainer(string apiEndpointName, string apiEndpointContainerMethod, AuthToken token)
             : this(apiEndpointName, apiEndpointContainerMethod, token, false) { }
@@ -14,7 +14,7 @@ namespace OrionApiSdk.ApiEndpoints.Abstract
             : base(apiEndpointName + "/" + apiEndpointContainerMethod, token, useTestingApi) { }
     }
 
-    public abstract class ApiMethodContainer<TObject> : ApiEndpointBase
+    public abstract class ApiMethodContainer<TObject> : ApiEndpointBase, IApiMethodContainer<TObject>
         where TObject : BaseSimpleEntity, IUpdatable, ICreatable
     {
         internal ApiMethodContainer(string apiEndpointName, string apiEndpointContainerMethod, AuthToken token)

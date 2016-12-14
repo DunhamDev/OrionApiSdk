@@ -65,10 +65,13 @@
     <Compile Include="ApiEndpoints\Abstract\ApiEndpointBase.cs" />
     <Compile Include="ApiEndpoints\Abstract\ApiMethodContainer.cs" />
     <Compile Include="ApiEndpoints\Abstract\ApiMethodContainerForVeboseObject.cs" />
+    <Compile Include="ApiEndpoints\Authorization\IAuthorizationEndpoint.cs" />
     <Compile Include="ApiEndpoints\Billing\BillingEndpoint.cs" />
     <Compile Include="ApiEndpoints\Billing\SchedulesMethods.cs" />
     <Compile Include="ApiEndpoints\Global\GlobalEndpoint.cs" />
     <Compile Include="ApiEndpoints\Global\ProductsMethods.cs" />
+    <Compile Include="ApiEndpoints\IApiEndpoint.cs" />
+    <Compile Include="ApiEndpoints\IApiMethodContainer.cs" />
     <Compile Include="ApiEndpoints\Portfolio\AccountsMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\BrokerDealersMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\ClientsMethods.cs" />
@@ -80,6 +83,7 @@
     <Compile Include="ApiEndpoints\Trading\TradingEndpoint.cs" />
     <Compile Include="Common\Extensions\DateTimeExtensions.cs" />
     <Compile Include="Common\OrionConstants.cs" />
+    <Compile Include="IOrionApi.cs" />
     <Compile Include="Objects\Billing\AccountReferral.cs" />
     <Compile Include="Objects\Billing\BillSchedule.cs" />
     <Compile Include="Objects\Billing\BillScheduleDetail.cs" />
