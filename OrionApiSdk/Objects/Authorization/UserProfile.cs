@@ -117,7 +117,7 @@ namespace OrionApiSdk.Objects.Authorization
         private void AddGuaranteedClaims(List<Claim> claims)
         {
             claims.Add(new Claim(ClaimTypes.Name, LoginUserId, ClaimValueTypes.String, OrionConstants.ORION_PROVIDER_NAME));
-            claims.Add(new Claim(ClaimTypes.Name, UserId.ToString(), ClaimValueTypes.Integer, OrionConstants.ORION_PROVIDER_NAME));
+            claims.Add(new Claim(ClaimTypes.NameIdentifier, UserId.ToString(), ClaimValueTypes.Integer, OrionConstants.ORION_PROVIDER_NAME));
         }
         private void AddNullableClaims(List<Claim> claims)
         {
