@@ -1,4 +1,4 @@
-﻿namespace OrionApiSdk.ApiEndpoints
+﻿namespace OrionApiSdk.ApiEndpoints.Interfaces
 {
     public interface IApiEndpoint
     {

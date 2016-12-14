@@ -1,4 +1,5 @@
-﻿using OrionApiSdk.Objects.Authorization;
+﻿using OrionApiSdk.ApiEndpoints.Interfaces;
+using OrionApiSdk.Objects.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,4 +1,5 @@
-﻿using OrionApiSdk.Objects.Portfolio;
+﻿using OrionApiSdk.ApiEndpoints.Interfaces;
+using OrionApiSdk.Objects.Portfolio;
 using System;
 using System.Collections.Generic;
 using System.Linq;

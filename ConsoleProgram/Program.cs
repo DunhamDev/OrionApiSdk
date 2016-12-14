@@ -74,25 +74,25 @@ namespace ConsoleProgram
             return Api.Portfolio.Representatives.GetAccounts(id);
         }
 
-        public static List<AccountSimple> GetAccountValues(int id)
-        {
-            return Api.Portfolio.Representatives.GetAccountValues(id, new DateTime(2016, 9, 30));
-        }
+        //public static List<AccountSimple> GetAccountValues(int id)
+        //{
+        //    return Api.Portfolio.Representatives.GetAccountValues(id, new DateTime(2016, 9, 30));
+        //}
 
-        public static AccountSimple GetAccountValue(int accountId)
-        {
-            return Api.Portfolio.Accounts.GetValue(accountId);
-        }
+        //public static AccountSimple GetAccountValue(int accountId)
+        //{
+        //    return Api.Portfolio.Accounts.GetValue(accountId);
+        //}
 
-        public static List<BrokerDealer> GetBDs()
-        {
-            return Api.Portfolio.BrokerDealers.Get();
-        }
+        //public static List<BrokerDealer> GetBDs()
+        //{
+        //    return Api.Portfolio.BrokerDealers.Get();
+        //}
 
-        public static List<AumOverTime> GetAumOverTime(int clientId)
-        {
-            return Api.Portfolio.Clients.GetAumOverTime(clientId);
-        }
+        //public static List<AumOverTime> GetAumOverTime(int clientId)
+        //{
+        //    return Api.Portfolio.Clients.GetAumOverTime(clientId);
+        //}
 
         //public static List<UserInfoDetails> PostUsers()
         //{

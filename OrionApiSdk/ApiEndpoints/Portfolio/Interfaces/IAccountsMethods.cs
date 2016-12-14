@@ -1,4 +1,5 @@
-﻿using OrionApiSdk.Objects.Portfolio;
+﻿using OrionApiSdk.ApiEndpoints.Interfaces;
+using OrionApiSdk.Objects.Portfolio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio.Interfaces
         List<Account> Get(bool? isActive = null, bool? isManager = null, DateTime? createdDateStart = null, string newAccountFilter = null,
             int? clientId = null, int? registrationId = null, DateTime? asOfDate = null, bool? hasValue = null, int top = 5000, int skip = 0);
         Task<List<Account>> GetAsync(bool? isActive = null, bool? isManager = null, DateTime? createdDateStart = null, string newAccountFilter = null,
-            int? clientId = null, int? registrationId = null, DateTime? asOfDate = null, bool? hasValue = null, int top = 5000, int skip = 0)
+            int? clientId = null, int? registrationId = null, DateTime? asOfDate = null, bool? hasValue = null, int top = 5000, int skip = 0);
 
         Account Get(int accountId);
         Task<Account> GetAsync(int accountId);
@@ -21,6 +22,6 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio.Interfaces
         Task<Account> GetAsync(string accountNumber);
 
         List<AccountSimple> GetSimple(bool? hasValue = null, bool? isActive = null, int top = 5000, int skip = 0);
-        Task<List<AccountSimple>> GetSimpleAsync(bool? hasValue = null, bool? isActive = null, int top = 5000, int skip = 0)
+        Task<List<AccountSimple>> GetSimpleAsync(bool? hasValue = null, bool? isActive = null, int top = 5000, int skip = 0);
     }
 }

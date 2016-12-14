@@ -1,11 +1,7 @@
 ﻿using OrionApiSdk.Objects.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace OrionApiSdk.ApiEndpoints
+namespace OrionApiSdk.ApiEndpoints.Interfaces
 {
     public interface IApiMethodContainer : IApiEndpoint
     {

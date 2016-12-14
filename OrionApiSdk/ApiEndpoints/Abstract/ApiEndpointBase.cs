@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Net.Http.Headers;
 using System.Collections.Specialized;
+using OrionApiSdk.ApiEndpoints.Interfaces;
 
 namespace OrionApiSdk.ApiEndpoints.Abstract
 {

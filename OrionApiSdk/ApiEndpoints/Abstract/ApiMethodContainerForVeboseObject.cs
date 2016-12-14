@@ -1,4 +1,5 @@
-﻿using OrionApiSdk.Objects;
+﻿using OrionApiSdk.ApiEndpoints.Interfaces;
+using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Abstract;
 using OrionApiSdk.Objects.Interfaces;
 using System;

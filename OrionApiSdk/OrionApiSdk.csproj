@@ -70,8 +70,8 @@
     <Compile Include="ApiEndpoints\Billing\SchedulesMethods.cs" />
     <Compile Include="ApiEndpoints\Global\GlobalEndpoint.cs" />
     <Compile Include="ApiEndpoints\Global\ProductsMethods.cs" />
-    <Compile Include="ApiEndpoints\IApiEndpoint.cs" />
-    <Compile Include="ApiEndpoints\IApiMethodContainer.cs" />
+    <Compile Include="ApiEndpoints\Interfaces\IApiEndpoint.cs" />
+    <Compile Include="ApiEndpoints\Interfaces\IApiMethodContainer.cs" />
     <Compile Include="ApiEndpoints\Portfolio\AccountsMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\BrokerDealersMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\ClientsMethods.cs" />
