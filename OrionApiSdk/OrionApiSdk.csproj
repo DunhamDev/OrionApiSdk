@@ -85,6 +85,7 @@
     <Compile Include="Objects\Billing\BillScheduleDetail.cs" />
     <Compile Include="Objects\Billing\CompositeAccountExclude.cs" />
     <Compile Include="Objects\Billing\Enums\BillSchedule.cs" />
+    <Compile Include="Objects\Enums\Entity.cs" />
     <Compile Include="Objects\Exceptions\EmptyStringException.cs" />
     <Compile Include="Objects\Exceptions\UninitializedPropertyException.cs" />
     <Compile Include="Objects\Global\Enums\ProductType.cs" />

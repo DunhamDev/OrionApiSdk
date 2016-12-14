@@ -20,18 +20,7 @@ namespace ConsoleProgram
         {
             Token = GetAuthToken();
             Api = new OrionApi(Token);
-            var toUpdate = new RegistrationVerbose
-            {
-                Id = 15,
-                Portfolio = new RegistrationPortfolio
-                {
-                    Name = "Billy Wolfington PUT test",
-                    LastName = "Wolfington PUT test",
-                    FirstName = "Billy",
-                    SSN_TaxID = "333-22-4444",
-
-                },
-            };
+            var rep = Api.Portfolio.Representatives.Get(74);
         }
 
         private static AuthToken GetAuthToken()

@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
+using OrionApiSdk.Common;
 using OrionApiSdk.Objects.Abstract;
 using OrionApiSdk.Objects.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,10 +21,10 @@ namespace OrionApiSdk.Objects.Authorization
         public int UserId { get; set; }
 
         [JsonProperty("entity")]
-        public LoginEntity Entity { get; set; }
+        public Entity Entity { get; set; }
 
         /// <summary>
-        /// Unknown use at this time, use <see cref="LoginUserId"/> 
+        /// Unknown use at this time, use <see cref="LoginUserId"/>
         /// </summary>
         [JsonProperty("userName")]
         public string Username { get; set; }
@@ -88,7 +90,7 @@ namespace OrionApiSdk.Objects.Authorization
         public string BusinessPhoneExtension { get; set; }
 
         /// <summary>
-        /// Contactenates the <see cref="BusinessPhone"/> and <see cref="BusinessPhoneExtension"/> 
+        /// Contactenates the <see cref="BusinessPhone"/> and <see cref="BusinessPhoneExtension"/>
         /// properties, as appropriate
         /// </summary>
         public string FullBusinessPhone
@@ -102,6 +104,34 @@ namespace OrionApiSdk.Objects.Authorization
                     phoneNum += BusinessPhoneExtension;
                 }
                 return phoneNum;
+            }
+        }
+
+        public IEnumerable<Claim> GetUserClaims()
+        {
+            List<Claim> claims = new List<Claim>();
+            AddGuaranteedClaims(claims);
+            AddNullableClaims(claims);
+            return claims;
+        }
+        private void AddGuaranteedClaims(List<Claim> claims)
+        {
+            claims.Add(new Claim(ClaimTypes.Name, LoginUserId, ClaimValueTypes.String, OrionConstants.ORION_PROVIDER_NAME));
+            claims.Add(new Claim(ClaimTypes.Name, UserId.ToString(), ClaimValueTypes.Integer, OrionConstants.ORION_PROVIDER_NAME));
+        }
+        private void AddNullableClaims(List<Claim> claims)
+        {
+            if (!string.IsNullOrWhiteSpace(FirstName))
+            {
+                claims.Add(new Claim(ClaimTypes.GivenName, FirstName, ClaimValueTypes.String, OrionConstants.ORION_PROVIDER_NAME));
+            }
+            if (!string.IsNullOrWhiteSpace(LastName))
+            {
+                claims.Add(new Claim(ClaimTypes.Surname, LastName, ClaimValueTypes.String, OrionConstants.ORION_PROVIDER_NAME));
+            }
+            if (!string.IsNullOrWhiteSpace(Email))
+            {
+                claims.Add(new Claim(ClaimTypes.Email, Email, ClaimValueTypes.String, OrionConstants.ORION_PROVIDER_NAME));
             }
         }
     }
