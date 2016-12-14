@@ -1,6 +1,8 @@
 ﻿using OrionApiSdk.ApiEndpoints.Authorization;
+using OrionApiSdk.ApiEndpoints.Authorization.Interfaces;
 using OrionApiSdk.ApiEndpoints.Billing;
 using OrionApiSdk.ApiEndpoints.Portfolio;
+using OrionApiSdk.ApiEndpoints.Portfolio.Interfaces;
 using OrionApiSdk.ApiEndpoints.Security;
 using OrionApiSdk.ApiEndpoints.Trading;
 using OrionApiSdk.Objects;
@@ -54,11 +56,11 @@ namespace OrionApiSdk
         /// <summary>
         /// Endpoint object behind <see cref="Portfolio"/>
         /// </summary>
-        private PortfolioEndpoint _portfolioEndpoint;
+        private IPortfolioEndpoint _portfolioEndpoint;
         /// <summary>
         /// /Portfolio endpoint methods
         /// </summary>
-        public PortfolioEndpoint Portfolio
+        public IPortfolioEndpoint Portfolio
         {
             get
             {

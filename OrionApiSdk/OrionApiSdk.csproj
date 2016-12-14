@@ -65,7 +65,7 @@
     <Compile Include="ApiEndpoints\Abstract\ApiEndpointBase.cs" />
     <Compile Include="ApiEndpoints\Abstract\ApiMethodContainer.cs" />
     <Compile Include="ApiEndpoints\Abstract\ApiMethodContainerForVeboseObject.cs" />
-    <Compile Include="ApiEndpoints\Authorization\IAuthorizationEndpoint.cs" />
+    <Compile Include="ApiEndpoints\Authorization\Interfaces\IAuthorizationEndpoint.cs" />
     <Compile Include="ApiEndpoints\Billing\BillingEndpoint.cs" />
     <Compile Include="ApiEndpoints\Billing\SchedulesMethods.cs" />
     <Compile Include="ApiEndpoints\Global\GlobalEndpoint.cs" />
@@ -75,6 +75,9 @@
     <Compile Include="ApiEndpoints\Portfolio\AccountsMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\BrokerDealersMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\ClientsMethods.cs" />
+    <Compile Include="ApiEndpoints\Portfolio\Interfaces\IAccountsMethods.cs" />
+    <Compile Include="ApiEndpoints\Portfolio\Interfaces\IPortfolioEndpoint.cs" />
+    <Compile Include="ApiEndpoints\Portfolio\Interfaces\IRepresentativesMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\PortfolioEndpoint.cs" />
     <Compile Include="ApiEndpoints\Portfolio\RegistrationsMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\RepresentativesMethods.cs" />

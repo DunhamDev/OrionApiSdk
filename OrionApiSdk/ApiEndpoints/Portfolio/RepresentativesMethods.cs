@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using OrionApiSdk.ApiEndpoints.Abstract;
+using OrionApiSdk.ApiEndpoints.Portfolio.Interfaces;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Portfolio;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Portfolio
 {
-    public class RepresentativesMethods : ApiMethodContainerForVeboseObject<RepresentativeVerbose>
+    public class RepresentativesMethods : ApiMethodContainerForVeboseObject<RepresentativeVerbose>, IRepresentativesMethods
     {
         public RepresentativesMethods(AuthToken token) : base("Portfolio", "Representatives", token) { }
 

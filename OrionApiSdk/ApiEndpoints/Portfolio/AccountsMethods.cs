@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using OrionApiSdk.ApiEndpoints.Abstract;
+using OrionApiSdk.ApiEndpoints.Portfolio.Interfaces;
 using OrionApiSdk.Common.Extensions;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Portfolio;
@@ -15,7 +16,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
     /// <summary>
     /// Acts as a container for all /Portfolio/Accounts methods
     /// </summary>
-    public class AccountsMethods : ApiMethodContainerForVeboseObject<AccountVerbose>
+    public class AccountsMethods : ApiMethodContainerForVeboseObject<AccountVerbose>, IAccountsMethods
     {
         /// <summary>
         /// Constructs a /Portfolio/Accounts endpoint instance

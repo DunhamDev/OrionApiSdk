@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrionApiSdk.ApiEndpoints.Authorization
+namespace OrionApiSdk.ApiEndpoints.Authorization.Interfaces
 {
     public interface IAuthorizationEndpoint : IApiEndpoint
     {

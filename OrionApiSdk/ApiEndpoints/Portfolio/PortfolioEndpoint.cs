@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using OrionApiSdk.ApiEndpoints.Abstract;
+using OrionApiSdk.ApiEndpoints.Portfolio.Interfaces;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Portfolio;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Portfolio
 {
-    public class PortfolioEndpoint : ApiEndpointBase
+    public class PortfolioEndpoint : ApiEndpointBase, IPortfolioEndpoint
     {
         /// <summary>
         /// Constructs a /Portfolio endpoint instance
@@ -23,11 +24,11 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         /// <summary>
         /// Endpoint object behind <see cref="Accounts"/>
         /// </summary>
-        private AccountsMethods _accountMethods;
+        private IAccountsMethods _accountMethods;
         /// <summary>
         /// /Portfolio/Accounts endpoint methods
         /// </summary>
-        public AccountsMethods Accounts
+        public IAccountsMethods Accounts
         {
             get
             {
@@ -36,7 +37,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
 
         /// <summary>
-        /// Endpoint object behind <see cref="BrokerDealers"/> 
+        /// Endpoint object behind <see cref="BrokerDealers"/>
         /// </summary>
         private BrokerDealersMethods _bdMethods;
         /// <summary>
@@ -51,7 +52,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
 
         /// <summary>
-        /// Endpoint object behind <see cref="Clients"/> 
+        /// Endpoint object behind <see cref="Clients"/>
         /// </summary>
         private ClientsMethods _clientMethods;
         /// <summary>
@@ -66,7 +67,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
 
         /// <summary>
-        /// Endpoint object behind <see cref="Registrations"/> 
+        /// Endpoint object behind <see cref="Registrations"/>
         /// </summary>
         private RegistrationsMethods _registrationMethods;
         /// <summary>
@@ -81,13 +82,13 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
 
         /// <summary>
-        /// Endpoint object behind <see cref="Representatives"/> 
+        /// Endpoint object behind <see cref="Representatives"/>
         /// </summary>
-        private RepresentativesMethods _repMethods;
+        private IRepresentativesMethods _repMethods;
         /// <summary>
         /// /Portfolio/Representatives endpoint methods
         /// </summary>
-        public RepresentativesMethods Representatives
+        public IRepresentativesMethods Representatives
         {
             get
             {
@@ -96,7 +97,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
 
         /// <summary>
-        /// Endpoint object behind <see cref="Rias"/> 
+        /// Endpoint object behind <see cref="Rias"/>
         /// </summary>
         private RiasMethods _riaMethods;
         /// <summary>

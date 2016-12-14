@@ -1,14 +1,12 @@
-﻿using OrionApiSdk.ApiEndpoints.Authorization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OrionApiSdk.ApiEndpoints.Authorization.Interfaces;
+using OrionApiSdk.ApiEndpoints.Portfolio.Interfaces;
 
 namespace OrionApiSdk
 {
     public interface IOrionApi
     {
         IAuthorizationEndpoint Authorization { get; }
+
+        IPortfolioEndpoint Portfolio { get; }
     }
 }
