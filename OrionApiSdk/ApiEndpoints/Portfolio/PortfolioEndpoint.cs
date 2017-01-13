@@ -54,11 +54,11 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         /// <summary>
         /// Endpoint object behind <see cref="Clients"/>
         /// </summary>
-        private ClientsMethods _clientMethods;
+        private IClientsMethods _clientMethods;
         /// <summary>
         /// /Portfolio/Clients endpoint methods
         /// </summary>
-        public ClientsMethods Clients
+        public IClientsMethods Clients
         {
             get
             {

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using OrionApiSdk.ApiEndpoints.Abstract;
+using OrionApiSdk.ApiEndpoints.Portfolio.Interfaces;
 using OrionApiSdk.Common.Extensions;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Portfolio;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Portfolio
 {
-    public class ClientsMethods : ApiMethodContainerForVeboseObject<ClientVerbose>
+    public class ClientsMethods : ApiMethodContainerForVeboseObject<ClientVerbose>, IClientsMethods
     {
         /// <summary>
         /// Constructs a /Portfolio/Clients endpoint instance
@@ -672,7 +673,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
 
         /// <summary>
         /// HTTP PUT : /Portfolio/Clients/Verbose/{clientId}
-        /// Updates the provided client and its corresponding portfolio. Use <see cref="ClientVerbose.CheckNecessaryDataForUpdate"/> 
+        /// Updates the provided client and its corresponding portfolio. Use <see cref="ClientVerbose.CheckNecessaryDataForUpdate"/>
         /// to verify that all necessary data points have been filled
         /// </summary>
         /// <param name="toUpdate">The client to update</param>
@@ -683,7 +684,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         }
         /// <summary>
         /// HTTP PUT : /Portfolio/Clients/Verbose/{clientId}
-        /// Updates the provided client and its corresponding portfolio. Use <see cref="ClientVerbose.CheckNecessaryDataForUpdate"/> 
+        /// Updates the provided client and its corresponding portfolio. Use <see cref="ClientVerbose.CheckNecessaryDataForUpdate"/>
         /// to verify that all necessary data points have been filled
         /// </summary>
         /// <param name="toUpdate">The client to update</param>

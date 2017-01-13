@@ -76,6 +76,7 @@
     <Compile Include="ApiEndpoints\Portfolio\BrokerDealersMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\ClientsMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\Interfaces\IAccountsMethods.cs" />
+    <Compile Include="ApiEndpoints\Portfolio\Interfaces\IClientsMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\Interfaces\IPortfolioEndpoint.cs" />
     <Compile Include="ApiEndpoints\Portfolio\Interfaces\IRegistrationsMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\Interfaces\IRepresentativesMethods.cs" />
