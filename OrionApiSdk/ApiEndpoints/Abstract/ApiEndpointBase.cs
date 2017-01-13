@@ -182,6 +182,10 @@ namespace OrionApiSdk.ApiEndpoints.Abstract
             var endpointQuery = HttpUtility.ParseQueryString("");
             foreach (string key in endpointParameters.AllKeys)
             {
+                if (endpointParameters.GetValues(key) == null)
+                {
+                    continue;
+                }
                 foreach (string value in endpointParameters.GetValues(key))
                 {
                     if (!string.IsNullOrEmpty(value))
