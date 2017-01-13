@@ -69,11 +69,11 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         /// <summary>
         /// Endpoint object behind <see cref="Registrations"/>
         /// </summary>
-        private RegistrationsMethods _registrationMethods;
+        private IRegistrationsMethods _registrationMethods;
         /// <summary>
         /// /Portfolio/Registrations endpoint methods
         /// </summary>
-        public RegistrationsMethods Registrations
+        public IRegistrationsMethods Registrations
         {
             get
             {

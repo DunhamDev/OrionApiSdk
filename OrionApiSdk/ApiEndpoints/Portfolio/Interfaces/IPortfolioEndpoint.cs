@@ -12,5 +12,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio.Interfaces
         IAccountsMethods Accounts { get; }
 
         IRepresentativesMethods Representatives { get; }
+
+        IRegistrationsMethods Registrations { get; }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using OrionApiSdk.ApiEndpoints.Abstract;
+using OrionApiSdk.ApiEndpoints.Interfaces;
+using OrionApiSdk.ApiEndpoints.Portfolio.Interfaces;
 using OrionApiSdk.Common.Extensions;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Portfolio;
@@ -14,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Portfolio
 {
-    public class RegistrationsMethods : ApiMethodContainerForVeboseObject<RegistrationVerbose>
+    public class RegistrationsMethods : ApiMethodContainerForVeboseObject<RegistrationVerbose>, IRegistrationsMethods
     {
         /// <summary>
         /// Constructs a /Portfolio/Registrations endpoint instance
