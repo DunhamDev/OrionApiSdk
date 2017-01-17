@@ -39,11 +39,11 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         /// <summary>
         /// Endpoint object behind <see cref="BrokerDealers"/>
         /// </summary>
-        private BrokerDealersMethods _bdMethods;
+        private IBrokerDealersMethods _bdMethods;
         /// <summary>
         /// /Portfolio/BrokerDealers endpoint methods
         /// </summary>
-        public BrokerDealersMethods BrokerDealers
+        public IBrokerDealersMethods BrokerDealers
         {
             get
             {

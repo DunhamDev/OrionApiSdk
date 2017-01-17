@@ -16,5 +16,7 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio.Interfaces
         IRegistrationsMethods Registrations { get; }
 
         IClientsMethods Clients { get; }
+
+        IBrokerDealersMethods BrokerDealers { get; }
     }
 }
