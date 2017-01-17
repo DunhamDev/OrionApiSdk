@@ -16,10 +16,10 @@ namespace OrionApiSdk.Objects.Portfolio
         public int? AccountHistoryId { get; set; }
 
         [JsonProperty("accountStartDate")]
-        public DateTime AccountStartDate { get; set; }
+        public DateTime? AccountStartDate { get; set; }
 
         [JsonProperty("accountStartValue")]
-        public decimal AccountStartValue { get; set; }
+        public decimal? AccountStartValue { get; set; }
 
         [JsonProperty("accountStatusDescription")]
         public string AccountStatusDescription { get; set; }

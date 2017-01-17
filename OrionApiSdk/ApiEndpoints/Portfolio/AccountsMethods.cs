@@ -4,6 +4,7 @@ using OrionApiSdk.ApiEndpoints.Portfolio.Interfaces;
 using OrionApiSdk.Common.Extensions;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Portfolio;
+using OrionApiSdk.Objects.Portfolio.Enums;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -155,6 +156,28 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
                 { "$skip", skip.ToString() }
             });
             return simpleAccounts.ToObject<List<AccountSimple>>();
+        }
+
+        public List<AccountVerbose> GetVerbose(bool? isActive = null, bool? isManager = null, int top = 5000, int skip = 0, params AccountPropertyExpand[] expand)
+        {
+            return GetVerboseAsync(isActive, isManager, top, skip).Result;
+        }
+        public async Task<List<AccountVerbose>> GetVerboseAsync(bool? isActive = null, bool? isManager = null, int top = 5000, int skip = 0, params AccountPropertyExpand[] expand)
+        {
+            var queryParams = new NameValueCollection
+            {
+                { "isActive", isActive.ToString() },
+                { "isManager", isManager.ToString() },
+                { "$top", top.ToString() },
+                { "$skip", skip.ToString() }
+            };
+            foreach (var expandProperty in expand)
+            {
+                queryParams.Add("expand", ((int)expandProperty).ToString());
+            }
+
+            JToken accounts = await GetJsonAsync("Verbose", queryParams);
+            return accounts.ToObject<List<AccountVerbose>>();
         }
         #endregion
 

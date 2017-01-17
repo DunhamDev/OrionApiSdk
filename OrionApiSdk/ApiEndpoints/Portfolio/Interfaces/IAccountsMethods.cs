@@ -1,5 +1,6 @@
 ﻿using OrionApiSdk.ApiEndpoints.Interfaces;
 using OrionApiSdk.Objects.Portfolio;
+using OrionApiSdk.Objects.Portfolio.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,5 +24,8 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio.Interfaces
 
         List<AccountSimple> GetSimple(bool? hasValue = null, bool? isActive = null, int top = 5000, int skip = 0);
         Task<List<AccountSimple>> GetSimpleAsync(bool? hasValue = null, bool? isActive = null, int top = 5000, int skip = 0);
+
+        List<AccountVerbose> GetVerbose(bool? isActive = null, bool? isManager = null, int top = 5000, int skip = 0, params AccountPropertyExpand[] expand);
+        Task<List<AccountVerbose>> GetVerboseAsync(bool? isActive = null, bool? isManager = null, int top = 5000, int skip = 0, params AccountPropertyExpand[] expand);
     }
 }
