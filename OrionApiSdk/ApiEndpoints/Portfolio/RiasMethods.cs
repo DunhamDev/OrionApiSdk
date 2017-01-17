@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using OrionApiSdk.ApiEndpoints.Abstract;
+using OrionApiSdk.ApiEndpoints.Portfolio.Interfaces;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Portfolio;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Portfolio
 {
-    public class RiasMethods : ApiMethodContainer<RIA>
+    public class RiasMethods : ApiMethodContainer<RIA>, IRiasMethods
     {
         public RiasMethods(AuthToken token) : base("Portfolio", "Rias", token) { }
 

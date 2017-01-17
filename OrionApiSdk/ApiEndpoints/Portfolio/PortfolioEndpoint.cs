@@ -99,11 +99,11 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
         /// <summary>
         /// Endpoint object behind <see cref="Rias"/>
         /// </summary>
-        private RiasMethods _riaMethods;
+        private IRiasMethods _riaMethods;
         /// <summary>
         /// /Portfolio/Rias endpoint methods
         /// </summary>
-        public RiasMethods Rias
+        public IRiasMethods Rias
         {
             get
             {
