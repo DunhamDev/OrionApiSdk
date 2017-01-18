@@ -83,6 +83,7 @@
     <Compile Include="ApiEndpoints\Portfolio\Interfaces\IRegistrationsMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\Interfaces\IRepresentativesMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\Interfaces\IRiasMethods.cs" />
+    <Compile Include="ApiEndpoints\Portfolio\Interfaces\ITransactionsMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\PortfolioEndpoint.cs" />
     <Compile Include="ApiEndpoints\Portfolio\RegistrationsMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\RepresentativesMethods.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Objects\Billing\CompositeAccountExclude.cs" />
     <Compile Include="Objects\Billing\Enums\BillSchedule.cs" />
     <Compile Include="Objects\Confirm\DownloadExcludeCurrent.cs" />
+    <Compile Include="Objects\Confirm\Enums\TaxErrorAuditType.cs" />
     <Compile Include="Objects\Enums\Entity.cs" />
     <Compile Include="Objects\Exceptions\EmptyStringException.cs" />
     <Compile Include="Objects\Exceptions\UninitializedPropertyException.cs" />
@@ -128,6 +130,7 @@
     <Compile Include="Objects\Portfolio\ClientVerbose.cs" />
     <Compile Include="Objects\Portfolio\Enums\AccountPropertyExpand.cs" />
     <Compile Include="Objects\Portfolio\Enums\BrokerDealerPropertyExpand.cs" />
+    <Compile Include="Objects\Portfolio\Enums\FinancialType.cs" />
     <Compile Include="Objects\Portfolio\Enums\RegistrationPropertyExpand.cs" />
     <Compile Include="Objects\Portfolio\GeneralAccount.cs" />
     <Compile Include="Objects\Portfolio\HouseholdMember.cs" />
@@ -143,6 +146,7 @@
     <Compile Include="Objects\Portfolio\RepresentativePortolfio.cs" />
     <Compile Include="Objects\Portfolio\Systematic.cs" />
     <Compile Include="Objects\Portfolio\TargetAllocation.cs" />
+    <Compile Include="Objects\Portfolio\Transaction.cs" />
     <Compile Include="Objects\Reporting\Enums\OverTimeInterval.cs" />
     <Compile Include="Objects\Reporting\Enums\ReportAccountInclusionOption.cs" />
     <Compile Include="Objects\Portfolio\RIA.cs" />
@@ -180,6 +184,7 @@
     <Compile Include="Objects\Security\Profile.cs" />
     <Compile Include="Objects\Trading\Account.cs" />
     <Compile Include="Objects\Trading\AccountBondTrade.cs" />
+    <Compile Include="Objects\Trading\Enums\TradeStatus.cs" />
     <Compile Include="Objects\Trading\Model.cs" />
     <Compile Include="Objects\Trading\ModelAgg.cs" />
     <Compile Include="Objects\Trading\ModelAggDetail.cs" />
