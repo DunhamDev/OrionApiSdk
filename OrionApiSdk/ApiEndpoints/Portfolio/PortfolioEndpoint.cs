@@ -110,5 +110,20 @@ namespace OrionApiSdk.ApiEndpoints.Portfolio
                 return _riaMethods ?? (_riaMethods = new RiasMethods(AuthToken));
             }
         }
+
+        /// <summary>
+        /// Endpoint object behind <see cref="Transactions"/>
+        /// </summary>
+        private ITransactionsMethods _transactionsMethods;
+        /// <summary>
+        /// /Portfolio/Transactions endpoint methods
+        /// </summary>
+        public ITransactionsMethods Transactions
+        {
+            get
+            {
+                return _transactionsMethods ?? (_transactionsMethods = new TransactionsMethods(AuthToken));
+            }
+        }
     }
 }

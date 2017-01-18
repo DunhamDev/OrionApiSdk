@@ -87,6 +87,7 @@
     <Compile Include="ApiEndpoints\Portfolio\PortfolioEndpoint.cs" />
     <Compile Include="ApiEndpoints\Portfolio\RegistrationsMethods.cs" />
     <Compile Include="ApiEndpoints\Portfolio\RepresentativesMethods.cs" />
+    <Compile Include="ApiEndpoints\Portfolio\TransactionsMethods.cs" />
     <Compile Include="ApiEndpoints\Trading\ModelAggsMethods.cs" />
     <Compile Include="ApiEndpoints\Trading\ModelsMethods.cs" />
     <Compile Include="ApiEndpoints\Trading\TradingEndpoint.cs" />
@@ -130,7 +131,6 @@
     <Compile Include="Objects\Portfolio\ClientVerbose.cs" />
     <Compile Include="Objects\Portfolio\Enums\AccountPropertyExpand.cs" />
     <Compile Include="Objects\Portfolio\Enums\BrokerDealerPropertyExpand.cs" />
-    <Compile Include="Objects\Portfolio\Enums\FinancialType.cs" />
     <Compile Include="Objects\Portfolio\Enums\RegistrationPropertyExpand.cs" />
     <Compile Include="Objects\Portfolio\GeneralAccount.cs" />
     <Compile Include="Objects\Portfolio\HouseholdMember.cs" />

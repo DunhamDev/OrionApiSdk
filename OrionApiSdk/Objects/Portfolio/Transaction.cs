@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using OrionApiSdk.Common.Converters;
 using OrionApiSdk.Objects.Portfolio.Enums;
 using System;
@@ -143,6 +144,6 @@ namespace OrionApiSdk.Objects.Portfolio
         public int ProductId { get; set; }
 
         [JsonProperty("financialType")]
-        public FinancialType FinancialType { get; set; }
+        public string FinancialType { get; set; }
     }
 }

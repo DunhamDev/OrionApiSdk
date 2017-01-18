@@ -3,11 +3,13 @@ using OrionApiSdk.ApiEndpoints.Security;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Authorization;
 using OrionApiSdk.Objects.Portfolio;
+using OrionApiSdk.Objects.Portfolio.Enums;
 using OrionApiSdk.Objects.Security;
 using OrionApiSdk.Objects.Trading;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ConsoleProgram
 {
@@ -20,7 +22,8 @@ namespace ConsoleProgram
         {
             Token = GetAuthToken();
             Api = new OrionApi(Token);
-            var rep = Api.Portfolio.Representatives.Get(74);
+            GetTransactions();
+            Console.ReadKey();
         }
 
         private static AuthToken GetAuthToken()
@@ -72,6 +75,39 @@ namespace ConsoleProgram
         public static List<OrionApiSdk.Objects.Portfolio.Account> GetRepAccounts(int id)
         {
             return Api.Portfolio.Representatives.GetAccounts(id);
+        }
+
+        public static void GetAccountsVerbose()
+        {
+            var accts = Api.Portfolio.Accounts.GetAsync(isActive: false).ConfigureAwait(false).GetAwaiter().GetResult();
+
+            foreach (var item in accts)
+            {
+                Console.WriteLine(item.Id);
+            }
+            Console.WriteLine("Done");
+        }
+        public static void GetTransactions()
+        {
+            int numToRetrieve = 5000;
+            int numToSkip = 0;
+            while (numToRetrieve != 0)
+            {
+                Console.WriteLine("Retrieving {0}-{1}...", numToSkip + 1, numToRetrieve + numToSkip);
+                var trans = Api.Portfolio.Transactions.GetAsync(top: numToRetrieve, skip: numToSkip).ConfigureAwait(false).GetAwaiter().GetResult();
+                Console.WriteLine("Retrieved {0}!", trans.Count);
+                numToSkip += trans.Count;
+                if (trans.Count < numToRetrieve)
+                {
+                    numToRetrieve = 0;
+                }
+
+                foreach (var t in trans)
+                {
+                    Console.WriteLine(t.Id);
+                }
+            }
+            Console.WriteLine("Done");
         }
 
         //public static List<AccountSimple> GetAccountValues(int id)
