@@ -1,4 +1,5 @@
 ﻿using OrionApiSdk.ApiEndpoints.Abstract;
+using OrionApiSdk.ApiEndpoints.Billing.Interfaces;
 using OrionApiSdk.Objects;
 using OrionApiSdk.Objects.Billing;
 using OrionApiSdk.Objects.Billing.Enums;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Billing
 {
-    public class SchedulesMethods : ApiMethodContainer
+    public class SchedulesMethods : ApiMethodContainer, ISchedulesMethods
     {
         public SchedulesMethods(AuthToken token) : this(token, false)
         {

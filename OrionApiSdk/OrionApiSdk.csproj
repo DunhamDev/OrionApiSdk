@@ -67,6 +67,8 @@
     <Compile Include="ApiEndpoints\Abstract\ApiMethodContainerForVeboseObject.cs" />
     <Compile Include="ApiEndpoints\Authorization\Interfaces\IAuthorizationEndpoint.cs" />
     <Compile Include="ApiEndpoints\Billing\BillingEndpoint.cs" />
+    <Compile Include="ApiEndpoints\Billing\Interfaces\IBillingEndpoint.cs" />
+    <Compile Include="ApiEndpoints\Billing\Interfaces\ISchedulesMethods.cs" />
     <Compile Include="ApiEndpoints\Billing\SchedulesMethods.cs" />
     <Compile Include="ApiEndpoints\Confirm\Interfaces\IExlusionsMethods.cs" />
     <Compile Include="ApiEndpoints\Global\GlobalEndpoint.cs" />

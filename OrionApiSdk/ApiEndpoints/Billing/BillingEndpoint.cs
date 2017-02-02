@@ -1,4 +1,5 @@
 ﻿using OrionApiSdk.ApiEndpoints.Abstract;
+using OrionApiSdk.ApiEndpoints.Billing.Interfaces;
 using OrionApiSdk.Objects;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OrionApiSdk.ApiEndpoints.Billing
 {
-    public class BillingEndpoint : ApiEndpointBase
+    public class BillingEndpoint : ApiEndpointBase, IBillingEndpoint
     {
         public BillingEndpoint(AuthToken token) : this(token, false)
         {
@@ -19,8 +20,8 @@ namespace OrionApiSdk.ApiEndpoints.Billing
 
         }
 
-        private SchedulesMethods _schedules;
-        public SchedulesMethods Schedules
+        private ISchedulesMethods _schedules;
+        public ISchedulesMethods Schedules
         {
             get
             {

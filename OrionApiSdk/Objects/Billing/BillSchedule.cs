@@ -26,6 +26,7 @@ namespace OrionApiSdk.Objects.Billing
         [JsonProperty("schedule")]
         public string Schedule { get; set; }
 
+        [JsonIgnore]
         public Enums.BillSchedule ScheduleEnum
         {
             get

@@ -1,6 +1,7 @@
 ﻿using OrionApiSdk.ApiEndpoints.Authorization;
 using OrionApiSdk.ApiEndpoints.Authorization.Interfaces;
 using OrionApiSdk.ApiEndpoints.Billing;
+using OrionApiSdk.ApiEndpoints.Billing.Interfaces;
 using OrionApiSdk.ApiEndpoints.Portfolio;
 using OrionApiSdk.ApiEndpoints.Portfolio.Interfaces;
 using OrionApiSdk.ApiEndpoints.Security;
@@ -40,11 +41,11 @@ namespace OrionApiSdk
         /// <summary>
         /// Endpoint object behind <see cref="Billing"/>
         /// </summary>
-        private BillingEndpoint _billingEndpoint;
+        private IBillingEndpoint _billingEndpoint;
         /// <summary>
         /// /Billing endpoint methods
         /// </summary>
-        public BillingEndpoint Billing
+        public IBillingEndpoint Billing
         {
             get
             {
