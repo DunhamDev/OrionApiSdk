@@ -95,6 +95,8 @@
     <Compile Include="Common\OrionConstants.cs" />
     <Compile Include="IOrionApi.cs" />
     <Compile Include="Objects\Billing\AccountReferral.cs" />
+    <Compile Include="Objects\Billing\BillAccountEntityPayee.cs" />
+    <Compile Include="Objects\Billing\BillPaysForAccount.cs" />
     <Compile Include="Objects\Billing\BillSchedule.cs" />
     <Compile Include="Objects\Billing\BillScheduleDetail.cs" />
     <Compile Include="Objects\Billing\CompositeAccountExclude.cs" />

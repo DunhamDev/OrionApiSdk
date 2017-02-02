@@ -14,6 +14,8 @@ namespace OrionApiSdk.Objects.Portfolio
 {
     public class AccountVerbose : BaseSimpleEntity, ICreatable, IUpdatable
     {
+        #region Properties
+        #region Public properties
         [JsonProperty("number")]
         public string Number { get; set; }
 
@@ -64,6 +66,29 @@ namespace OrionApiSdk.Objects.Portfolio
 
         [JsonProperty("compositeExclusions")]
         public List<CompositeAccountExclude> CompositeExclusions { get; set; }
+        #endregion
+        #endregion
+
+        #region Constructors
+        public AccountVerbose()
+        {
+            Portfolio = new AccountPortfolio();
+            Billing = new AccountBilling();
+            ModelingInfo = new AccountModelingInfo();
+            Sma = new AccountSma();
+            BondTrade = new AccountBondTrade();
+            Notes = new List<Note>();
+            Systematics = new List<Systematic>();
+            AccountManagers = new List<AccountManager>();
+            RecurringAdjustments = new List<BillRecurrentAdjustment>();
+            GeneralAccounts = new List<GeneralAccount>();
+            ReferralSchedules = new List<AccountReferral>();
+            BillAccountSchedules = new List<BillAccountSchedule>();
+            TargetAllocations = new List<TargetAllocation>();
+            ProductEquivalents = new List<ProductEquivalent>();
+            CompositeExclusions = new List<CompositeAccountExclude>();
+        }
+        #endregion
 
         #region Methods
         #region Public methods
@@ -73,11 +98,8 @@ namespace OrionApiSdk.Objects.Portfolio
             {
                 throw new EmptyStringException("Name");
             }
-            if (Portfolio == null)
-            {
-                throw new UninitializedPropertyException("Portfolio");
-            }
             CheckPortfolioPropertiesForCreateAndUpdate();
+            CheckBillingProperties();
             if (Portfolio.AccountStartDate == new DateTime())
             {
                 throw new UninitializedPropertyException("Portfolio.AccountStartDate");
@@ -111,6 +133,22 @@ namespace OrionApiSdk.Objects.Portfolio
             if (Portfolio.RegistrationId == 0)
             {
                 throw new UninitializedPropertyException("Portfolio.RegistrationId");
+            }
+        }
+
+        private void CheckBillingProperties()
+        {
+            if (string.IsNullOrWhiteSpace(Billing.ValuationMethod))
+            {
+                throw new UninitializedPropertyException("Billing.ValuationMethod");
+            }
+            if (string.IsNullOrWhiteSpace(Billing.BillStyle))
+            {
+                throw new UninitializedPropertyException("Billing.BillStyle");
+            }
+            if (string.IsNullOrWhiteSpace(Billing.BillFrequency))
+            {
+                throw new UninitializedPropertyException("Billing.BillFrequency");
             }
         }
         #endregion

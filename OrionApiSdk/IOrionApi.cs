@@ -8,5 +8,8 @@ namespace OrionApiSdk
         IAuthorizationEndpoint Authorization { get; }
 
         IPortfolioEndpoint Portfolio { get; }
+
+        void UseTestApi();
+        void UseProductionApi();
     }
 }

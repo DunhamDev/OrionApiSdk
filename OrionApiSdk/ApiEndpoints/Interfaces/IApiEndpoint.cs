@@ -2,5 +2,7 @@
 {
     public interface IApiEndpoint
     {
+        void UseTestApi();
+        void UseProductionApi();
     }
 }

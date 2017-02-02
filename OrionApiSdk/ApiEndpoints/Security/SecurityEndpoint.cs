@@ -58,7 +58,7 @@ namespace OrionApiSdk.ApiEndpoints.Security
 
         internal static AuthToken Token(string username, string password)
         {
-            return TokenAsync(username, password).Result;
+            return TokenAsync(username, password).ConfigureAwait(true).GetAwaiter().GetResult();
         }
         internal static async Task<AuthToken> TokenAsync(string username, string password)
         {

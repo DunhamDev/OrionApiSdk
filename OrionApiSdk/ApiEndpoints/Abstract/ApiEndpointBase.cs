@@ -36,13 +36,13 @@ namespace OrionApiSdk.ApiEndpoints.Abstract
         }
         private UserCredentials _credentials { get; set; }
 
-        private bool UseTestApi { get; set; }
+        private bool _useTestApi { get; set; }
 
         private string ApiUrl
         {
             get
             {
-                if (UseTestApi)
+                if (_useTestApi)
                 {
                     return TEST_ORION_API_RUL + VERSION + "/";
                 }
@@ -58,26 +58,38 @@ namespace OrionApiSdk.ApiEndpoints.Abstract
             EndpointName = endpointName;
             AuthToken = null;
             _credentials = null;
-            UseTestApi = false;
+            _useTestApi = false;
         }
         internal ApiEndpointBase(string endpointName, bool useTestApi) : this(endpointName)
         {
-            UseTestApi = useTestApi;
+            _useTestApi = useTestApi;
         }
 
         internal ApiEndpointBase(string endpointName, AuthToken authToken)
         {
             EndpointName = endpointName;
             AuthToken = authToken;
-            UseTestApi = false;
+            _useTestApi = false;
         }
         internal ApiEndpointBase(string endpointName, AuthToken authToken, bool useTestApi) : this(endpointName, authToken)
         {
-            UseTestApi = useTestApi;
+            _useTestApi = useTestApi;
         }
         #endregion
 
         #region Methods
+        #region Public methods
+        public void UseTestApi()
+        {
+            _useTestApi = true;
+        }
+
+        public void UseProductionApi()
+        {
+            _useTestApi = false;
+        }
+        #endregion
+
         #region Protected methods
         protected void UpdateAuthToken(AuthToken authToken)
         {
@@ -87,7 +99,7 @@ namespace OrionApiSdk.ApiEndpoints.Abstract
         protected void UpdateCredentials(string username, string password)
         {
             _credentials = new UserCredentials(username, password);
-            UseTestApi = false;
+            _useTestApi = false;
         }
 
         protected async Task<JToken> GetJsonAsync(string endpointMethod, NameValueCollection endpointParameters = null)

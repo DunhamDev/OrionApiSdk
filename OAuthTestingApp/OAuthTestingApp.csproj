@@ -202,6 +202,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701272137416_Initial.cs" />
+    <Compile Include="Migrations\201701272137416_Initial.Designer.cs">
+      <DependentUpon>201701272137416_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -285,6 +290,11 @@
       <Project>{e13134dc-eed8-4ec6-8f37-f618ba841663}</Project>
       <Name>OrionApiSdk</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201701272137416_Initial.resx">
+      <DependentUpon>201701272137416_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

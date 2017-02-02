@@ -115,7 +115,7 @@ namespace OrionApiSdk
         /// <returns>The user's access token</returns>
         public static AuthToken GetUserAuthToken(string username, string password)
         {
-            return GetUserAuthTokenAsync(username,password).Result;
+            return GetUserAuthTokenAsync(username,password).ConfigureAwait(false).GetAwaiter().GetResult();
         }
         /// <summary>
         /// Authorizies the given user credentials with Orion to retrieve an access token
@@ -126,6 +126,23 @@ namespace OrionApiSdk
         public static async Task<AuthToken> GetUserAuthTokenAsync(string username, string password)
         {
             return await SecurityEndpoint.TokenAsync(username, password);
+        }
+
+        public void UseTestApi()
+        {
+            Authorization.UseTestApi();
+            Billing.UseTestApi();
+            Portfolio.UseTestApi();
+            Security.UseTestApi();
+            Trading.UseTestApi();
+        }
+        public void UseProductionApi()
+        {
+            Authorization.UseProductionApi();
+            Billing.UseProductionApi();
+            Portfolio.UseProductionApi();
+            Security.UseProductionApi();
+            Trading.UseProductionApi();
         }
 
         /// <summary>

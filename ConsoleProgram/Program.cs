@@ -22,7 +22,30 @@ namespace ConsoleProgram
         {
             Token = GetAuthToken();
             Api = new OrionApi(Token);
-            GetTransactions();
+            Api.UseTestApi();
+            var newAccount = new AccountVerbose()
+            {
+                Portfolio = new AccountPortfolio
+                {
+                    RegistrationId = 1,
+                    Salutation = "Mr.",
+                    FirstName = "Test",
+                    LastName = "Account",
+                    Name = "Api Testing Account",
+                    SSN_TaxID = "555-66-7777",
+                    Address1 = "10251 Vista Sorrento Parkway",
+                    City = "San Diego",
+                    State = "CA",
+                    Zip = "92121",
+                    Email = "billy.wolfington@dunham.com",
+                    AccountType = "401(k)",
+                    Custodian = "Dunham Trust Company",
+                    ManagementStyle = "Managed Account",
+                    FundFamily = "Dunham & Associates",
+                },
+            };
+            newAccount = Api.Portfolio.Accounts.CreateAsync(newAccount).ConfigureAwait(false).GetAwaiter().GetResult();
+            var accts = Api.Portfolio.Accounts.GetAsync(newAccount.Id).ConfigureAwait(false).GetAwaiter().GetResult();
             Console.ReadKey();
         }
 
